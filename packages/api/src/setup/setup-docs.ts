@@ -11,6 +11,7 @@ export const setupDocs = async (app: Koa<any, {}>, _opt: {}) => {
   router.get(
     'docs',
     koaSwagger({
+      title: 'Taffy API Docs',
       routePrefix: false,
       swaggerOptions: {
         spec
