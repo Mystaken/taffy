@@ -1,0 +1,67 @@
+swagger: '2.0'
+info:
+  description: 'This is the documentation for the Taffy API'
+  version: '0.0.0'
+  title: 'Taffy API'
+  contact:
+    email: 'kgaotianx@gmail.com'
+  license:
+    name: 'ISC'
+    url: 'https://opensource.org/licenses/ISC'
+host: 'petstore.swagger.io'
+basePath: '/api'
+tags:
+  - name: 'authentication'
+    description: 'Authentication related routes'
+schemes:
+  - 'https'
+  - 'http'
+paths:
+  /auth/login:
+    post:
+      tags:
+        - 'authentication'
+      summary: 'Logs in an existing user'
+      description: ''
+      operationId: 'authLogin'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          required: true
+          schema:
+            type: 'object'
+            properties:
+              email:
+                type: 'string'
+                example: 'bob.ross@gmail.com'
+              password:
+                type: 'string'
+                example: 'badpassword123'
+                minLength: 8
+                maxLength: 20
+      responses:
+        '200':
+          description: 'OK'
+          examples:
+            application/json:
+              {
+                'id': 1,
+                'firstName': 'Bob',
+                'lastName': 'Ross',
+                'email': 'taffy@gmail.com',
+                'createdAt': '2020-05-16T17:52:35.543Z',
+                'lastLogin': '2020-05-16T17:52:35.543Z',
+                'jwt': '<...token...>',
+              }
+        '404':
+          description: 'Not Found'
+          examples:
+            application/json: { 'status': 404, 'errors': ['user not found'] }
+        '401':
+          description: 'Bad Request'
+          examples:
+            application/json: { 'status': 401, 'errors': ['email is required'] }

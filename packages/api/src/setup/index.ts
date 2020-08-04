@@ -7,10 +7,13 @@ import { setupNextApp } from './setup-next-app';
 import { setupMiddlewares } from './setup-middlewares';
 import { setupListeners } from './setup-listeners';
 import { setupMongoose } from './setup-mongo';
+import { setupDocs } from './setup-docs';
 import { logger } from '../utils/common/logger';
 
 export const setup = async (nextApp?: Server): Promise<Koa<any, {}>> => {
   const app = new Koa();
+
+  await setupDocs(app, {});
 
   await setupMiddlewares(app, {});
 
@@ -21,6 +24,7 @@ export const setup = async (nextApp?: Server): Promise<Koa<any, {}>> => {
   app.use(mount(apiURL, router.allowedMethods()));
 
   logger.info(`Routes mounted:\n${router.stack.map(i => i.path).join('\n')}`);
+
   await setupListeners(app, {});
 
   if (nextApp) {
