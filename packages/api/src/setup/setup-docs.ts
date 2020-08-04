@@ -5,7 +5,7 @@ import Router from 'koa-router';
 import koaSwagger from 'koa2-swagger-ui';
 
 export const setupDocs = async (app: Koa<any, {}>, _opt: {}) => {
-  const schemaPath = resolve(__dirname, '../../schema.yaml');
+  const schemaPath = resolve(__dirname, '../../docs/schema.yaml');
   const spec = load(schemaPath);
   const router = new Router({ prefix: '/' });
   router.get(
