@@ -1,0 +1,34 @@
+{
+  "name": "taffy",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "description": "Taffy",
+  "repository": "https://github.com/Mystaken/taffy",
+  "author": "Mystaken <kgaotianx@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node --project tsconfig.json index.ts",
+    "dev:api": "lerna run dev --scope @taffy/api --stream",
+    "dev:client": "lerna run dev --scope @taffy/client --stream",
+    "build:client": "lerna run build --scope @taffy/client --stream",
+    "check-all": "lerna run check-all --stream",
+    "check-tsc": "lerna run check-tsc --stream",
+    "storybook": "lerna run storybook --scope @taffy/client --stream -- --quiet",
+    "test": "lerna run test-cov --stream",
+    "lint": "gulp eslint"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^3.8.0",
+    "@typescript-eslint/eslint-plugin-tslint": "^3.8.0",
+    "@typescript-eslint/parser": "^3.8.0",
+    "eslint": "^7.6.0",
+    "eslint-plugin-import": "^2.22.0",
+    "gulp": "^4.0.2",
+    "gulp-eslint": "^6.0.0",
+    "lerna": "^3.16.4",
+    "tslint": "^6.1.3",
+    "typescript": "^3.9.7"
+  }
+}

@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FooterLinks /> has rendered correctly 1`] = `
+<div
+  className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 MuiGrid-direction-xs-column MuiGrid-align-items-xs-center MuiGrid-justify-xs-center"
+>
+  <div
+    className="MuiGrid-root MuiGrid-item"
+  >
+    <a
+      className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+      href="#"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    >
+      <h6
+        className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-colorTextSecondary MuiTypography-alignCenter"
+      >
+        HOME
+      </h6>
+    </a>
+  </div>
+  <div
+    className="MuiGrid-root MuiGrid-item"
+  >
+    <a
+      className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+      href="#"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    >
+      <h6
+        className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-colorTextSecondary MuiTypography-alignCenter"
+      >
+        OUR MEDIA
+      </h6>
+    </a>
+  </div>
+  <div
+    className="MuiGrid-root MuiGrid-item"
+  >
+    <a
+      className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+      href="#"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    >
+      <h6
+        className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-colorTextSecondary MuiTypography-alignCenter"
+      >
+        ABOUT US
+      </h6>
+    </a>
+  </div>
+  <div
+    className="MuiGrid-root MuiGrid-item"
+  >
+    <a
+      className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+      href="#"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    >
+      <h6
+        className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-colorTextSecondary MuiTypography-alignCenter"
+      >
+        FAQ
+      </h6>
+    </a>
+  </div>
+  <div
+    className="MuiGrid-root MuiGrid-item"
+  >
+    <a
+      className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+      href="#"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    >
+      <h6
+        className="MuiTypography-root MuiTypography-subtitle2 MuiTypography-colorTextSecondary MuiTypography-alignCenter"
+      >
+        TERMS AND SERVICES
+      </h6>
+    </a>
+  </div>
+</div>
+`;

@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.prod.json",
+  "compilerOptions": {
+    "jsx": "react",
+    "module": "esnext",
+    "sourceMap": false,
+    "lib": ["es2019"],
+    "target": "es2019"
+  },
+  "exclude": ["./node_modules", ".next"]
+}

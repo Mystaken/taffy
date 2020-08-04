@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.prod.json",
+  "compilerOptions": {
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "paths": {
+      "*": ["packages/api/@types/*"]
+    }
+  }
+}

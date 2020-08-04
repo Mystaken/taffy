@@ -1,0 +1,34 @@
+version: 2.1
+jobs:
+  build:
+    working_directory: ~/taffy
+    docker:
+      - image: circleci/node:12.11.1
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - taffy-{{ checksum "yarn.lock" }}
+
+      - run: yarn --frozen-lockfile
+
+      - run:
+          command: yarn autoclean --force
+
+      - save_cache:
+          paths:
+            - node_modules
+            - ~/.yarn
+            - ~/.config/yarn
+          key: taffy-{{ checksum "yarn.lock" }}
+
+      # Run check-all
+      - run:
+          name: check-all
+          command: yarn check-all
+
+      # Run build
+      - run:
+          name: build
+          command: yarn build:client
