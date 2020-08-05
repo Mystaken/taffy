@@ -19,11 +19,11 @@ const ComicSchema = new mongoose.Schema(
     description: { type: String, required: true },
     genres: { type: [String], required: true },
     categories: { type: [String], required: true },
-    author: { type: [String], required: true },
-    coverImage: { type: String, required: true },
-    mobileCoverImage: { type: String, required: true },
-    desktopCoverImage: { type: String, required: true },
-    comicBannerImage: { type: String, required: true },
+    authors: { type: [String], required: true },
+    coverImage: { type: String },
+    mobileCoverImage: { type: String },
+    desktopCoverImage: { type: String },
+    comicBannerImage: { type: String },
     ratings: { type: [ComicRatingSchema], required: true, default: [] },
     issues: { type: [ComicIssueSchema], required: true, default: [] }
   },
@@ -57,11 +57,11 @@ export interface TComicModel {
   description: string;
   genres: string[];
   categories: string[];
-  author: string[];
-  coverImage: string;
-  mobileCoverImage: string;
-  desktopCoverImage: string;
-  comicBannerImage: string;
+  authors: string[];
+  coverImage?: string;
+  mobileCoverImage?: string;
+  desktopCoverImage?: string;
+  comicBannerImage?: string;
   ratings: ComicRating[];
   issues: ComicIssue[];
 }
@@ -74,4 +74,4 @@ export interface Comic extends Omit<TComicModel, 'ratings' | 'issues'> {
   issues: ComicIssueMeta[];
 }
 
-export const ComicModel = mongoose.model('users', ComicSchema);
+export const ComicModel = mongoose.model('comic', ComicSchema);

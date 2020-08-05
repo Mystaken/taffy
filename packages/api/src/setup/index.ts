@@ -23,7 +23,11 @@ export const setup = async (nextApp?: Server): Promise<Koa<any, {}>> => {
   app.use(mount(apiURL, router.routes()));
   app.use(mount(apiURL, router.allowedMethods()));
 
-  logger.info(`Routes mounted:\n${router.stack.map(i => i.path).join('\n')}`);
+  logger.info(
+    `Routes mounted:\n${router.stack
+      .map(i => `${i.path} - ${i.methods}`)
+      .join('\n')}`
+  );
 
   await setupListeners(app, {});
 

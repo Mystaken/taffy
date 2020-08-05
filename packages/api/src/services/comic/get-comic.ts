@@ -2,16 +2,14 @@ import { ComicModel, TComicModel, Comic } from '../../models/comic.model';
 import { NotFoundError } from '../../errors/not-found.error';
 import { mapComic } from './map-comic';
 
-export interface GetComicParams extends Partial<Pick<TComicModel, 'title'>> {
+export interface GetComicParams {
   id: string;
 }
 
-export const getComic = async (
-  params: GetComicParams
-): Promise<TComicModel> => {
-  const document = await ComicModel.findOne({
-    _id: params.id
-  }).exec();
+export const getComic = async ({
+  id
+}: GetComicParams): Promise<TComicModel> => {
+  const document = await ComicModel.findOne({ _id: id }).exec();
 
   if (!document) {
     throw new NotFoundError('comic');
