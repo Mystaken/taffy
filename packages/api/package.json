@@ -10,7 +10,7 @@
     "check-all": "yarn check-tsc && yarn test-cov",
     "check-tsc": "tsc --project tsconfig.prod.json",
     "test": "jest --watch",
-    "test-cov": "jest --collect-coverage",
+    "test-cov": "jest -w 1 --collect-coverage",
     "dev": "nodemon | pino-pretty"
   },
   "dependencies": {

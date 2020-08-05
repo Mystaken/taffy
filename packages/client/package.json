@@ -9,7 +9,7 @@
     "test": "jest --watch",
     "storybook": "start-storybook -p 3001 -c .storybook -s ./public",
     "check-all": "yarn check-tsc && yarn test-cov",
-    "test-cov": "jest --collect-coverage",
+    "test-cov": "jest -w 1 --collect-coverage",
     "build": "next build",
     "check-tsc": "tsc --project tsconfig.prod.json"
   },
