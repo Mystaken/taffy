@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const userSchema = new mongoose.Schema(
+const UserSchema = new mongoose.Schema(
   {
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
@@ -38,4 +38,4 @@ export interface User extends TUserModel {
   lastLogin: string;
 }
 
-export const userModel = mongoose.model('users', userSchema);
+export const UserModel = mongoose.model('users', UserSchema);

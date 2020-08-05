@@ -1,28 +1,26 @@
-import { TUserModel, userModel } from '../../models/user.model';
+import { TUserModel, UserModel } from '../../models/user.model';
 
-type CheckUserExistsInput = Partial<
+type UserExistsParams = Partial<
   Pick<TUserModel, 'firstName' | 'lastName' | 'email' | 'active'>
 >;
 
-export const userExists = async (opt: CheckUserExistsInput) => {
-  const matchers: any[] = [];
+export const userExists = async (opt: UserExistsParams) => {
+  const matchers: Record<string, string | boolean | undefined>[] = [];
 
   Object.keys(opt).forEach(k => {
     if (k) {
       matchers.push({
-        [k]: opt[k as keyof CheckUserExistsInput]
+        [k]: opt[k as keyof UserExistsParams]
       });
     }
   });
 
-  const foundUsers: TUserModel[] = await userModel
-    .aggregate<TUserModel>([
-      {
-        $match: {
-          $and: matchers
-        }
+  const foundUsers: TUserModel[] = await UserModel.aggregate<TUserModel>([
+    {
+      $match: {
+        $and: matchers
       }
-    ])
-    .exec();
+    }
+  ]).exec();
   return foundUsers.length > 0;
 };

@@ -1,4 +1,4 @@
-import { userModel, User } from '../../models/user.model';
+import { UserModel, User } from '../../models/user.model';
 import { hashPassword } from '../../utils/common/hash';
 
 export interface NewUser {
@@ -14,7 +14,7 @@ export const createUser = async ({
 }: NewUser): Promise<User> => {
   const hashedPassword = await hashPassword(password);
   const useData = { password: hashedPassword, ...user };
-  const newUser = await new userModel(useData).save();
+  const newUser = await new UserModel(useData).save();
 
   return newUser.toJSON();
 };

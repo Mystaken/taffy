@@ -1,4 +1,4 @@
-import { userModel, User } from '../../models/user.model';
+import { UserModel, User } from '../../models/user.model';
 import { NotFoundError } from '../../errors/not-found.error';
 import { comparePassword } from '../../utils/common/hash';
 import { TokenPayload } from 'google-auth-library';
@@ -13,11 +13,9 @@ export const getLoggedInUser = async ({
   email,
   password
 }: UserCredentials): Promise<User> => {
-  const document = await userModel
-    .findOne({
-      email
-    })
-    .exec();
+  const document = await UserModel.findOne({
+    email
+  }).exec();
 
   if (!document) {
     throw new NotFoundError('user');
@@ -37,13 +35,11 @@ export const getLoggedInUser = async ({
 };
 
 export const getGoogleUser = async (payload: TokenPayload): Promise<User> => {
-  let user = await userModel
-    .findOne({
-      googleID: payload.sub
-    })
-    .exec();
+  let user = await UserModel.findOne({
+    googleID: payload.sub
+  }).exec();
   if (!user) {
-    user = await new userModel({
+    user = await new UserModel({
       firstName: payload.given_name,
       lastName: payload.family_name,
       email: payload.email,
@@ -58,13 +54,11 @@ export const getFacebookUser = async ({
   id,
   ...payload
 }: FacebookPayload): Promise<User> => {
-  let user = await userModel
-    .findOne({
-      facebookID: id
-    })
-    .exec();
+  let user = await UserModel.findOne({
+    facebookID: id
+  }).exec();
   if (!user) {
-    user = await new userModel({ ...payload, facebookID: id }).save();
+    user = await new UserModel({ ...payload, facebookID: id }).save();
   }
 
   return user.toJSON();
