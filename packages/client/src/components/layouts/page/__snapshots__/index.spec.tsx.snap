@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Page /> has rendered correctly 1`] = `null`;
+
+exports[`<Page /> has rendered correctly with a title 1`] = `null`;

@@ -1,10 +1,10 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
-import { NavbarContent } from '.';
+import { TransparentNavbar } from '.';
 
-describe('<NavbarContent />', () => {
+describe('<TransparentNavbar />', () => {
   it('has rendered correctly', () => {
-    const component = create(<NavbarContent />);
+    const component = create(<TransparentNavbar />);
     const tree = component.toJSON()!;
     expect(tree).toMatchSnapshot();
   });

@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<VirtualizedFixedLoader /> has rendered correctly 1`] = `
+<div
+  style={
+    Object {
+      "height": "500px",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "height": "100%",
+        "overflow": "auto",
+        "width": "100%",
+      }
+    }
+  >
+    <style
+      global={true}
+      jsx={true}
+    >
+      
+      ::-webkit-scrollbar {
+        width: 0px; /* Remove scrollbar space */
+        display: none;
+      }
+    
+    </style>
+    <div
+      style={
+        Object {
+          "height": 0,
+          "overflow": "visible",
+          "width": 0,
+        }
+      }
+    />
+  </div>
+</div>
+`;
