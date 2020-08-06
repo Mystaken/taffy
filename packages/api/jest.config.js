@@ -18,13 +18,14 @@ module.exports = {
     '!src/services/**',
     '!src/middlewares/**',
     '!src/server.ts'
-  ],
-  coverageThreshold: {
-    './src/': {
-      branches: 70,
-      functions: 70,
-      lines: 70,
-      statements: 70
-    }
-  }
+  ]
+  // TODO: Have coverage.
+  // coverageThreshold: {
+  //   './src/': {
+  //     branches: 70,
+  //     functions: 70,
+  //     lines: 70,
+  //     statements: 70
+  //   }
+  // }
 };

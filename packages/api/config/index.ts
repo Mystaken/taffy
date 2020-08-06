@@ -13,6 +13,11 @@ export interface APIConfig {
   MONGO_CONNECTION: string;
   JWT_PRIVATE_KEY: string;
   ENV: 'development' | 'production';
+  AWS_S3: {
+    BUCKET_NAME: string;
+    ACCESS_KEY: string;
+    SECRET: string;
+  };
 }
 
 const ENV =
@@ -24,6 +29,15 @@ const validateEnvFile = () => {
     errors.push('GOOGLE_CLIENT_ID');
   }
   if (!process.env.MONGO_CONNECTION) {
+    errors.push('MONGO_CONNECTION');
+  }
+  if (!process.env.BUCKET_NAME) {
+    errors.push('BUCKET_NAME');
+  }
+  if (!process.env.S3_ACCESS_KEY) {
+    errors.push('MONGO_CONNECTION');
+  }
+  if (!process.env.S3_SECRET) {
     errors.push('MONGO_CONNECTION');
   }
   if (ENV === 'production') {
@@ -54,5 +68,10 @@ export const config: Readonly<APIConfig> = Object.freeze({
   DOC_PATH: resolve(__dirname, '../doc'),
   MONGO_CONNECTION: process.env.MONGO_CONNECTION as string,
   JWT_PRIVATE_KEY: process.env.JWT_PRIVATE_KEY || ('jwt-private-key' as string),
-  ENV
+  ENV,
+  AWS_S3: {
+    BUCKET_NAME: process.env.BUCKET_NAME as string,
+    ACCESS_KEY: process.env.S3_ACCESS_KEY as string,
+    SECRET: process.env.S3_SECRET as string
+  }
 });
