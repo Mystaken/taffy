@@ -7,7 +7,7 @@
     "baseUrl": ".",
     "jsx": "preserve",
     "moduleResolution": "node",
-    "target": "esnext",
+    "target": "ES2019",
     "noEmit": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,

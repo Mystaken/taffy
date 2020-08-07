@@ -5,7 +5,7 @@ import Router from 'koa-router';
 import koaSwagger from 'koa2-swagger-ui';
 import { logger } from '../utils/common/logger';
 
-export const setupDocs = async (app: Koa<any, {}>, _opt: {}) => {
+export const setupDocs = async (app: Koa, _opt: {}) => {
   logger.info('Mounting docs at /docs');
   const schemaPath = resolve(__dirname, '../../docs/schema.yaml');
   const spec = load(schemaPath);
@@ -18,7 +18,7 @@ export const setupDocs = async (app: Koa<any, {}>, _opt: {}) => {
       swaggerOptions: {
         spec
       }
-    })
+    }) as any
   );
   app.use(router.routes());
   return app;

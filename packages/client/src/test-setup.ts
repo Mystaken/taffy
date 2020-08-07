@@ -12,4 +12,14 @@ jest.mock('../config', () => ({
     FACEBOOK_APP_ID: 'Y'
   }
 }));
+
+jest.mock('react-hook-form', () => ({
+  useForm: jest.fn(() => ({
+    register: jest.fn(),
+    errors: {},
+    handleSubmit: jest.fn((d: any) => d),
+    watch: jest.fn()
+  }))
+}));
+
 setup();

@@ -13,5 +13,6 @@ export interface ComicAPISuccessResponse<T> extends ComicAPIResponse {
 export interface ComicAPIErrorResponse extends ComicAPIResponse {
   errors: any[];
 }
-
-export const comicAPI = ky.extend({ prefixUrl: config.API_BASE_URL });
+export const comicAPI = ky.extend({
+  prefixUrl: `${config.API_DOMAIN}${config.API_BASE_URL}`
+});

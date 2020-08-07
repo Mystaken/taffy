@@ -4,5 +4,13 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "module": "esnext"
-  }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

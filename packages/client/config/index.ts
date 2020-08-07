@@ -1,8 +1,4 @@
-import { resolve } from 'path';
-import { config as dotEnv } from 'dotenv';
 import { ConfigError } from './error';
-
-dotEnv({ path: resolve(__dirname, '../../../.env') });
 
 export interface ClientConfig {
   API_DOMAIN: string;
@@ -43,7 +39,7 @@ validateEnvFile();
 const domain =
   ENV === 'production'
     ? `${process.env.DOMAIN}/${process.env.PORT}`
-    : 'localhost:3000';
+    : 'http://localhost:4000';
 
 export const config: Readonly<ClientConfig> = Object.freeze({
   API_DOMAIN: domain,

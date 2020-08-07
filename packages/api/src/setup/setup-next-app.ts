@@ -8,7 +8,7 @@ export interface SetupNextAppOptions {
 }
 
 export const setupNextApp = async (
-  app: Koa<any, {}>,
+  app: Koa,
   { nextApp }: SetupNextAppOptions
 ) => {
   logger.debug('Setting up Next App');

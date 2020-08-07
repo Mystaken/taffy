@@ -1,16 +1,15 @@
 import Router from 'koa-router';
-import { ComicGetByIdRequestQueryParam, comicGetByIdSchema } from './schema';
-import { validateRequestPayload } from '../../../utils/api/validate-request-payload';
 import { getComic } from '../../../services/comic/get-comic';
+import { comicIssuesRouter } from './issues';
 
 const router = new Router();
 
-router.get('/:id', async ctx => {
-  const params = await validateRequestPayload<ComicGetByIdRequestQueryParam>(
-    ctx.params,
-    comicGetByIdSchema
-  );
-  ctx.body = await getComic(params);
+router.get('/:comicId', async ctx => {
+  ctx.body = await getComic({
+    id: ctx.params.comicId
+  });
 });
+
+router.use(comicIssuesRouter.routes());
 
 export const comicGetByIdRouter = router;

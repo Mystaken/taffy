@@ -1,6 +1,8 @@
 import Koa from 'koa';
 import mount from 'koa-mount';
 import Server from 'next/dist/next-server/server/next-server';
+import KoaCors from '@koa/cors';
+
 import { routes } from '../routes';
 import { config } from '../../config';
 import { setupNextApp } from './setup-next-app';
@@ -10,8 +12,10 @@ import { setupMongoose } from './setup-mongo';
 import { setupDocs } from './setup-docs';
 import { logger } from '../utils/common/logger';
 
-export const setup = async (nextApp?: Server): Promise<Koa<any, {}>> => {
+export const setup = async (nextApp?: Server): Promise<Koa> => {
   const app = new Koa();
+
+  app.use(KoaCors());
 
   await setupDocs(app, {});
 

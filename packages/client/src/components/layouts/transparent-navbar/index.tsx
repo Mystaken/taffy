@@ -12,15 +12,15 @@ const transparentNavbarStyles = makeStyles(_ => ({
   }
 }));
 
-export const TransparentNavbar: FunctionComponent<NavbarContentProps> = props => {
+export const TransparentNavbar: FunctionComponent = props => {
   const classes = transparentNavbarStyles();
   return (
     <Grid
       container
       direction="column"
       justify="center"
-      className={classes.navbar}>
-      <NavbarContent {...props} />
-    </Grid>
+      className={classes.navbar}
+      {...props}
+    />
   );
 };

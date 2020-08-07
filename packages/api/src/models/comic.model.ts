@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { TModelStatus } from './types';
 
 const ComicIssueSchema = new mongoose.Schema({
   title: { type: String, required: true },
@@ -25,7 +26,13 @@ const ComicSchema = new mongoose.Schema(
     desktopCoverImage: { type: String },
     comicBannerImage: { type: String },
     ratings: { type: [ComicRatingSchema], required: true, default: [] },
-    issues: { type: [ComicIssueSchema], required: true, default: [] }
+    issues: { type: [ComicIssueSchema], required: true, default: [] },
+    status: {
+      type: String,
+      enum: ['active', 'inactive'],
+      required: true,
+      default: 'active'
+    }
   },
   {
     timestamps: true,
@@ -53,23 +60,28 @@ export interface ComicIssue {
 }
 
 export interface TComicModel {
+  id: string;
   title: string;
   description: string;
   genres: string[];
   categories: string[];
   authors: string[];
+  //800x600
   coverImage?: string;
+  //1980x1080
   mobileCoverImage?: string;
   desktopCoverImage?: string;
   comicBannerImage?: string;
   ratings: ComicRating[];
   issues: ComicIssue[];
+  status: TModelStatus;
 }
 
 interface ComicIssueMeta extends Omit<ComicIssue, 'pages'> {
   numPages: number;
 }
 export interface Comic extends Omit<TComicModel, 'ratings' | 'issues'> {
+  id: string;
   rating: number;
   issues: ComicIssueMeta[];
 }

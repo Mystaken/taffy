@@ -4,7 +4,11 @@ import { TransparentNavbar } from '.';
 
 describe('<TransparentNavbar />', () => {
   it('has rendered correctly', () => {
-    const component = create(<TransparentNavbar />);
+    const component = create(
+      <TransparentNavbar>
+        <div>hi</div>
+      </TransparentNavbar>
+    );
     const tree = component.toJSON()!;
     expect(tree).toMatchSnapshot();
   });

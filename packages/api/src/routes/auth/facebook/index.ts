@@ -20,7 +20,7 @@ routes.post('/', async ctx => {
   try {
     payload = await getFacebookUserInformation(body.accessToken);
   } catch (e) {
-    throw new BadRequestError('Invalid or Expired Access token');
+    throw new BadRequestError('Invalid or Expired Access token.');
   }
 
   if (!payload) {

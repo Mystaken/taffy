@@ -16,11 +16,6 @@ setup();
 // load themes
 addDecorator(story => (
   <>
-    <style jsx global>{`
-      body {
-        margin: 0px;
-      }
-    `}</style>
     <ThemeProvider theme={defaultTheme}>
       <Grid
         container

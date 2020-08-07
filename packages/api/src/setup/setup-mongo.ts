@@ -11,7 +11,7 @@ const connect = async () => {
   return connection;
 };
 
-export const setupMongoose = async (app: Koa<any, {}>, _opt: {}) => {
+export const setupMongoose = async (app: Koa, _opt: {}) => {
   logger.debug('Connecting to mongo...');
   await connect();
   return app;
