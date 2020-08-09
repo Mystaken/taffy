@@ -33,7 +33,7 @@ const uploadMiddleware = upload.fields([
 
 router.post('/', uploadMiddleware, async ctx => {
   const reqBody = ctx.request.body;
-  const comicId = ctx.params.id;
+  const comicId: string = ctx.params.id;
   const body = {
     title: reqBody.title,
     description: reqBody.description,
@@ -47,11 +47,13 @@ router.post('/', uploadMiddleware, async ctx => {
     comicIdPostSchema
   )) as UpdateComic;
   const files: Record<string, koaMulter.File[]> = ctx.files as any;
+
   const awsId = comicData.title;
   const awsFileUrls = await uploadToAWS(awsId, files);
   const comicDataWithImages: UpdateComic = { ...comicData, ...awsFileUrls };
   const comic = await updateComic(comicId, comicDataWithImages);
+
   ctx.body = comic;
 });
 
-export const comicPostRouter = router;
+export const comicPostByIdRouter = router;

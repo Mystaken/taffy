@@ -1,7 +1,9 @@
-import { uploadFile } from '../../../s3/upload-file';
 import koaMulter from '@koa/multer';
-import { toJPG } from '../../../utils/images/file-to-jpg';
-import { ServerError } from '../../../errors/server.error';
+import { uploadFile } from '../../../../s3/upload-file';
+import { toJPG } from '../../../../utils/images/file-to-jpg';
+import { ServerError } from '../../../../errors/server.error';
+import { TComicModel } from '../../../../models/comic.model';
+import { removeFile } from '../../../../s3/remove-file';
 
 export interface AWSFile {
   url: string;
@@ -77,6 +79,6 @@ export const uploadToAWS = async (
 
     return result;
   } catch (e) {
-    throw new ServerError('Failed to create comic');
+    throw new ServerError('Failed to edit comic');
   }
 };

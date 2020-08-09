@@ -1,10 +1,23 @@
 import React, { FunctionComponent } from 'react';
-import { AppBar, Toolbar, Typography, Container } from '@material-ui/core';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Container,
+  makeStyles
+} from '@material-ui/core';
 
 import { Page } from '../../../components/layouts/page';
 import { CreateComicForm } from '../../../containers/admin/create-comic';
 
+const useStyles = makeStyles(_ => ({
+  container: {
+    paddingTop: '10px'
+  }
+}));
+
 const CreateComicPage: FunctionComponent = () => {
+  const classes = useStyles();
   return (
     <Page>
       <AppBar position="static">
@@ -14,7 +27,7 @@ const CreateComicPage: FunctionComponent = () => {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Container>
+      <Container className={classes.container}>
         <CreateComicForm />
       </Container>
     </Page>

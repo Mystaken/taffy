@@ -6,7 +6,8 @@ import { logger } from '../utils/common/logger';
 const connect = async () => {
   const connection = await mongoose.connect(config.MONGO_CONNECTION, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
   });
   return connection;
 };

@@ -150,7 +150,7 @@ export const EditComicForm: FunctionComponent<UpdateComicFormProps> = ({
       </div>
       <Grid item>
         <Button color="primary" type="submit" disabled={disabled}>
-          Create Comic
+          Update Comic
         </Button>
       </Grid>
     </Grid>
