@@ -5,31 +5,12 @@ import { validateRequestPayload } from '../../../utils/api/validate-request-payl
 import { ComicPostRequestBody, comicPostSchema } from './schema';
 import { createComic, NewComic } from '../../../services/comic/create-comic';
 import { uploadToAWS } from './utils';
-import { getRandomString } from '../../../utils/common/random';
-import { ServerError } from '../../../errors/server.error';
 
 const router = new Router();
 
 const upload = koaMulter();
 
-const uploadMiddleware = upload.fields([
-  {
-    name: 'coverImage',
-    maxCount: 1
-  },
-  {
-    name: 'desktopCoverImage',
-    maxCount: 1
-  },
-  {
-    name: 'mobileCoverImage',
-    maxCount: 1
-  },
-  {
-    name: 'comicBannerImage',
-    maxCount: 1
-  }
-]);
+const uploadMiddleware = upload.any();
 
 router.post('/', uploadMiddleware, async ctx => {
   const reqBody = ctx.request.body;
@@ -46,7 +27,8 @@ router.post('/', uploadMiddleware, async ctx => {
     comicPostSchema
   )) as NewComic;
 
-  const files: Record<string, koaMulter.File[]> = ctx.files as any;
+  const files: koaMulter.File[] = ctx.files as any;
+
   const awsId = comicData.title;
   const awsFileUrls = await uploadToAWS(awsId, files);
   const comicDataWithImages: NewComic = { ...comicData, ...awsFileUrls };

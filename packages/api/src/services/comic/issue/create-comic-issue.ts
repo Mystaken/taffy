@@ -11,28 +11,20 @@ import { NotFoundError } from '../../../errors/not-found.error';
 
 export interface CreateComicIssueParams {
   comicId: string;
-  issueNumber: number;
   issue: ComicIssue;
 }
 
 export const createComicIssue = async ({
   comicId,
-  issue,
-  issueNumber
+  issue
 }: CreateComicIssueParams): Promise<Comic> => {
-  const result = await getComic({ id: comicId });
-  const issues = result.issues;
-  if (issueNumber > issues.length || issueNumber < 0) {
-    throw new BadRequestError('Invalid issue number.');
-  }
-  issues.splice(issueNumber, 0, issue);
   const comic = await ComicModel.findOneAndUpdate(
     { _id: comicId },
-    { $set: { issues } },
+    { $push: { issues: issue } },
     { new: true }
   ).exec();
-  if (issueNumber > issues.length || issueNumber < 0) {
+  if (!comic) {
     throw new NotFoundError('comic');
   }
-  return mapComic(comic?.toJSON() as TComicModel);
+  return mapComic(comic.toJSON() as TComicModel);
 };

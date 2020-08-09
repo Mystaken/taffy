@@ -5,6 +5,7 @@ import { FileSchema, FileEntry } from './file.model';
 const ComicIssueSchema = new mongoose.Schema({
   title: { type: String, required: true },
   pages: { type: [FileSchema], required: true, default: [] },
+  originalImage: { type: FileSchema, required: true },
   coverImage: { type: String, required: true },
   membership: { type: String, required: true }
 });
@@ -55,8 +56,9 @@ export interface ComicRating {
 
 export interface ComicIssue {
   title: string;
-  pages: string[];
-  coverImage: string;
+  pages: FileEntry[];
+  originalImage: FileEntry;
+  coverImage: FileEntry;
   membership: string;
 }
 

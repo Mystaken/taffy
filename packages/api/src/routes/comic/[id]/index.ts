@@ -14,6 +14,7 @@ router.get('/', async ctx => {
 
 router.use(comicGetByIdRouter.routes());
 router.use(comicPostByIdRouter.routes());
-router.use(comicIssuesRouter.routes());
+
+router.use('/issues', comicIssuesRouter.routes());
 
 export const comicIdRouter = router;

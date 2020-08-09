@@ -12,28 +12,14 @@ const router = new Router();
 
 const upload = koaMulter();
 
-const uploadMiddleware = upload.fields([
-  {
-    name: 'coverImage',
-    maxCount: 1
-  },
-  {
-    name: 'desktopCoverImage',
-    maxCount: 1
-  },
-  {
-    name: 'mobileCoverImage',
-    maxCount: 1
-  },
-  {
-    name: 'comicBannerImage',
-    maxCount: 1
-  }
-]);
+const uploadMiddleware = upload.any();
 
 router.post('/', uploadMiddleware, async ctx => {
   const reqBody = ctx.request.body;
   const comicId: string = ctx.params.id;
+
+  const files: koaMulter.File[] = ctx.files;
+
   const body = {
     title: reqBody.title,
     description: reqBody.description,
@@ -46,7 +32,6 @@ router.post('/', uploadMiddleware, async ctx => {
     body,
     comicIdPostSchema
   )) as UpdateComic;
-  const files: Record<string, koaMulter.File[]> = ctx.files as any;
 
   const awsId = comicData.title;
   const awsFileUrls = await uploadToAWS(awsId, files);
