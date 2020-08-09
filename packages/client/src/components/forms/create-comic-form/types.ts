@@ -1,20 +1,9 @@
-import { CreateComicFormSubmission } from '../../../services/comic/comic.service';
+import { CreateComicFormSubmission } from '../../../services/comic/create-comic';
+import { FormArrayValue } from '../field-adder/types';
 
 export interface CreateComicFormProps {
   disabled?: boolean;
   onSubmit?: (values: CreateComicFormSubmission) => void;
-}
-
-export interface FormArrayValue {
-  value: string;
-}
-
-export interface FieldAdderProps {
-  register: (...args: any[]) => any;
-  control: any;
-  fieldName: string;
-  label: string;
-  disabled?: boolean;
 }
 
 export interface CreateComicFormData {

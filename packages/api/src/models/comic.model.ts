@@ -1,9 +1,10 @@
 import mongoose from 'mongoose';
 import { TModelStatus } from './types';
+import { FileSchema, FileEntry } from './file.model';
 
 const ComicIssueSchema = new mongoose.Schema({
   title: { type: String, required: true },
-  pages: { type: [String], required: true, default: [] },
+  pages: { type: [FileSchema], required: true, default: [] },
   coverImage: { type: String, required: true },
   membership: { type: String, required: true }
 });
@@ -21,10 +22,10 @@ const ComicSchema = new mongoose.Schema(
     genres: { type: [String], required: true },
     categories: { type: [String], required: true },
     authors: { type: [String], required: true },
-    coverImage: { type: String },
-    mobileCoverImage: { type: String },
-    desktopCoverImage: { type: String },
-    comicBannerImage: { type: String },
+    coverImage: { type: FileSchema },
+    mobileCoverImage: { type: FileSchema },
+    desktopCoverImage: { type: FileSchema },
+    comicBannerImage: { type: FileSchema },
     ratings: { type: [ComicRatingSchema], required: true, default: [] },
     issues: { type: [ComicIssueSchema], required: true, default: [] },
     status: {
@@ -67,11 +68,11 @@ export interface TComicModel {
   categories: string[];
   authors: string[];
   //800x600
-  coverImage?: string;
+  coverImage?: FileEntry;
   //1980x1080
-  mobileCoverImage?: string;
-  desktopCoverImage?: string;
-  comicBannerImage?: string;
+  mobileCoverImage?: FileEntry;
+  desktopCoverImage?: FileEntry;
+  comicBannerImage?: FileEntry;
   ratings: ComicRating[];
   issues: ComicIssue[];
   status: TModelStatus;
@@ -80,8 +81,18 @@ export interface TComicModel {
 interface ComicIssueMeta extends Omit<ComicIssue, 'pages'> {
   numPages: number;
 }
-export interface Comic extends Omit<TComicModel, 'ratings' | 'issues'> {
+export interface Comic {
   id: string;
+  title: string;
+  description: string;
+  genres: string[];
+  categories: string[];
+  authors: string[];
+  coverImage?: string;
+  mobileCoverImage?: string;
+  desktopCoverImage?: string;
+  comicBannerImage?: string;
+  status: TModelStatus;
   rating: number;
   issues: ComicIssueMeta[];
 }

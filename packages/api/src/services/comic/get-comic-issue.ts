@@ -11,10 +11,14 @@ export const getComicIssue = async ({
   comicId,
   issueNumber
 }: GetComicIssueParams): Promise<ComicIssue> => {
-  const comic = await getComic({ id: comicId });
-  const issues = comic.issues;
-  if (issueNumber > comic.issues.length) {
+  try {
+    const comic = await getComic({ id: comicId });
+    const issues = comic.issues;
+    if (issueNumber > comic.issues.length) {
+      throw new NotFoundError('comic issue');
+    }
+    return issues[issueNumber];
+  } catch (e) {
     throw new NotFoundError('comic issue');
   }
-  return issues[issueNumber];
 };

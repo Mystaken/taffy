@@ -16,6 +16,9 @@ export const uploadFile = async ({ file, fileName }: UploadFileParams) => {
     })
     .promise();
   return {
-    url: result.Location
+    url: result.Location,
+    key: result.Key,
+    bucket: result.Bucket,
+    etag: result.ETag
   };
 };

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { Typography, TextField, Button, IconButton } from '@material-ui/core';
 import { useFieldArray } from 'react-hook-form';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
@@ -10,12 +10,16 @@ export const FieldAdder: FunctionComponent<FieldAdderProps> = ({
   register,
   label,
   fieldName,
-  disabled = false
+  disabled = false,
+  defaultValues = []
 }) => {
   const fieldArray = useFieldArray({
     control,
     name: fieldName
   });
+  useEffect(() => {
+    defaultValues.forEach(value => fieldArray.append({ value }));
+  }, []);
   return (
     <div>
       <Typography display="inline">{label}:</Typography>

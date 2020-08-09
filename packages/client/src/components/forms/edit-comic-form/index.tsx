@@ -1,9 +1,11 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Grid, TextField, Button, Typography, Input } from '@material-ui/core';
-import { FieldAdder } from './field-adder';
-import { FormArrayValue, UpdateComicFormProps } from './types';
+
+import { UpdateComicFormProps } from './types';
 import { UpdateComicFormSubmission } from '../../../services/comic/update-comic';
+import { FieldAdder } from '../field-adder';
+import { FormArrayValue } from '../field-adder/types';
 
 const comicToValues = (comic: Comic) => ({
   title: comic.title,
@@ -17,11 +19,13 @@ export const EditComicForm: FunctionComponent<UpdateComicFormProps> = ({
   comic,
   onSubmit
 }) => {
-  const { register, handleSubmit, control, setValue } = useForm();
+  const { register, handleSubmit, control, setValue, getValues } = useForm();
 
   useEffect(() => {
     const values = comicToValues(comic);
     Object.entries(values).forEach(([k, v]) => setValue(k, v));
+    setValue('genres.0', 'abc');
+    console.log(getValues());
   }, [comic]);
 
   const handleOnSubmit = (data: {
@@ -86,6 +90,7 @@ export const EditComicForm: FunctionComponent<UpdateComicFormProps> = ({
         register={register}
         fieldName="categories"
         label="Categories"
+        defaultValues={comic.categories}
       />
       {/** Comic Authors */}
       <FieldAdder
@@ -93,6 +98,7 @@ export const EditComicForm: FunctionComponent<UpdateComicFormProps> = ({
         register={register}
         fieldName="authors"
         label="Authors"
+        defaultValues={comic.authors}
       />
       {/** Comic Genres */}
       <FieldAdder
@@ -100,6 +106,7 @@ export const EditComicForm: FunctionComponent<UpdateComicFormProps> = ({
         register={register}
         fieldName="genres"
         label="Genres"
+        defaultValues={comic.genres}
       />
 
       <div>

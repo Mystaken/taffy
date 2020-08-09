@@ -5,6 +5,9 @@ export const formAggregateMatcher = (
   const matchers: Record<string, any>[] = [];
   const aggregateFunKey = `$${aggregateFunc}`;
   Object.entries(opt).forEach(([k, v]) => {
+    if (!v) {
+      return;
+    }
     if (k === 'id') {
       matchers.push({
         _id: v

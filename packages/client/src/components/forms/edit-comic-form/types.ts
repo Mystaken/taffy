@@ -1,21 +1,10 @@
 import { UpdateComicFormSubmission } from '../../../services/comic/update-comic';
+import { FormArrayValue } from '../field-adder/types';
 
 export interface UpdateComicFormProps {
   disabled?: boolean;
   onSubmit?: (values: UpdateComicFormSubmission) => void;
   comic: Comic;
-}
-
-export interface FormArrayValue {
-  value: string;
-}
-
-export interface FieldAdderProps {
-  register: (...args: any[]) => any;
-  control: any;
-  fieldName: string;
-  label: string;
-  disabled?: boolean;
 }
 
 export interface UpdateComicFormData {

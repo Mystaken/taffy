@@ -1,15 +1,17 @@
 import Router from 'koa-router';
 import { getComic } from '../../../services/comic/get-comic';
 import { comicIssuesRouter } from './issues';
+import { comicGetByIdRouter } from './get';
 
 const router = new Router();
 
-router.get('/:comicId', async ctx => {
+router.get('/', async ctx => {
   ctx.body = await getComic({
-    id: ctx.params.comicId
+    id: ctx.params.id
   });
 });
 
+router.use(comicGetByIdRouter.routes());
 router.use(comicIssuesRouter.routes());
 
-export const comicGetByIdRouter = router;
+export const comicIdRouter = router;

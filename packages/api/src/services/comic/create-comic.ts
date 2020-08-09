@@ -1,5 +1,6 @@
 import { Comic, ComicModel, TComicModel } from '../../models/comic.model';
 import { mapComic } from './map-comic';
+import { FileEntry } from '../../models/file.model';
 
 export interface NewComic {
   title: string;
@@ -7,10 +8,10 @@ export interface NewComic {
   genres: string[];
   categories: string[];
   authors: string[];
-  coverImage?: string;
-  mobileCoverImage?: string;
-  desktopCoverImage?: string;
-  comicBannerImage?: string;
+  coverImage?: FileEntry;
+  mobileCoverImage?: FileEntry;
+  desktopCoverImage?: FileEntry;
+  comicBannerImage?: FileEntry;
 }
 
 export const createComic = async (comic: NewComic): Promise<Comic> => {

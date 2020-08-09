@@ -1,12 +1,12 @@
 import Router from 'koa-router';
 import koaMulter from '@koa/multer';
-
-import { validateRequestPayload } from '../../../utils/api/validate-request-payload';
-import { ComicPostRequestBody, comicPostSchema } from './schema';
-import { createComic, NewComic } from '../../../services/comic/create-comic';
-import { uploadToAWS } from './utils';
-import { getRandomString } from '../../../utils/common/random';
-import { ServerError } from '../../../errors/server.error';
+import { ComicIdPostRequestBody, comicIdPostSchema } from './schema';
+import { validateRequestPayload } from '../../../../utils/api/validate-request-payload';
+import {
+  UpdateComic,
+  updateComic
+} from '../../../../services/comic/update-comic';
+import { uploadToAWS } from '../../post/utils';
 
 const router = new Router();
 
@@ -33,6 +33,7 @@ const uploadMiddleware = upload.fields([
 
 router.post('/', uploadMiddleware, async ctx => {
   const reqBody = ctx.request.body;
+  const comicId = ctx.params.id;
   const body = {
     title: reqBody.title,
     description: reqBody.description,
@@ -41,16 +42,15 @@ router.post('/', uploadMiddleware, async ctx => {
     authors: reqBody.genres ? reqBody.authors.split(',') : []
   };
 
-  let comicData = (await validateRequestPayload<ComicPostRequestBody>(
+  let comicData = (await validateRequestPayload<ComicIdPostRequestBody>(
     body,
-    comicPostSchema
-  )) as NewComic;
-
+    comicIdPostSchema
+  )) as UpdateComic;
   const files: Record<string, koaMulter.File[]> = ctx.files as any;
   const awsId = comicData.title;
   const awsFileUrls = await uploadToAWS(awsId, files);
-  const comicDataWithImages: NewComic = { ...comicData, ...awsFileUrls };
-  const comic = await createComic(comicDataWithImages);
+  const comicDataWithImages: UpdateComic = { ...comicData, ...awsFileUrls };
+  const comic = await updateComic(comicId, comicDataWithImages);
   ctx.body = comic;
 });
 

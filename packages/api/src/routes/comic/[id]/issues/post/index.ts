@@ -6,7 +6,7 @@ const router = new Router();
 const upload = koaMulter();
 
 router.post(
-  '/:comicId/issues',
+  '/issues',
   upload.fields([
     {
       name: 'avatar',

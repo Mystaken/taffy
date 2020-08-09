@@ -12,13 +12,16 @@ export interface UpdateComicFormSubmission {
   comicBannerImage?: File;
 }
 
-export const updateComic = async (data: UpdateComicFormSubmission) => {
+export const updateComic = async (
+  id: string,
+  data: UpdateComicFormSubmission
+) => {
   const form = new FormData();
   Object.entries(data).forEach(([k, v]) => {
     form.append(k, v);
   });
   const { response } = await comicAPI
-    .post('comic', {
+    .post(`comic/${id}`, {
       body: form
     })
     .json<ComicAPISuccessResponse<Comic>>();

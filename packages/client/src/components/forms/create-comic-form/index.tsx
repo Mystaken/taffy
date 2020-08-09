@@ -1,9 +1,11 @@
 import React, { FunctionComponent } from 'react';
 import { useForm } from 'react-hook-form';
 import { Grid, TextField, Button, Typography, Input } from '@material-ui/core';
-import { FieldAdder } from './field-adder';
-import { CreateComicFormProps, FormArrayValue } from './types';
-import { CreateComicFormSubmission } from '../../../services/comic/comic.service';
+
+import { CreateComicFormProps } from './types';
+import { FormArrayValue } from '../field-adder/types';
+import { CreateComicFormSubmission } from '../../../services/comic/create-comic';
+import { FieldAdder } from '../field-adder';
 
 export const CreateComicForm: FunctionComponent<CreateComicFormProps> = ({
   disabled = false,

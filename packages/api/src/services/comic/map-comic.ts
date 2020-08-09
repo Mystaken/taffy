@@ -2,6 +2,10 @@ import { TComicModel, Comic } from '../../models/comic.model';
 
 export const mapComic = ({
   ratings,
+  coverImage,
+  desktopCoverImage,
+  mobileCoverImage,
+  comicBannerImage,
   issues: comicIssues,
   ...comic
 }: TComicModel): Comic => {
@@ -11,8 +15,13 @@ export const mapComic = ({
     ...issue,
     numPages: pages.length
   }));
+
   return {
     ...comic,
+    coverImage: coverImage?.url,
+    desktopCoverImage: desktopCoverImage?.url,
+    mobileCoverImage: mobileCoverImage?.url,
+    comicBannerImage: comicBannerImage?.url,
     rating,
     issues
   };

@@ -9,13 +9,18 @@ export interface GetComicParams {
 export const getComic = async ({
   id
 }: GetComicParams): Promise<TComicModel> => {
-  const document = await ComicModel.findOne({ _id: id }).exec();
+  try {
+    const document = await ComicModel.findById(id).exec();
 
-  if (!document) {
+    if (!document) {
+      throw new NotFoundError('comic');
+    }
+    const comic: TComicModel = document.toJSON();
+    console.log(comic);
+    return comic;
+  } catch (e) {
     throw new NotFoundError('comic');
   }
-  const comic: TComicModel = document.toJSON();
-  return comic;
 };
 
 export const getComicEntry = async (params: GetComicParams): Promise<Comic> => {

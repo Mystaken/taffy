@@ -3,6 +3,7 @@ import { AppBar, Toolbar, Typography, Container } from '@material-ui/core';
 
 import { Page } from '../../../components/layouts/page';
 import { useRouter } from 'next/router';
+import { EditComicForm } from '../../../containers/admin/edit-comic';
 
 const AdminComicPage: FunctionComponent = () => {
   const router = useRouter();
@@ -18,7 +19,8 @@ const AdminComicPage: FunctionComponent = () => {
         </Toolbar>
       </AppBar>
       <Container>
-        <div></div>
+        <div>{comicId}</div>
+        {comicId && <EditComicForm id={comicId} />}
       </Container>
     </Page>
   );
