@@ -1,4 +1,4 @@
-import { comicAPI } from '../../api/comic.api';
+import { comicAPI, ComicAPISuccessResponse } from '../../api/comic.api';
 
 export interface CreateComicFormSubmission {
   title: string;
@@ -6,10 +6,10 @@ export interface CreateComicFormSubmission {
   genres: string[];
   categories: string[];
   authors: string[];
-  coverImage: File;
-  desktopCoverImage: File;
-  mobileCoverImage: File;
-  comicBannerImage: File;
+  coverImage?: File;
+  desktopCoverImage?: File;
+  mobileCoverImage?: File;
+  comicBannerImage?: File;
 }
 
 export const createComic = async (data: CreateComicFormSubmission) => {
@@ -17,11 +17,10 @@ export const createComic = async (data: CreateComicFormSubmission) => {
   Object.entries(data).forEach(([k, v]) => {
     form.append(k, v);
   });
-  try {
-    await comicAPI.post('comic', {
+  const { response } = await comicAPI
+    .post('comic', {
       body: form
-    });
-  } catch (e) {
-    console.log(e);
-  }
+    })
+    .json<ComicAPISuccessResponse<Comic>>();
+  return response;
 };

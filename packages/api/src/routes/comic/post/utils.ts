@@ -1,5 +1,6 @@
 import { uploadFile } from '../../../s3/upload-file';
 import koaMulter from '@koa/multer';
+import { toJPG } from '../../../utils/images/file-to-jpg';
 
 export interface UploadToAWSResult {
   coverImage?: string;
@@ -18,36 +19,51 @@ export const uploadToAWS = async (
   }: Record<keyof UploadToAWSResult, koaMulter.File[]>
 ): Promise<UploadToAWSResult> => {
   const result: UploadToAWSResult = {};
+  const requests: Promise<any>[] = [];
+
   if (coverImage) {
-    const image = await uploadFile({
-      fileName: `${id}-cover-image`,
-      file: coverImage[0].buffer
-    });
-    result.coverImage = image.url;
+    requests.push(
+      uploadFile({
+        fileName: `${id}-cover-image.jpg`,
+        file: await toJPG(coverImage[0].buffer)
+      }).then(image => {
+        result.coverImage = image.url;
+      })
+    );
   }
 
   if (mobileCoverImage) {
-    const image = await uploadFile({
-      fileName: `${id}-mobile-cover-image`,
-      file: mobileCoverImage[0].buffer
-    });
-    result.mobileCoverImage = image.url;
+    requests.push(
+      uploadFile({
+        fileName: `${id}-mobile-cover-image.jpg`,
+        file: await toJPG(mobileCoverImage[0].buffer)
+      }).then(image => {
+        result.mobileCoverImage = image.url;
+      })
+    );
   }
   if (desktopCoverImage) {
-    const image = await uploadFile({
-      fileName: `${id}-desktop-cover-image`,
-      file: desktopCoverImage[0].buffer
-    });
-    result.desktopCoverImage = image.url;
+    requests.push(
+      uploadFile({
+        fileName: `${id}-desktop-cover-image.jpg`,
+        file: await toJPG(desktopCoverImage[0].buffer)
+      }).then(image => {
+        result.desktopCoverImage = image.url;
+      })
+    );
   }
 
   if (comicBannerImage) {
-    const image = await uploadFile({
-      fileName: `${id}-comic-banner-image`,
-      file: comicBannerImage[0].buffer
-    });
-    result.comicBannerImage = image.url;
+    requests.push(
+      uploadFile({
+        fileName: `${id}-comic-banner-image.jpg`,
+        file: await toJPG(comicBannerImage[0].buffer)
+      }).then(image => {
+        result.comicBannerImage = image.url;
+      })
+    );
   }
+  await Promise.all(requests);
 
   return result;
 };

@@ -1,15 +1,28 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Grid, TextField, Button, Typography, Input } from '@material-ui/core';
 import { FieldAdder } from './field-adder';
-import { CreateComicFormProps, FormArrayValue } from './types';
-import { CreateComicFormSubmission } from '../../../services/comic/comic.service';
+import { FormArrayValue, UpdateComicFormProps } from './types';
+import { UpdateComicFormSubmission } from '../../../services/comic/update-comic';
 
-export const CreateComicForm: FunctionComponent<CreateComicFormProps> = ({
+const comicToValues = (comic: Comic) => ({
+  title: comic.title,
+  description: comic.description,
+  genres: comic.genres.map(g => ({ values: g })),
+  categories: comic.genres.map(c => ({ values: c })),
+  authors: comic.genres.map(a => ({ values: a }))
+});
+export const EditComicForm: FunctionComponent<UpdateComicFormProps> = ({
   disabled = false,
+  comic,
   onSubmit
 }) => {
-  const { register, handleSubmit, control } = useForm();
+  const { register, handleSubmit, control, setValue } = useForm();
+
+  useEffect(() => {
+    const values = comicToValues(comic);
+    Object.entries(values).forEach(([k, v]) => setValue(k, v));
+  }, [comic]);
 
   const handleOnSubmit = (data: {
     title: string;
@@ -22,7 +35,7 @@ export const CreateComicForm: FunctionComponent<CreateComicFormProps> = ({
     mobileCoverImage: FileList;
     comicBannerImage: FileList;
   }) => {
-    const submitValues: CreateComicFormSubmission = {
+    const submitValues: UpdateComicFormSubmission = {
       title: data.title,
       description: data.description,
       genres: (data.genres ?? []).map(g => g.value),

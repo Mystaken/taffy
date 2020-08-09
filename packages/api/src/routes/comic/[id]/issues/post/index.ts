@@ -14,7 +14,6 @@ router.post(
     }
   ]),
   async ctx => {
-    console.log({ files: ctx.request.files });
     ctx.body = 'success';
   }
 );
