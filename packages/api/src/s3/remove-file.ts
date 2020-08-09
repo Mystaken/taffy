@@ -1,4 +1,4 @@
-import { s3Client, AWS_S3 } from './client';
+import { s3Client } from './client';
 import { ServerError } from '../errors/server.error';
 
 export interface RemoveFileParams {

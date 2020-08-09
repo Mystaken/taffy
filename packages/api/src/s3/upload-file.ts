@@ -2,7 +2,7 @@ import { s3Client, AWS_S3 } from './client';
 
 export interface UploadFileParams {
   fileName: string;
-  file: string | Buffer | Uint8Array | Blob;
+  file: string | Buffer | Uint8Array;
 }
 
 export const uploadFile = async ({ file, fileName }: UploadFileParams) => {

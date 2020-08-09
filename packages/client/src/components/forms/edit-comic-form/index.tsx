@@ -56,7 +56,7 @@ export const EditComicForm: FunctionComponent<UpdateComicFormProps> = ({
   return (
     <Grid
       container
-      component={'form'}
+      component="form"
       direction="column"
       spacing={2}
       onSubmit={handleSubmit(handleOnSubmit)}>
@@ -109,41 +109,45 @@ export const EditComicForm: FunctionComponent<UpdateComicFormProps> = ({
         defaultValues={comic.genres}
       />
 
+      {/** Comic Cover Image */}
       <div>
         <Typography display="inline">Cover Image: </Typography>
         <Input
           type="file"
-          name={'coverImage'}
+          name="coverImage"
           inputRef={register}
           inputProps={{ multiple: false }}
         />
       </div>
 
+      {/** Comic Mobile Cover Image */}
       <div>
         <Typography display="inline">Mobile Cover Image: </Typography>
         <Input
           type="file"
-          name={'mobileCoverImage'}
+          name="mobileCoverImage"
           inputRef={register}
           inputProps={{ multiple: false }}
         />
       </div>
 
+      {/** Comic Desktop Cover Image */}
       <div>
         <Typography display="inline">Desktop Cover Image: </Typography>
         <Input
           type="file"
-          name={'desktopCoverImage'}
+          name="desktopCoverImage"
           inputRef={register}
           inputProps={{ multiple: false }}
         />
       </div>
 
+      {/** Comic Banner Image */}
       <div>
         <Typography display="inline">Banner Image: </Typography>
         <Input
           type="file"
-          name={'comicBannerImage'}
+          name="comicBannerImage"
           inputRef={register}
           inputProps={{ multiple: false }}
         />

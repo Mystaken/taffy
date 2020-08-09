@@ -1,25 +1,12 @@
 import React, { FunctionComponent } from 'react';
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Container,
-  makeStyles
-} from '@material-ui/core';
+import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import { useRouter } from 'next/router';
 
 import { Page } from '../../../components/layouts/page';
-import { useRouter } from 'next/router';
 import { EditComicForm } from '../../../containers/admin/edit-comic';
-
-const useStyles = makeStyles(_ => ({
-  container: {
-    paddingTop: '10px'
-  }
-}));
 
 const AdminComicPage: FunctionComponent = () => {
   const router = useRouter();
-  const classes = useStyles();
   const comicId = router.query.id as string;
 
   return (
@@ -31,9 +18,7 @@ const AdminComicPage: FunctionComponent = () => {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Container className={classes.container}>
-        {comicId && <EditComicForm id={comicId} />}
-      </Container>
+      {comicId && <EditComicForm id={comicId} />}
     </Page>
   );
 };

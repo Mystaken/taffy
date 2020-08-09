@@ -6,7 +6,7 @@ const ComicIssueSchema = new mongoose.Schema({
   title: { type: String, required: true },
   pages: { type: [FileSchema], required: true, default: [] },
   originalImage: { type: FileSchema, required: true },
-  coverImage: { type: String, required: true },
+  coverImage: { type: FileSchema, required: true },
   membership: { type: String, required: true }
 });
 
@@ -80,8 +80,10 @@ export interface TComicModel {
   status: TModelStatus;
 }
 
-interface ComicIssueMeta extends Omit<ComicIssue, 'pages'> {
+interface ComicIssueMeta
+  extends Omit<ComicIssue, 'pages' | 'originalImage' | 'coverImage'> {
   numPages: number;
+  coverImage: string;
 }
 export interface Comic {
   id: string;

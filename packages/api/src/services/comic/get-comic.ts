@@ -16,7 +16,6 @@ export const getComic = async ({
       throw new NotFoundError('comic');
     }
     const comic: TComicModel = document.toJSON();
-    console.log(comic);
     return comic;
   } catch (e) {
     throw new NotFoundError('comic');

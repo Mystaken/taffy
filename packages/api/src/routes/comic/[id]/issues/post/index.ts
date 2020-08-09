@@ -49,7 +49,6 @@ router.post('/', uploadMiddleware, async ctx => {
     coverImage: uploadedIssue.coverImage,
     originalImage: uploadedIssue.original
   };
-
   const newComic = await createComicIssue({ comicId: comic.id, issue });
 
   ctx.body = newComic;

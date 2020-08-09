@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react';
-import { NavbarContent, NavbarContentProps } from '../nav-content';
 import { makeStyles, Grid } from '@material-ui/core';
 
 const transparentNavbarStyles = makeStyles(_ => ({
