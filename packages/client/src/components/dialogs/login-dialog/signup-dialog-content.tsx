@@ -18,7 +18,12 @@ export const SignupDialogContent: FunctionComponent<SignupDialogContentProps> = 
 
   const handleOnSubmit = (data: Record<string, any>) => {
     const formData = data as FullSignupDetails;
-    onSignup?.(formData);
+    onSignup?.({
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      password: formData.password
+    });
   };
 
   return (
