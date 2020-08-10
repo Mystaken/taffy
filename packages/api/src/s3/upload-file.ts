@@ -6,7 +6,6 @@ export interface UploadFileParams {
 }
 
 export const uploadFile = async ({ file, fileName }: UploadFileParams) => {
-  console.log({ file, fileName });
   const result = await s3Client
     .upload({
       Bucket: AWS_S3.BUCKET_NAME,

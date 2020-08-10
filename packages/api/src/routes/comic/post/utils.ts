@@ -62,7 +62,6 @@ export const uploadToAWS = async (
 
     return result;
   } catch (e) {
-    console.log(e);
     throw new ServerError('Failed to edit comic');
   }
 };
