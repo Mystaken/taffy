@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Grid, makeStyles, Paper, Typography } from '@material-ui/core';
-
+import { Grid, Paper, Typography, makeStyles, Button } from '@material-ui/core';
 import { IssueSelectorProps } from './types';
 
 const issueSelectorStyles = makeStyles(_ => ({
@@ -8,19 +7,21 @@ const issueSelectorStyles = makeStyles(_ => ({
     marginLeft: '10px'
   },
   issue: {
-    padding: '6px 12px 6px 12px',
-    cursor: 'pointer'
+    padding: '6px 12px 6px 12px'
   }
 }));
 
 export const IssueSelector: FunctionComponent<IssueSelectorProps> = ({
-  issues
+  issues,
+  onIssueSelect,
+  isVIP = false,
+  onGetVIP
 }) => {
   const classes = issueSelectorStyles();
   return (
     <Grid container direction="column">
-      {issues.map((issue, i) => (
-        <Grid item>
+      <Grid item>
+        {issues.map((issue, i) => (
           <Paper square className={classes.issue} key={i}>
             <Grid container justify="space-between" alignItems="center">
               <Grid item>
@@ -32,10 +33,23 @@ export const IssueSelector: FunctionComponent<IssueSelectorProps> = ({
                     }>{`Chapter ${i}: ${issue.title}`}</Typography>
                 </Grid>
               </Grid>
+
+              {isVIP || issue.membership === 'Free' ? (
+                <Button
+                  onClick={() =>
+                    onIssueSelect ? onIssueSelect(issue, i) : <></>
+                  }>
+                  Read
+                </Button>
+              ) : (
+                <Button color="secondary" onClick={onGetVIP}>
+                  Get VIP
+                </Button>
+              )}
             </Grid>
           </Paper>
-        </Grid>
-      ))}
+        ))}
+      </Grid>
     </Grid>
   );
 };

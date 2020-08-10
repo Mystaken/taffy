@@ -10,7 +10,12 @@ export const ComicViewer: FunctionComponent = () => {
   return (
     <>
       {comics.map(c => (
-        <ComicCard image={c.coverImage} title={c.title} width={200} />
+        <ComicCard
+          key={c.id}
+          image={c.coverImage}
+          title={c.title}
+          width={200}
+        />
       ))}
     </>
   );

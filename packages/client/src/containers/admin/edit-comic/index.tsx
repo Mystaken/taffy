@@ -6,9 +6,9 @@ import { EditComicForm as EditComicFormView } from '../../../components/forms/ed
 import { useAsync } from '../../../hooks/async.hook';
 import { getComicById } from '../../../services/comic/get-comic-by-id';
 import { updateComic } from '../../../services/comic/update-comic';
-import { IssueSelector } from '../../../components/comic/issue-selector';
 import { CreateComicIssueForm } from '../../../components/forms/create-comic-issue';
 import { createComicIssue } from '../../../services/comic/issues/create-comic-issue';
+import { IssueViewer } from '../../../components/comic/issue-viewer';
 
 export interface EditComicFormProps {
   id: string;
@@ -40,7 +40,7 @@ export const EditComicForm: FunctionComponent<EditComicFormProps> = ({
       <Typography variant="h5" className={classes.issuesTitle}>
         Issues
       </Typography>
-      <IssueSelector issues={comic.issues} />
+      <IssueViewer issues={comic.issues} />
 
       <Typography variant="h6" className={classes.addIssue}>
         Add Issue

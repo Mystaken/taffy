@@ -24,7 +24,7 @@ describe('<VirtualizedFixedLoader />', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('should moount', () => {
+  it('should mount', () => {
     mount(
       <div style={{ height: '500px' }}>
         <VirtualizedFixedLoader itemSize={35} itemCount={1000}>
