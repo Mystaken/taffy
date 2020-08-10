@@ -34,7 +34,7 @@ const validateEnvFile = () => {
   }
 };
 
-validateEnvFile();
+// validateEnvFile();
 
 const domain =
   ENV === 'production'
