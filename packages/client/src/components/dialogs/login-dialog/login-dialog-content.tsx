@@ -7,32 +7,11 @@ import {
   DialogActions,
   Button
 } from '@material-ui/core';
+
 import { GoogleLoginButton } from '../../buttons/google-login-button';
 import { FacebookLoginButton } from '../../buttons/facebook-login-button';
-import {
-  GoogleLoginResponse,
-  GoogleLoginResponseOffline
-} from 'react-google-login';
-import {
-  ReactFacebookLoginInfo,
-  ReactFacebookFailureResponse
-} from 'react-facebook-login';
-
-export interface LoginDetails {
-  email: string;
-  password: string;
-}
-
-export interface LoginDialogContentProps {
-  onLogin?: (details: LoginDetails) => void;
-  onGoogleLogin?: (
-    response: GoogleLoginResponse | GoogleLoginResponseOffline
-  ) => void;
-  onFacebookLogin?: (
-    response: ReactFacebookLoginInfo | ReactFacebookFailureResponse
-  ) => void;
-  disabled?: boolean;
-}
+import { LoginDialogContentProps } from './types';
+import { LoginDetails } from '../../../services/auth/auth.service';
 
 export const LoginDialogContent: FunctionComponent<LoginDialogContentProps> = ({
   onLogin,

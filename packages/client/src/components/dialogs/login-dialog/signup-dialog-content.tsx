@@ -7,17 +7,8 @@ import {
   Button
 } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
-import { SignupDetails } from '../../../services/auth/auth.service';
 import { validateEmail } from '../../../utils/validators';
-
-interface FullSignupDetails extends SignupDetails {
-  confirmPassword: string;
-}
-
-export interface SignupDialogContentProps {
-  onSignup?: (loginDetails: SignupDetails) => void;
-  disabled?: boolean;
-}
+import { SignupDialogContentProps, FullSignupDetails } from './types';
 
 export const SignupDialogContent: FunctionComponent<SignupDialogContentProps> = ({
   onSignup,
