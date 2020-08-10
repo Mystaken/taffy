@@ -78,9 +78,9 @@ export const LatestComicSlider: FunctionComponent<LatestComicSliderProps> = ({
     const panelSlice = comics.slice(start, start + skip);
     return (
       <CarouselPanel key={key}>
-        {panelSlice.map(({ coverImage, title, id }, index) => (
+        {panelSlice.map(({ coverImage, title, id }) => (
           <ComicCard
-            key={index}
+            key={id}
             width={200}
             title={title}
             image={coverImage ?? DEFAULT_IMG}

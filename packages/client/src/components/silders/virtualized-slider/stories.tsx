@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/react';
-import VirtualizedSlider from '.';
+import { VirtualizedSlider } from '.';
 import { VirtualizedSlideRendererParams } from 'react-swipeable-views-utils';
 import { FunctionComponent } from 'react';
 

@@ -94,6 +94,7 @@ export const LoginDialog: FunctionComponent<LoginDialogProps> = ({
 
   return (
     <LoginDialogView
+      disabled={loading}
       onGoogleLogin={handleGoogleLogin}
       onFacebookLogin={handleFacebookLogin}
       onLogin={handleLogin}

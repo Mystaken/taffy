@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
-import MainDrawer from '.';
+import { MainDrawer } from '.';
 
 const stories = storiesOf('Drawers', module);
 
