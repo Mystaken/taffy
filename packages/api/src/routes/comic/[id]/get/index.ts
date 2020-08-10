@@ -9,7 +9,9 @@ router.get('/', async ctx => {
     id: ctx.params.id
   });
 
-  ctx.body = mapComic(comic);
+  const queriedComics = mapComic(comic);
+
+  ctx.body = queriedComics;
 });
 
 export const comicGetByIdRouter = router;
