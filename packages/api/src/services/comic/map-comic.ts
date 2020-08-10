@@ -13,6 +13,7 @@ export const mapComic = ({
   const rating = ratings.reduce((a, b) => a + b.rating, 0) / numRatings;
   const issues = comicIssues.map(
     ({ pages, coverImage, title, membership }) => ({
+      pages: pages.map(p => p.url),
       coverImage: coverImage.url,
       numPages: pages.length,
       title,

@@ -6,16 +6,7 @@ export const mockComicIssue = (issue?: Partial<ComicIssue>): ComicIssue => ({
   ],
   coverImage: 'https://via.placeholder.com/100x50',
   membership: 'VIP',
-  ...issue
-});
-
-export const mockComicIssueMeta = (
-  issue?: Partial<ComicIssueMeta>
-): ComicIssueMeta => ({
-  title: 'Mock Issue',
   numPages: 0,
-  coverImage: 'https://via.placeholder.com/100x50',
-  membership: 'VIP',
   ...issue
 });
 

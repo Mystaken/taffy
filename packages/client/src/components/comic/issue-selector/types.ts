@@ -1,6 +1,6 @@
 export interface IssueSelectorProps {
-  issues: ComicIssueMeta[];
-  onIssueSelect?: (issue: ComicIssueMeta, index: number) => void;
+  issues: ComicIssue[];
+  onIssueSelect?: (issue: ComicIssue, index: number) => void;
   isVIP?: boolean;
   onGetVIP?: () => void;
 }

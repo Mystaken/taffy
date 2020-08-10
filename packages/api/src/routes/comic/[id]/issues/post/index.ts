@@ -6,7 +6,7 @@ import { BadRequestError } from '../../../../../errors/bad-request.error';
 import { getComic } from '../../../../../services/comic/get-comic';
 import { uploadIssueToAWS } from './utils';
 import { createComicIssue } from '../../../../../services/comic/issue/create-comic-issue';
-import { ComicIssue } from '../../../../../models/comic.model';
+import { TComicIssueModel } from '../../../../../models/comic.model';
 
 const router = new Router();
 
@@ -43,7 +43,7 @@ router.post('/', uploadMiddleware, async ctx => {
     coverImageFile
   );
 
-  const issue: ComicIssue = {
+  const issue: TComicIssueModel = {
     ...comicIssueData,
     pages: uploadedIssue.parts,
     coverImage: uploadedIssue.coverImage,

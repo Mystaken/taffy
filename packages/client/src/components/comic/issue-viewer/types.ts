@@ -1,3 +1,3 @@
 export interface IssueViewerProps {
-  issues: ComicIssueMeta[];
+  issues: ComicIssue[];
 }

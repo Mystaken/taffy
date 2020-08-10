@@ -6,7 +6,9 @@ import { ComicDetails } from '../../../containers/home/comic-details';
 const ComicDetailsPage: FunctionComponent = () => {
   const router = useRouter();
   const comicId = router.query.id as string;
-
+  if (!comicId) {
+    return null;
+  }
   return (
     <Page>
       <ComicDetails comicId={comicId} />

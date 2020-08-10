@@ -1,15 +1,15 @@
 import {
   Comic,
   ComicModel,
-  ComicIssue,
-  TComicModel
+  TComicModel,
+  TComicIssueModel
 } from '../../../models/comic.model';
 import { mapComic } from '../map-comic';
 import { NotFoundError } from '../../../errors/not-found.error';
 
 export interface CreateComicIssueParams {
   comicId: string;
-  issue: ComicIssue;
+  issue: TComicIssueModel;
 }
 
 export const createComicIssue = async ({

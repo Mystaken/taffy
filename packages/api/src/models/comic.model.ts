@@ -54,7 +54,7 @@ export interface ComicRating {
   rating: number;
 }
 
-export interface ComicIssue {
+export interface TComicIssueModel {
   title: string;
   pages: FileEntry[];
   originalImage: FileEntry;
@@ -76,12 +76,13 @@ export interface TComicModel {
   desktopCoverImage?: FileEntry;
   comicBannerImage?: FileEntry;
   ratings: ComicRating[];
-  issues: ComicIssue[];
+  issues: TComicIssueModel[];
   status: TModelStatus;
 }
 
-interface ComicIssueMeta
-  extends Omit<ComicIssue, 'pages' | 'originalImage' | 'coverImage'> {
+export interface ComicIssue
+  extends Omit<TComicIssueModel, 'pages' | 'originalImage' | 'coverImage'> {
+  pages?: string[];
   numPages: number;
   coverImage: string;
 }
@@ -98,7 +99,7 @@ export interface Comic {
   comicBannerImage?: string;
   status: TModelStatus;
   rating: number;
-  issues: ComicIssueMeta[];
+  issues: ComicIssue[];
 }
 
 export const ComicModel = mongoose.model('comic', ComicSchema);

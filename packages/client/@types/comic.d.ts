@@ -1,18 +1,15 @@
 interface ComicIssue {
   title: string;
-  pages: string[];
+  pages?: string[];
   coverImage: string;
   membership: 'VIP' | 'Free';
-}
-
-interface ComicIssueMeta extends Omit<ComicIssue, 'pages'> {
   numPages: number;
 }
 
 interface Comic {
   id: string;
   rating: number;
-  issues: ComicIssueMeta[];
+  issues: ComicIssue[];
   id: string;
   title: string;
   description: string;
