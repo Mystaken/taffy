@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`<AutoplayCarousel /> has rendered correctly 1`] = `ShallowWrapper {}`;
-
-exports[`<AutoplayCarouselItem /> has rendered correctly 1`] = `ShallowWrapper {}`;

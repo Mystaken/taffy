@@ -1,5 +1,5 @@
 import React from 'react';
-import { AutoSlider } from './auto-slider';
+import { AutoSlider } from '.';
 import { shallow } from 'enzyme';
 
 describe('<AutoSlider />', () => {

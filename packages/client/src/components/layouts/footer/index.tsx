@@ -14,7 +14,6 @@ export const Footer: FunctionComponent<FooterProps> = ({
   const classes = makeStyles(theme => ({
     footer: {
       backgroundColor: transparent ? 'rgb(0,0,0,0)' : '#5F5F5F',
-      marginTop: theme.spacing(8),
       padding: theme.spacing(6, 0)
     }
   }))();

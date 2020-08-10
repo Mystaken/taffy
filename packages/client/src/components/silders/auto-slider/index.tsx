@@ -1,15 +1,13 @@
 import React, { FunctionComponent, useState } from 'react';
 import SwipeableViews from 'react-swipeable-views';
-import { autoPlay, WithAutoPlayProps } from 'react-swipeable-views-utils';
+import { autoPlay, AutoPlayProps } from 'react-swipeable-views-utils';
 import { MobileStepper } from '@material-ui/core';
+import { arrayify } from '../../../utils/common';
 import { makeStyles } from '@material-ui/styles';
 
-import { arrayify } from '../../../utils/common';
-
-// TODO (Low Priority): May need to redo the pagination buttons
 const AutoplaySwipeableViews = autoPlay(SwipeableViews);
 
-export interface AutoSliderProps extends Partial<WithAutoPlayProps> {
+export interface AutoSliderProps extends AutoPlayProps {
   /**
    * If set to `true`, pagination dots will be added.
    */
@@ -48,8 +46,7 @@ export const AutoSlider: FunctionComponent<AutoSliderProps> = ({
         index={index}
         onChangeIndex={setIndex}
         enableMouseEvents
-        {...props}
-      />
+        {...props}></AutoplaySwipeableViews>
       {pagination && (
         <MobileStepper
           className={classes.pagination}
@@ -58,8 +55,7 @@ export const AutoSlider: FunctionComponent<AutoSliderProps> = ({
           backButton={<></>}
           nextButton={<></>}
           position="static"
-          activeStep={index}
-        />
+          activeStep={index}></MobileStepper>
       )}
     </div>
   );
