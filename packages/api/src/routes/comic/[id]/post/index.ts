@@ -19,7 +19,7 @@ const uploadMiddleware = upload.any();
 
 router.post('/', uploadMiddleware, async ctx => {
   const user: User | undefined = ctx.state.user;
-  if (!user || (await isAdminUser(user))) {
+  if (!user || !(await isAdminUser(user))) {
     throw new UnAuthorizedError();
   }
 

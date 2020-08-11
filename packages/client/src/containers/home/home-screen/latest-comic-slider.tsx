@@ -15,6 +15,7 @@ const DEFAULT_IMG = 'static/comic/200x300.png';
 export interface LatestComicSliderProps {
   comics: Comic[];
   skip?: number;
+  onPanelClick?: (comic: Comic, index: number) => void;
 }
 
 const swipeStyles = makeStyles(_ => ({
@@ -69,7 +70,8 @@ const swipeLeft: FunctionComponent<SwipeHandlerProps> = ({ onClick }) => {
 
 export const LatestComicSlider: FunctionComponent<LatestComicSliderProps> = ({
   comics,
-  skip = 4
+  skip = 4,
+  onPanelClick
 }) => {
   const desktopRenderer: (
     params: VirtualizedSlideRendererParams
@@ -78,13 +80,15 @@ export const LatestComicSlider: FunctionComponent<LatestComicSliderProps> = ({
     const panelSlice = comics.slice(start, start + skip);
     return (
       <CarouselPanel key={key}>
-        {panelSlice.map(({ coverImage, title, id }) => (
+        {panelSlice.map(({ coverImage, title, id }, index) => (
           <ComicCard
             key={id}
             width={200}
             title={title}
             image={coverImage ?? DEFAULT_IMG}
-            onClick={console.log}></ComicCard>
+            onClick={() =>
+              onPanelClick?.(panelSlice[index], start + index)
+            }></ComicCard>
         ))}
       </CarouselPanel>
     );

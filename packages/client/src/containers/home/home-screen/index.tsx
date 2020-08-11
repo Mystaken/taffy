@@ -1,35 +1,38 @@
 import React, { FunctionComponent } from 'react';
+import { Container, Typography, makeStyles } from '@material-ui/core';
+
 import { getAllComics } from '../../../services/comic/get-all-comics';
 import { useAsync } from '../../../hooks/async.hook';
-import { Container, Typography, makeStyles } from '@material-ui/core';
 import { AutoplayPanel } from './autoplay-panels';
 import { LatestComicSlider } from './latest-comic-slider';
+import { PaddinglessContainer } from '../../../components/layouts/paddingless-container';
 
-const useStyles = makeStyles(_ => ({
-  wrapper: {
-    backgroundColor: 'grey',
-    height: '100%'
-  }
-}));
-export const HomeScreen: FunctionComponent = () => {
+export interface HomeScreenProps {
+  onComicSelect?: (comic: Comic) => void;
+}
+
+export const HomeScreen: FunctionComponent<HomeScreenProps> = ({
+  onComicSelect
+}) => {
   const [comics] = useAsync(() => getAllComics(), []);
-  const classes = useStyles();
 
   if (!comics) {
     return null;
   }
 
   return (
-    <div className={classes.wrapper}>
-      <Container maxWidth="md">
-        <AutoplayPanel comics={comics} />
-      </Container>
-      <Container maxWidth="lg">
-        <Typography variant="h5" color="primary">
-          Latest
-        </Typography>
-        <LatestComicSlider comics={comics} />
-      </Container>
-    </div>
+    <>
+      <PaddinglessContainer maxWidth="md">
+        <AutoplayPanel comics={comics} onPanelClick={onComicSelect} />
+      </PaddinglessContainer>
+      {comics.length > 0 && (
+        <Container maxWidth="lg">
+          <Typography variant="h5" color="primary">
+            Latest
+          </Typography>
+          <LatestComicSlider comics={comics} onPanelClick={onComicSelect} />
+        </Container>
+      )}
+    </>
   );
 };

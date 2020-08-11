@@ -25,7 +25,6 @@ export const EditComicForm: FunctionComponent<UpdateComicFormProps> = ({
     const values = comicToValues(comic);
     Object.entries(values).forEach(([k, v]) => setValue(k, v));
     setValue('genres.0', 'abc');
-    console.log(getValues());
   }, [comic]);
 
   const handleOnSubmit = (data: {

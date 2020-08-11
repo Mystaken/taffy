@@ -52,7 +52,7 @@ export const LoginDialogContent: FunctionComponent<LoginDialogContentProps> = ({
           <Grid item>
             <GoogleLoginButton
               onSuccess={res => onGoogleLogin?.(res)}
-              onFailure={console.log}
+              onFailure={() => 'TODO'}
               disabled={disabled}
               cookiePolicy={'single_host_origin'}
             />

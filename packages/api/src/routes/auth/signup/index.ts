@@ -18,7 +18,6 @@ router.post('/', async ctx => {
     throw new ExistsError('user');
   }
   const user = await createUser(body);
-  console.log(user);
   const jwtUser = await withJwtToken(user);
 
   ctx.body = jwtUser;
