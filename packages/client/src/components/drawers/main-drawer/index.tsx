@@ -95,7 +95,7 @@ export const MainDrawer: FunctionComponent<MainDrawerProps> = ({
         <List>
           <ListItem button onClick={onVIPPurchaseClicked}>
             <ListItemIcon>
-              <StarIcon color={user?.isVIP ? 'secondary' : undefined} />
+              <StarIcon color={user?.isVip ? 'secondary' : undefined} />
             </ListItemIcon>
             <ListItemText primary="VIP Membership" />
           </ListItem>

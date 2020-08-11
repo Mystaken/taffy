@@ -14,7 +14,7 @@ const issueSelectorStyles = makeStyles(_ => ({
 export const IssueSelector: FunctionComponent<IssueSelectorProps> = ({
   issues,
   onIssueSelect,
-  isVIP = false,
+  isVip = false,
   onGetVIP
 }) => {
   const classes = issueSelectorStyles();
@@ -34,7 +34,7 @@ export const IssueSelector: FunctionComponent<IssueSelectorProps> = ({
                 </Grid>
               </Grid>
 
-              {isVIP || issue.membership === 'Free' ? (
+              {isVip || issue.membership === 'Free' ? (
                 <Button
                   onClick={() =>
                     onIssueSelect ? onIssueSelect(issue, i) : <></>
