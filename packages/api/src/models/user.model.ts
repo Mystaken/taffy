@@ -10,7 +10,8 @@ const UserSchema = new mongoose.Schema(
     facebookId: { type: String, required: false },
     lastLogin: { type: Date, required: true, default: Date.now() },
     active: { type: Boolean, required: true, default: true },
-    customerId: { type: String, required: true }
+    customerId: { type: String, required: true },
+    isVIP: { type: Boolean, required: true, default: false }
   },
   {
     timestamps: true,

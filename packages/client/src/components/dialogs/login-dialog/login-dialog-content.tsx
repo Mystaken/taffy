@@ -11,7 +11,7 @@ import {
 import { GoogleLoginButton } from '../../buttons/google-login-button';
 import { FacebookLoginButton } from '../../buttons/facebook-login-button';
 import { LoginDialogContentProps } from './types';
-import { LoginDetails } from '../../../services/auth/auth.service';
+import { LoginDetails } from '../../../services/auth/login';
 
 export const LoginDialogContent: FunctionComponent<LoginDialogContentProps> = ({
   onLogin,

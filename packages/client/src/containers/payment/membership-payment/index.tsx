@@ -2,21 +2,30 @@ import { FunctionComponent } from 'react';
 import { StripePayment } from '../../../components/payment/stripe-payment';
 import { useAsync } from '../../../hooks/async.hook';
 import { getTaffyMembership } from '../../../services/membership/get-taffy-membership';
+import { subscriptionPayment } from '../../../services/membership/subscription-payment';
 
 export interface MembershipPaymentProps {
-  onSuccess?: () => void;
+  onSuccess?: (subscription: Subscription) => void;
 }
-export const MembershipPayment: FunctionComponent<MembershipPaymentProps> = () => {
+export const MembershipPayment: FunctionComponent<MembershipPaymentProps> = ({
+  onSuccess
+}) => {
   const [membership] = useAsync(() => getTaffyMembership(), []);
-  console.log(membership);
   if (!membership) {
     return null;
   }
+
+  const handleOnGetToken = async (token: string) => {
+    const subscription = await subscriptionPayment(token);
+    onSuccess?.(subscription);
+  };
+
   return (
     <StripePayment
       amount={(membership as any).unitAmount / 100}
       interval={membership.recurring?.interval}
       intervalCount={membership.recurring?.intervalCount}
+      onGetToken={handleOnGetToken}
     />
   );
 };

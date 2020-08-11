@@ -7,10 +7,8 @@ import {
   ReactFacebookLoginInfo,
   ReactFacebookFailureResponse
 } from 'react-facebook-login';
-import {
-  LoginDetails,
-  SignupDetails
-} from '../../../services/auth/auth.service';
+import { LoginDetails } from '../../../services/auth/login';
+import { SignupDetails } from '../../../services/auth/signup';
 
 export interface LoginDialogContentProps {
   onLogin?: (details: LoginDetails) => void;

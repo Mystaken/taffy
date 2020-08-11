@@ -1,15 +1,15 @@
 import { StripeClient } from '../client';
 
-export interface CreateSubscriptionParams {
+export interface CreateStripeSubscriptionParams {
   customerId: string;
   token: string;
   items: { price: string }[];
 }
-export const createSubscription = async ({
+export const createStripeSubscription = async ({
   customerId,
   token,
   items
-}: CreateSubscriptionParams) => {
+}: CreateStripeSubscriptionParams) => {
   const customer = await StripeClient.customers.update(customerId, {
     source: token
   });

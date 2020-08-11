@@ -11,10 +11,8 @@ export interface GetTaffyMembershipResponse {
   unitAmount: number;
 }
 export const getTaffyMembership = async () => {
-  console.log(2);
   const { response } = await comicAPI
     .get('membership')
     .json<ComicAPISuccessResponse<GetTaffyMembershipResponse>>();
-  console.log(1);
   return response;
 };

@@ -1,22 +1,19 @@
 import { FunctionComponent, useState } from 'react';
 import { DialogProps } from '@material-ui/core';
-import { LoginDialog as LoginDialogView } from '../../../components/dialogs/login-dialog/';
 import {
   GoogleLoginResponse,
   GoogleLoginResponseOffline
 } from 'react-google-login';
 import {
-  googleLogin,
-  facebookLogin,
-  LoginDetails,
-  login,
-  signup,
-  SignupDetails
-} from '../../../services/auth/auth.service';
-import {
   ReactFacebookLoginInfo,
   ReactFacebookFailureResponse
 } from 'react-facebook-login';
+
+import { LoginDialog as LoginDialogView } from '../../../components/dialogs/login-dialog/';
+import { googleLogin } from '../../../services/auth/google-login';
+import { facebookLogin } from '../../../services/auth/facebook-login';
+import { login, LoginDetails } from '../../../services/auth/login';
+import { signup, SignupDetails } from '../../../services/auth/signup';
 
 export interface LoginDialogProps
   extends Pick<DialogProps, 'open' | 'onBackdropClick'> {

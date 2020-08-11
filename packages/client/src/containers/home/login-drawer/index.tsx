@@ -4,7 +4,8 @@ import {
   MainDrawerProps
 } from '../../../components/drawers/main-drawer';
 import { LoginDialog } from './login-dialog';
-import { getCurrentUser, logout } from '../../../services/auth/auth.service';
+import { logout } from '../../../services/auth/logout';
+import { getCurrentUser } from '../../../services/auth/user-cookie';
 
 export interface LoginDrawerProps
   extends Pick<MainDrawerProps, 'open' | 'onClose' | 'onVIPPurchaseClicked'> {
@@ -21,7 +22,9 @@ export const LoginDrawer: FunctionComponent<LoginDrawerProps> = ({
     undefined | 'login' | 'signup'
   >(undefined);
   const currUser = getCurrentUser();
-  const [user, setUser] = useState(currUser ? currUser.user : undefined);
+  const [user, setUser] = useState<User | undefined>(
+    currUser ? currUser : undefined
+  );
 
   const handleSignInOpen = () => {
     setLoginDialog(_ => 'login');
