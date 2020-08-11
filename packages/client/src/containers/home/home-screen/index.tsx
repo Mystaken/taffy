@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Container, Typography, makeStyles } from '@material-ui/core';
+import { Container, Typography } from '@material-ui/core';
 
 import { getAllComics } from '../../../services/comic/get-all-comics';
 import { useAsync } from '../../../hooks/async.hook';

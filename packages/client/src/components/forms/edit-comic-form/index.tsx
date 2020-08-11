@@ -19,7 +19,7 @@ export const EditComicForm: FunctionComponent<UpdateComicFormProps> = ({
   comic,
   onSubmit
 }) => {
-  const { register, handleSubmit, control, setValue, getValues } = useForm();
+  const { register, handleSubmit, control, setValue } = useForm();
 
   useEffect(() => {
     const values = comicToValues(comic);
