@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { widerThan } from '../../../hooks/media-query.hook';
+import { useWiderThan } from '../../../hooks/media-query.hook';
 import { Grid, Link } from '@material-ui/core';
 import { FooterText } from './footer-text';
 
@@ -21,7 +21,7 @@ const FooterLink: FunctionComponent<FooterLinkProps> = ({ name, href }) => {
 };
 
 export const FooterLinks: FunctionComponent = () => {
-  const displayRow = widerThan(500);
+  const displayRow = useWiderThan(500);
   return (
     <Grid
       container

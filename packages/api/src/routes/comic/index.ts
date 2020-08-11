@@ -6,8 +6,8 @@ import { comicIdRouter } from './[id]';
 
 const router = new Router();
 
-router.use(comicPostRouter.routes());
-router.use(comicGetRouter.routes());
+router.use('/', comicPostRouter.routes());
+router.use('/', comicGetRouter.routes());
 router.use('/:id', comicIdRouter.routes());
 
 export const comicRouter = router;

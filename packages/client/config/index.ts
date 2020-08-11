@@ -6,6 +6,7 @@ export interface ClientConfig {
   GOOGLE_CLIENT_ID: string;
   FACEBOOK_APP_ID: string;
   ENV: 'development' | 'production';
+  STRIPE_KEY: string;
 }
 
 const ENV =
@@ -34,7 +35,7 @@ const validateEnvFile = () => {
   }
 };
 
-console.log(validateEnvFile);
+validateEnvFile();
 
 const domain =
   ENV === 'production'
@@ -43,10 +44,9 @@ const domain =
 
 export const config: Readonly<ClientConfig> = Object.freeze({
   API_DOMAIN: domain,
-  API_BASE_URL: process.env.BASE_URL || '/api',
-  GOOGLE_CLIENT_ID:
-    process.env.GOOGLE_CLIENT_ID ||
-    ('368211753081-ibhsiprvv8471fr464tcui6r7g23j4a1.apps.googleusercontent.com' as string),
-  FACEBOOK_APP_ID: process.env.FACEBOOK_APP_ID || ('191106545598250' as string),
+  API_BASE_URL: process.env.API_BASE_URL as string,
+  GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID as string,
+  FACEBOOK_APP_ID: process.env.FACEBOOK_APP_ID as string,
+  STRIPE_KEY: process.env.STRIPE_KEY as string,
   ENV
 });

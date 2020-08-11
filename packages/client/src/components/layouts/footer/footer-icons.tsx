@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { Grid, Fab } from '@material-ui/core';
 import { Icon, IconProps } from '../../icons/Icon';
-import { smallerThan } from '../../../hooks/media-query.hook';
+import { useSmallerThan } from '../../../hooks/media-query.hook';
 
 interface FooterIconProps extends IconProps {
   name: string;
@@ -25,7 +25,7 @@ const FooterIcon: FunctionComponent<FooterIconProps> = ({
 };
 
 export const FooterIcons: FunctionComponent = () => {
-  const tooSmall = smallerThan(360);
+  const tooSmall = useSmallerThan(360);
   return (
     <Grid container direction="row" justify="center" spacing={tooSmall ? 1 : 2}>
       <FooterIcon

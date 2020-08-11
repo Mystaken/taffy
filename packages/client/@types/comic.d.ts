@@ -1,8 +1,10 @@
+type ComicMembership = 'VIP' | 'Free';
+
 interface ComicIssue {
   title: string;
   pages?: string[];
   coverImage: string;
-  membership: 'VIP' | 'Free';
+  membership: ComicMembership;
   numPages: number;
 }
 

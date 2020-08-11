@@ -2,11 +2,11 @@ import { useMediaQuery, useTheme, Theme } from '@material-ui/core';
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
 import { useState, useEffect } from 'react';
 
-export const widerThan: (sizePixel: number) => boolean = sizePixel => {
+export const useWiderThan: (sizePixel: number) => boolean = sizePixel => {
   return useMediaQuery(`(min-width:${sizePixel}px)`);
 };
 
-export const smallerThan: (sizePixel: number) => boolean = sizePixel => {
+export const useSmallerThan: (sizePixel: number) => boolean = sizePixel => {
   return useMediaQuery(`(max-width:${sizePixel}px)`);
 };
 
@@ -53,3 +53,5 @@ export const useDimension: () => Dimension = () => {
 
   return windowDimensions;
 };
+
+export const useIsDesktop = () => useWiderThan(600);
