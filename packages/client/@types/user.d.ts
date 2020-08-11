@@ -8,6 +8,7 @@ interface User {
   createdAt: string;
   updatedAt: string;
   lastLogin: string;
+  isVIP: boolean;
 }
 
 interface SessionUser extends User {

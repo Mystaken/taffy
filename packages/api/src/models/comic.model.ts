@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { TModelStatus } from './types';
+import { TModelStatus, ComicMembership } from './types';
 import { FileSchema, FileEntry } from './file.model';
 
 const ComicIssueSchema = new mongoose.Schema({
@@ -81,10 +81,14 @@ export interface TComicModel {
 }
 
 export interface ComicIssue
-  extends Omit<TComicIssueModel, 'pages' | 'originalImage' | 'coverImage'> {
+  extends Omit<
+    TComicIssueModel,
+    'pages' | 'originalImage' | 'coverImage' | 'membership'
+  > {
   pages?: string[];
   numPages: number;
   coverImage: string;
+  membership: ComicMembership;
 }
 export interface Comic {
   id: string;

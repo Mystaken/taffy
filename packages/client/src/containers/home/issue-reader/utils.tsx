@@ -60,14 +60,11 @@ export const comicReaderPageRenderer = (
           />
         ) : (
           <Grid container direction="column">
-            {[0, 1, 2, 3].map(i => (
-              <GetVIPPage
-                key={i}
-                width={opt.imgWidth}
-                height={opt.imgHeight / 4}
-                onClick={opt.onGetVIP}
-              />
-            ))}
+            <GetVIPPage
+              width={opt.imgWidth}
+              height={opt.imgHeight}
+              onClick={opt.onGetVIP}
+            />
           </Grid>
         )}
       </div>

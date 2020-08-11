@@ -1,5 +1,6 @@
 import ky from 'ky-universal';
 import { config } from '../../config';
+import { authHeader } from '../services/auth';
 
 export interface ComicAPIResponse {
   version: string;
@@ -14,5 +15,6 @@ export interface ComicAPIErrorResponse extends ComicAPIResponse {
   errors: any[];
 }
 export const comicAPI = ky.extend({
-  prefixUrl: `${config.API_DOMAIN}${config.API_BASE_URL}`
+  prefixUrl: `${config.API_DOMAIN}${config.API_BASE_URL}`,
+  headers: authHeader()
 });

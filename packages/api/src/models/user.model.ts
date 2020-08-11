@@ -41,6 +41,7 @@ export interface User extends TUserModel {
   createdAt: string;
   updatedAt: string;
   lastLogin: string;
+  isVIP: boolean;
 }
 
 export const UserModel = mongoose.model('users', UserSchema);

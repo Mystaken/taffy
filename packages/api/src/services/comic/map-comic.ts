@@ -1,4 +1,5 @@
 import { TComicModel, Comic } from '../../models/comic.model';
+import { ComicMembership } from '../../models/types';
 
 export const mapComic = ({
   ratings,
@@ -17,7 +18,7 @@ export const mapComic = ({
       coverImage: coverImage.url,
       numPages: pages.length,
       title,
-      membership
+      membership: membership as ComicMembership
     })
   );
 
