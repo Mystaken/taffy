@@ -3608,6 +3608,13 @@
   dependencies:
     "@types/koa" "*"
 
+"@types/koa-jwt@^3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@types/koa-jwt/-/koa-jwt-3.3.0.tgz#b30fe8a96bbe1aec44cd6da24d91f2963e62e3bf"
+  integrity sha512-XSVz27M0HaJ0EcB5/PoaUlXpM2JClnF3kH/VmuDk2tr3frYqPkoBmxwZz+vHXykNO22Q6JA3Tcmgo4e8Z8Qhsg==
+  dependencies:
+    koa-jwt "*"
+
 "@types/koa-mount@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@types/koa-mount/-/koa-mount-4.0.0.tgz#aa0505763c0d20bf4a16cdec0d9ccd2f4f2d2a86"
@@ -3680,7 +3687,7 @@
     "@types/mongodb" "*"
     "@types/node" "*"
 
-"@types/node@*", "@types/node@>= 8", "@types/node@^14.0.27":
+"@types/node@*", "@types/node@>= 8", "@types/node@>=8.1.0", "@types/node@^14.0.27":
   version "14.0.27"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.27.tgz#a151873af5a5e851b51b3b065c9e63390a9e0eb1"
   integrity sha512-kVrqXhbclHNHGu9ztnAwSncIgJv/FaxmzXJvGXNdcCpV1b8u1/Mi6z6m0vwy0LzKeXFTPLH0NzwmoJ3fNCIq0g==
@@ -10933,11 +10940,6 @@ js-cookie@^2.2.1:
   resolved "https://registry.yarnpkg.com/js-cookie/-/js-cookie-2.2.1.tgz#69e106dc5d5806894562902aa5baec3744e9b2b8"
   integrity sha512-HvdH2LzI/EAZcUwA8+0nKNtWHqS+ZmijLA30RwZA0bo7ToCckjK5MkGhjED9KoRcXO6BaGI3I9UIzSA1FKFPOQ==
 
-js-cookies@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/js-cookies/-/js-cookies-1.0.4.tgz#d46e576c420ff6d5542c0f52b6d4ef7d637e754e"
-  integrity sha1-1G5XbEIP9tVULA9SttTvfWN+dU4=
-
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -11320,6 +11322,15 @@ koa-convert@^1.2.0:
     co "^4.6.0"
     koa-compose "^3.0.0"
 
+koa-jwt@*, koa-jwt@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/koa-jwt/-/koa-jwt-4.0.0.tgz#4cac70cde5e225bc961a266303d4b6e873cba9bc"
+  integrity sha512-n56AG98tWQDtvVZwtVFKuPn1pGPOvtkKFEotSPRsdqKmZJqRdppDRD0toiiK7kefMLnVBzFbocaPyaI5WK/iyQ==
+  dependencies:
+    jsonwebtoken "^8.5.1"
+    koa-unless "^1.0.7"
+    p-any "^2.1.0"
+
 koa-mount@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/koa-mount/-/koa-mount-4.0.0.tgz#e0265e58198e1a14ef889514c607254ff386329c"
@@ -11338,6 +11349,11 @@ koa-router@^9.1.0:
     koa-compose "^4.1.0"
     methods "^1.1.2"
     path-to-regexp "^6.1.0"
+
+koa-unless@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/koa-unless/-/koa-unless-1.0.7.tgz#b9df375e2b4da3043918d48622520c2c0b79f032"
+  integrity sha1-ud83XitNowQ5GNSGIlIMLAt58DI=
 
 koa2-swagger-ui@^4.0.1:
   version "4.0.1"
@@ -13222,6 +13238,15 @@ osenv@^0.1.4, osenv@^0.1.5:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
+p-any@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/p-any/-/p-any-2.1.0.tgz#719489408e14f5f941a748f1e817f5c71cab35cb"
+  integrity sha512-JAERcaMBLYKMq+voYw36+x5Dgh47+/o7yuv2oQYuSSUml4YeqJEFznBrY2UeEkoSHqBua6hz518n/PsowTYLLg==
+  dependencies:
+    p-cancelable "^2.0.0"
+    p-some "^4.0.0"
+    type-fest "^0.3.0"
+
 p-cancelable@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/p-cancelable/-/p-cancelable-1.1.0.tgz#d078d15a3af409220c886f1d9a0ca2e441ab26cc"
@@ -13312,6 +13337,14 @@ p-reduce@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/p-reduce/-/p-reduce-1.0.0.tgz#18c2b0dd936a4690a529f8231f58a0fdb6a47dfa"
   integrity sha1-GMKw3ZNqRpClKfgjH1ig/bakffo=
+
+p-some@^4.0.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/p-some/-/p-some-4.1.0.tgz#28e73bc1e0d62db54c2ed513acd03acba30d5c04"
+  integrity sha512-MF/HIbq6GeBqTrTIl5OJubzkGU+qfFhAFi0gnTAK6rgEIJIknEiABHOTtQu4e6JiXjIwuMPMUFQzyHh5QjCl1g==
+  dependencies:
+    aggregate-error "^3.0.0"
+    p-cancelable "^2.0.0"
 
 p-try@^1.0.0:
   version "1.0.0"
@@ -16518,6 +16551,14 @@ strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
   integrity sha1-PFMZQukIwml8DsNEhYwobHygpgo=
+
+stripe@^8.84.0:
+  version "8.84.0"
+  resolved "https://registry.yarnpkg.com/stripe/-/stripe-8.84.0.tgz#92fe7a9476360c712faa62010c059f3814abf381"
+  integrity sha512-2RWr/VJOlBbmAAdxh7jQwTlEZ4V5uVzPF9mL544n5hBg//HHKqwUUxIsL0X2tk0eYUEMaOVwarK78y/MsGI5pg==
+  dependencies:
+    "@types/node" ">=8.1.0"
+    qs "^6.6.0"
 
 strong-log-transformer@^2.0.0:
   version "2.1.0"
