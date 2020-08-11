@@ -11,7 +11,8 @@ const UserSchema = new mongoose.Schema(
     lastLogin: { type: Date, required: true, default: Date.now() },
     active: { type: Boolean, required: true, default: true },
     customerId: { type: String, required: true },
-    isVIP: { type: Boolean, required: true, default: false }
+    isVip: { type: Boolean, required: true, default: false },
+    isAdmin: { type: Boolean, required: true, default: false }
   },
   {
     timestamps: true,
@@ -41,7 +42,8 @@ export interface User extends TUserModel {
   createdAt: string;
   updatedAt: string;
   lastLogin: string;
-  isVIP: boolean;
+  isVip: boolean;
+  isAdmin: boolean;
 }
 
 export const UserModel = mongoose.model('users', UserSchema);

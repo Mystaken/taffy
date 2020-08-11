@@ -7,6 +7,9 @@ import {
   updateComic
 } from '../../../../services/comic/update-comic';
 import { uploadToAWS } from '../../post/utils';
+import { User } from '../../../../models/user.model';
+import { isAdminUser } from '../../../../services/users/privileges';
+import { UnAuthorizedError } from '../../../../errors/unauthorized.error';
 
 const router = new Router();
 
@@ -15,6 +18,11 @@ const upload = koaMulter();
 const uploadMiddleware = upload.any();
 
 router.post('/', uploadMiddleware, async ctx => {
+  const user: User | undefined = ctx.state.user;
+  if (!user || (await isAdminUser(user))) {
+    throw new UnAuthorizedError();
+  }
+
   const reqBody = ctx.request.body;
   const comicId: string = ctx.params.id;
 

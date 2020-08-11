@@ -5,6 +5,7 @@ import { ComicGetRequestQueryParam, comicGetSchema } from './schema';
 import { queryComicEntry } from '../../../services/comic/query-comic';
 import { User } from '../../../models/user.model';
 import { stripVipIssues } from '../../../services/comic/strip-vip-issues';
+import { isVipUser } from '../../../services/users/privileges';
 
 const router = new Router();
 
@@ -15,9 +16,9 @@ router.get('/', async ctx => {
     comicGetSchema
   );
   const comics = await queryComicEntry(params);
-  const isVIP = user && user.isVIP;
+  const isVip = user && (await isVipUser(user));
 
-  ctx.body = isVIP ? comics : comics.map(stripVipIssues);
+  ctx.body = isVip ? comics : comics.map(stripVipIssues);
 });
 
 export const comicGetRouter = router;

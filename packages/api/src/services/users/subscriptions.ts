@@ -1,11 +1,11 @@
 import { UserModel, User } from '../../models/user.model';
 import { NotFoundError } from '../../errors/not-found.error';
 
-export const setUserVIPStatus = async (userId: string, isVIP: boolean) => {
+export const setUserVIPStatus = async (userId: string, isVip: boolean) => {
   const user = await UserModel.findByIdAndUpdate(
     userId,
     {
-      isVIP
+      isVip
     },
     { new: true }
   ).exec();
