@@ -1,5 +1,5 @@
 import { s3Client } from './client';
-import { ServerError } from '../errors/server.error';
+import { ServerError } from '../../errors/server.error';
 
 export interface RemoveFileParams {
   bucket: string;

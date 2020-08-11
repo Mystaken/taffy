@@ -9,7 +9,6 @@ export const routes = async () => {
   router.use('/comic', comicRouter.routes());
 
   router.get('/', async ctx => {
-    console.log(ctx.state);
     ctx.body = 'API Online';
   });
 

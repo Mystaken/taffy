@@ -38,6 +38,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "sharp": "^0.25.4",
+    "stripe": "^8.84.0",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {

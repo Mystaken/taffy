@@ -2,14 +2,15 @@ import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema(
   {
-    firstName: { type: String, required: true },
-    lastName: { type: String, required: true },
-    email: { type: String, required: true },
+    firstName: { type: String },
+    lastName: { type: String },
+    email: { type: String },
     password: { type: String, required: false },
-    googleID: { type: String, required: false },
-    facebookID: { type: String, required: false },
+    googleId: { type: String, required: false },
+    facebookId: { type: String, required: false },
     lastLogin: { type: Date, required: true, default: Date.now() },
-    active: { type: Boolean, required: true, default: true }
+    active: { type: Boolean, required: true, default: true },
+    customerId: { type: String, required: true }
   },
   {
     timestamps: true,
@@ -24,11 +25,14 @@ const UserSchema = new mongoose.Schema(
 );
 
 export interface TUserModel {
-  firstName: string;
-  lastName: string;
-  email: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
   password?: string;
   active: boolean;
+  customerId: string;
+  googleId?: string;
+  facebookId?: string;
 }
 
 export interface User extends TUserModel {

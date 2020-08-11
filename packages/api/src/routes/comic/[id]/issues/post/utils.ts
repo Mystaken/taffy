@@ -4,8 +4,8 @@ import { ComicIssuePostRequestBody } from './schema';
 import { BadRequestError } from '../../../../../errors/bad-request.error';
 import { splitImageVertically } from '../../../../../utils/images/split-image';
 import { TComicModel } from '../../../../../models/comic.model';
-import { uploadFile } from '../../../../../s3/upload-file';
 import { toJPG } from '../../../../../utils/images/file-to-jpg';
+import { uploadFile } from '../../../../../services/s3/upload-file';
 
 const ISSUE_HEIGHT_PART = 1200;
 const ISSUE_WIDTH = 800;

@@ -3,6 +3,7 @@ import { NotFoundError } from '../../errors/not-found.error';
 import { comparePassword } from '../../utils/common/hash';
 import { TokenPayload } from 'google-auth-library';
 import { FacebookPayload } from '../../routes/auth/facebook/client';
+import { createUserWithStripe } from './create-user';
 
 export interface UserCredentials {
   email: string;
@@ -36,15 +37,15 @@ export const getLoggedInUser = async ({
 
 export const getGoogleUser = async (payload: TokenPayload): Promise<User> => {
   let user = await UserModel.findOne({
-    googleID: payload.sub
+    googleId: payload.sub
   }).exec();
   if (!user) {
-    user = await new UserModel({
+    user = await createUserWithStripe({
       firstName: payload.given_name,
       lastName: payload.family_name,
       email: payload.email,
-      googleID: payload.sub
-    }).save();
+      googleId: payload.sub
+    });
   }
 
   return user.toJSON();
@@ -55,10 +56,10 @@ export const getFacebookUser = async ({
   ...payload
 }: FacebookPayload): Promise<User> => {
   let user = await UserModel.findOne({
-    facebookID: id
+    facebookId: id
   }).exec();
   if (!user) {
-    user = await new UserModel({ ...payload, facebookID: id }).save();
+    user = await createUserWithStripe({ ...payload, facebookId: id });
   }
 
   return user.toJSON();

@@ -18,6 +18,10 @@ export interface APIConfig {
     ACCESS_KEY: string;
     SECRET: string;
   };
+  STRIPE: {
+    PUBLIC: string;
+    SECRET: string;
+  };
 }
 
 const ENV =
@@ -50,6 +54,12 @@ const validateEnvFile = () => {
     if (!process.env.JWT_PRIVATE_KEY) {
       errors.push('JWT_PRIVATE_KEY');
     }
+    if (!process.env.STRIPE_PUBLIC_KEY) {
+      errors.push('STRIPE_PUBLIC_KEY');
+    }
+    if (!process.env.STRIPE_SECRET_KEY) {
+      errors.push('STRIPE_SECRET_KEY');
+    }
   }
   if (errors.length) {
     throw new ConfigError(
@@ -73,5 +83,9 @@ export const config: Readonly<APIConfig> = Object.freeze({
     BUCKET_NAME: process.env.BUCKET_NAME as string,
     ACCESS_KEY: process.env.S3_ACCESS_KEY as string,
     SECRET: process.env.S3_SECRET as string
+  },
+  STRIPE: {
+    PUBLIC: process.env.STRIPE_PUBLIC_KEY as string,
+    SECRET: process.env.STRIPE_SECRET_KEY as string
   }
 });

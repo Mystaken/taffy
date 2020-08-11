@@ -1,5 +1,5 @@
 import koaMulter from '@koa/multer';
-import { uploadFile } from '../../../s3/upload-file';
+import { uploadFile } from '../../../services/s3/upload-file';
 import { toJPG } from '../../../utils/images/file-to-jpg';
 import { ServerError } from '../../../errors/server.error';
 

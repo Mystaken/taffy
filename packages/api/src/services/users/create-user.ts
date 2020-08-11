@@ -1,5 +1,18 @@
-import { UserModel, User } from '../../models/user.model';
+import { UserModel, User, TUserModel } from '../../models/user.model';
 import { hashPassword } from '../../utils/common/hash';
+import { createCustomer } from '../stripe/customers/create-customer';
+
+export interface NewStripeUser
+  extends Omit<TUserModel, 'customerId' | 'active'> {}
+
+export const createUserWithStripe = async (user: NewStripeUser) => {
+  const stripeCustomer = await createCustomer(user);
+  const newuser = {
+    ...user,
+    customerId: stripeCustomer.id
+  };
+  return new UserModel(newuser).save();
+};
 
 export interface NewUser {
   firstName: string;
@@ -14,7 +27,6 @@ export const createUser = async ({
 }: NewUser): Promise<User> => {
   const hashedPassword = await hashPassword(password);
   const useData = { password: hashedPassword, ...user };
-  const newUser = await new UserModel(useData).save();
-
+  const newUser = await createUserWithStripe(useData);
   return newUser.toJSON();
 };
