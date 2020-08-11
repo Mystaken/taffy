@@ -1,5 +1,3 @@
-import { ConfigError } from './error';
-
 export interface ClientConfig {
   API_DOMAIN: string;
   API_BASE_URL: string;
@@ -11,31 +9,6 @@ export interface ClientConfig {
 
 const ENV =
   process.env.NODE_ENV === 'production' ? 'production' : 'development';
-
-const validateEnvFile = () => {
-  const errors: string[] = [];
-  if (ENV === 'production') {
-    if (!process.env.DOMAIN) {
-      errors.push('DOMAIN');
-    }
-    if (!process.env.PORT) {
-      errors.push('PORT');
-    }
-    if (!process.env.GOOGLE_CLIENT_ID) {
-      errors.push('GOOGLE_CLIENT_ID');
-    }
-    if (!process.env.FACEBOOK_APP_ID) {
-      errors.push('GOOGLE_CLIENT_ID');
-    }
-  }
-  if (errors.length) {
-    throw new ConfigError(
-      `Missing required environment variables: ${errors.join(', ')}`
-    );
-  }
-};
-
-validateEnvFile();
 
 const domain =
   ENV === 'production'
