@@ -1,13 +1,11 @@
 import App, { AppContext } from 'next/app';
 import { ThemeProvider } from '@material-ui/styles';
 import Head from 'next/head';
-import { setup } from '../utils/setup';
 import defaultTheme from '../themes/default.theme';
 
 class MyApp extends App<AppContext> {
   public render() {
     const { Component, pageProps } = this.props;
-    setup();
 
     return (
       <>

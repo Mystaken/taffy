@@ -1,5 +1,4 @@
 import { FunctionComponent } from 'react';
-import { Variant } from '@material-ui/core/styles/createTypography';
 import { withStyles, Typography, TypographyProps } from '@material-ui/core';
 
 import { COLORS } from '../../../themes/colors';

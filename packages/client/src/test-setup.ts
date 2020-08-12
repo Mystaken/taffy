@@ -1,4 +1,3 @@
-import { setup } from './utils/setup';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
@@ -21,5 +20,3 @@ jest.mock('react-hook-form', () => ({
     watch: jest.fn()
   }))
 }));
-
-setup();
