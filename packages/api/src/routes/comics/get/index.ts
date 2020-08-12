@@ -21,4 +21,4 @@ router.get('/', async ctx => {
   ctx.body = isVip ? comics : comics.map(stripVipIssues);
 });
 
-export const comicGetRouter = router;
+export const comicsGetRouter = router;

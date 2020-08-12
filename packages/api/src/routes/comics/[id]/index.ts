@@ -10,4 +10,4 @@ router.use(comicPostByIdRouter.routes());
 
 router.use('/issues', comicIssuesRouter.routes());
 
-export const comicIdRouter = router;
+export const comicsIdRouter = router;

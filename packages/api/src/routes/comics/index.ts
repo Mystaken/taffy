@@ -1,13 +1,13 @@
 import Router from 'koa-router';
 
-import { comicPostRouter } from './post';
-import { comicGetRouter } from './get';
-import { comicIdRouter } from './[id]';
+import { comicsPostRouter } from './post';
+import { comicsGetRouter } from './get';
+import { comicsIdRouter } from './[id]';
 
 const router = new Router();
 
-router.use('/', comicPostRouter.routes());
-router.use('/', comicGetRouter.routes());
-router.use('/:id', comicIdRouter.routes());
+router.use('/', comicsPostRouter.routes());
+router.use('/', comicsGetRouter.routes());
+router.use('/:id', comicsIdRouter.routes());
 
-export const comicRouter = router;
+export const comicsRouter = router;

@@ -44,4 +44,4 @@ router.post('/', uploadMiddleware, async ctx => {
   ctx.body = comic;
 });
 
-export const comicPostRouter = router;
+export const comicsPostRouter = router;
