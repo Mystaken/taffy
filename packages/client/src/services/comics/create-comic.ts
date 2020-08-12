@@ -18,7 +18,7 @@ export const createComic = async (data: CreateComicFormSubmission) => {
     form.append(k, v);
   });
   const { response } = await comicAPI
-    .post('comic', {
+    .post('comics', {
       body: form
     })
     .json<ComicAPISuccessResponse<Comic>>();

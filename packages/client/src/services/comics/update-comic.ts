@@ -21,7 +21,7 @@ export const updateComic = async (
     form.append(k, v);
   });
   const { response } = await comicAPI
-    .post(`comic/${id}`, {
+    .post(`comics/${id}`, {
       body: form
     })
     .json<ComicAPISuccessResponse<Comic>>();

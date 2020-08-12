@@ -12,7 +12,7 @@ export interface GetTaffyMembershipResponse {
 }
 export const getTaffyMembership = async () => {
   const { response } = await comicAPI
-    .get('membership')
+    .get('memberships')
     .json<ComicAPISuccessResponse<GetTaffyMembershipResponse>>();
   return response;
 };
