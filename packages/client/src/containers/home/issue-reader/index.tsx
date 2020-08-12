@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { IssueReaderProps } from './types';
 import { useAsync } from '../../../hooks/async.hook';
-import { getComicById } from '../../../services/comic/get-comic-by-id';
+import { getComicById } from '../../../services/comics/get-comic-by-id';
 import { comicReaderPageRenderer } from './utils';
 import { useDimension } from '../../../hooks/media-query.hook';
 import { PaddinglessContainer } from '../../../components/layouts/paddingless-container';

@@ -1,14 +1,14 @@
 import Router from 'koa-router';
 import { authRouter } from './auth';
-import { comicRouter } from './comic';
-import { membershipRouter } from './membership';
+import { comicRouter } from './comics';
+import { membershipRouter } from './memberships';
 
 export const routes = async () => {
   const router = new Router();
 
   router.use('/auth', authRouter.routes());
-  router.use('/comic', comicRouter.routes());
-  router.use('/membership', membershipRouter.routes());
+  router.use('/comics', comicRouter.routes());
+  router.use('/memberships', membershipRouter.routes());
 
   router.get('/', async ctx => {
     ctx.body = 'API Online';

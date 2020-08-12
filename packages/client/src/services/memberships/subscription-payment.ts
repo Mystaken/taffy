@@ -2,7 +2,7 @@ import { comicAPI, ComicAPISuccessResponse } from '../../api/comic.api';
 
 export const subscriptionPayment = async (stripeToken: string) => {
   const { response } = await comicAPI
-    .post(`membership`, {
+    .post('membership', {
       json: {
         stripeToken
       }

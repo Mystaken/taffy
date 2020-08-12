@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { useAsync } from '../../../hooks/async.hook';
-import { getAllComics } from '../../../services/comic/get-all-comics';
+import { getAllComics } from '../../../services/comics/get-all-comics';
 import { ComicCard } from '../../../components/comic/comic-card';
 
 export const ComicViewer: FunctionComponent = () => {

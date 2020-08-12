@@ -1,8 +1,8 @@
 import { FunctionComponent } from 'react';
 import { StripePayment } from '../../../components/payment/stripe-payment';
 import { useAsync } from '../../../hooks/async.hook';
-import { getTaffyMembership } from '../../../services/membership/get-taffy-membership';
-import { subscriptionPayment } from '../../../services/membership/subscription-payment';
+import { getTaffyMembership } from '../../../services/memberships/get-taffy-membership';
+import { subscriptionPayment } from '../../../services/memberships/subscription-payment';
 
 export interface MembershipPaymentProps {
   onSuccess?: (subscription: Subscription) => void;

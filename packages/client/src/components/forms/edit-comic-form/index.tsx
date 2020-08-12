@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Grid, TextField, Button, Typography, Input } from '@material-ui/core';
 
 import { UpdateComicFormProps } from './types';
-import { UpdateComicFormSubmission } from '../../../services/comic/update-comic';
+import { UpdateComicFormSubmission } from '../../../services/comics/update-comic';
 import { FieldAdder } from '../field-adder';
 import { FormArrayValue } from '../field-adder/types';
 

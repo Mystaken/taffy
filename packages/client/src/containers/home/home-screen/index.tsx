@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { Container, Typography } from '@material-ui/core';
 
-import { getAllComics } from '../../../services/comic/get-all-comics';
+import { getAllComics } from '../../../services/comics/get-all-comics';
 import { useAsync } from '../../../hooks/async.hook';
 import { AutoplayPanel } from './autoplay-panels';
 import { LatestComicSlider } from './latest-comic-slider';

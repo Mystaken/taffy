@@ -1,4 +1,4 @@
-import { UpdateComicFormSubmission } from '../../../services/comic/update-comic';
+import { UpdateComicFormSubmission } from '../../../services/comics/update-comic';
 import { FormArrayValue } from '../field-adder/types';
 
 export interface UpdateComicFormProps {

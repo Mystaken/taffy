@@ -3,7 +3,8 @@ import { User } from '../../models/user.model';
 import {
   TSubscriptionModel,
   Subscription,
-  SubscriptionModel
+  SubscriptionModel,
+  SubscriptionStatus
 } from '../../models/subscription.model';
 
 export const createSubscriptionObject = async (
@@ -25,16 +26,17 @@ export const createSubscription = async ({
   token,
   items
 }: CreateSubscriptionParams) => {
-  const stripSubscription = await createStripeSubscription({
+  const stripeSubscription = await createStripeSubscription({
     customerId: user.customerId,
     token,
     items
   });
 
   const subscription = await createSubscriptionObject({
-    subscriptionId: stripSubscription.id,
+    subscriptionId: stripeSubscription.id,
     customerId: user.customerId,
-    userId: user.id
+    userId: user.id,
+    status: stripeSubscription.status as SubscriptionStatus
   });
 
   return subscription;

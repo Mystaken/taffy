@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 
 import { useAsync } from '../../../hooks/async.hook';
-import { getComicById } from '../../../services/comic/get-comic-by-id';
+import { getComicById } from '../../../services/comics/get-comic-by-id';
 import { TitleCard } from '../../../components/comic/title-card';
 import { IssueSelector } from '../../../components/comic/issue-selector';
 

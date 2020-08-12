@@ -4,7 +4,7 @@ import { Grid, TextField, Button, Typography, Input } from '@material-ui/core';
 
 import { CreateComicFormProps } from './types';
 import { FormArrayValue } from '../field-adder/types';
-import { CreateComicFormSubmission } from '../../../services/comic/create-comic';
+import { CreateComicFormSubmission } from '../../../services/comics/create-comic';
 import { FieldAdder } from '../field-adder';
 
 export const CreateComicForm: FunctionComponent<CreateComicFormProps> = ({

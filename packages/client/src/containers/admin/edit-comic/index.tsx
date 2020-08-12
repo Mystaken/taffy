@@ -4,10 +4,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { EditComicForm as EditComicFormView } from '../../../components/forms/edit-comic-form';
 import { useAsync } from '../../../hooks/async.hook';
-import { getComicById } from '../../../services/comic/get-comic-by-id';
-import { updateComic } from '../../../services/comic/update-comic';
+import { getComicById } from '../../../services/comics/get-comic-by-id';
+import { updateComic } from '../../../services/comics/update-comic';
 import { CreateComicIssueForm } from '../../../components/forms/create-comic-issue';
-import { createComicIssue } from '../../../services/comic/issues/create-comic-issue';
+import { createComicIssue } from '../../../services/comics/issues/create-comic-issue';
 import { IssueViewer } from '../../../components/comic/issue-viewer';
 
 export interface EditComicFormProps {

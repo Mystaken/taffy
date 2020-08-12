@@ -1,4 +1,4 @@
-import { CreateComicIssueSubmission } from '../../../services/comic/issues/create-comic-issue';
+import { CreateComicIssueSubmission } from '../../../services/comics/issues/create-comic-issue';
 
 export interface CreateComicIssueFormProps {
   disabled?: boolean;

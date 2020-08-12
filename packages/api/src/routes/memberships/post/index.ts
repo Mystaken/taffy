@@ -7,6 +7,7 @@ import { UnAuthorizedError } from '../../../errors/unauthorized.error';
 import { taffyMonthlySubscription } from '../../../services/stripe/items.json';
 import { createSubscription } from '../../../services/subscriptions/create-subscription';
 import { setUserVIPStatus } from '../../../services/users/subscriptions';
+import { BadRequestError } from '../../../errors/bad-request.error';
 
 const router = new Router();
 
@@ -19,20 +20,22 @@ router.post('/', async ctx => {
     ctx.request.body,
     membershipPostSchema
   );
+  try {
+    const subscription = await createSubscription({
+      user,
+      token: body.stripeToken,
+      items: [
+        {
+          price: taffyMonthlySubscription.pricing
+        }
+      ]
+    });
 
-  const subscription = await createSubscription({
-    user,
-    token: body.stripeToken,
-    items: [
-      {
-        price: taffyMonthlySubscription.pricing
-      }
-    ]
-  });
-
-  await setUserVIPStatus(user.id, true);
-
-  ctx.body = subscription;
+    await setUserVIPStatus(user.id, true);
+    ctx.body = subscription;
+  } catch (e) {
+    throw new BadRequestError('Payment failed');
+  }
 });
 
 export const membershipPostRouter = router;
