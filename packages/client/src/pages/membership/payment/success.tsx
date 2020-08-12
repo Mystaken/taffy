@@ -4,7 +4,12 @@ import { useIsDesktop } from '../../../hooks/media-query.hook';
 
 export const MembershipPaymentSuccessPage: FunctionComponent = () => {
   const isDesktop = useIsDesktop();
-  return <PaymentSuccessPage variant={isDesktop ? 'h3' : 'h5'} />;
+  return (
+    <PaymentSuccessPage
+      typographyProps={{ variant: isDesktop ? 'h3' : 'h5' }}
+      iconProps={{ variant: isDesktop ? 'h2' : 'h4' }}
+    />
+  );
 };
 
 export default MembershipPaymentSuccessPage;

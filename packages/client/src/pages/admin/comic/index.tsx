@@ -3,6 +3,7 @@ import { AppBar, Toolbar, Typography, Container } from '@material-ui/core';
 
 import { Page } from '../../../components/layouts/page';
 import { ComicViewer } from '../../../containers/admin/comic-viewer';
+import { withAuth } from '../../../containers/common/with-auth';
 
 const AdminComicPage: FunctionComponent = () => {
   return (
@@ -21,4 +22,4 @@ const AdminComicPage: FunctionComponent = () => {
   );
 };
 
-export default AdminComicPage;
+export default withAuth(AdminComicPage);

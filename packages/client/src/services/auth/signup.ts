@@ -8,7 +8,7 @@ export interface SignupDetails {
   password: string;
 }
 
-export const signup = async (details: SignupDetails): Promise<User> => {
+export const signup = async (details: SignupDetails): Promise<SessionUser> => {
   const { response } = await comicAPI
     .post('auth/signup', { json: details })
     .json<ComicAPISuccessResponse<SessionUser>>();

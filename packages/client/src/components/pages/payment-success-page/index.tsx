@@ -1,42 +1,46 @@
 import React, { FunctionComponent } from 'react';
-import { Grid, makeStyles, Typography, Button } from '@material-ui/core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Grid, Typography, Button } from '@material-ui/core';
+import { CheckCircleOutline } from '@material-ui/icons';
 import { Variant } from '@material-ui/core/styles/createTypography';
+import { CenteredContainer } from '../../layouts/centered-container';
+import { COLORS } from '../../../themes/colors';
+import { IconWrapper } from '../../icons/icon-wrapper';
 
 export interface PaymentSuccessPageProps {
   onBackClick?: () => void;
   disabled?: boolean;
-  variant?: Variant;
+
+  typographyProps?: {
+    variant?: Variant;
+  };
+  iconProps?: {
+    variant?: Variant;
+  };
 }
-const useStyles = makeStyles(_ => ({
-  container: {
-    height: '100vh',
-    width: '100vw'
-  }
-}));
 
 export const PaymentSuccessPage: FunctionComponent<PaymentSuccessPageProps> = ({
   onBackClick,
   disabled = false,
-  variant
+  typographyProps = {},
+  iconProps = {}
 }) => {
-  const classes = useStyles();
   return (
-    <Grid
-      container
-      className={classes.container}
-      direction="column"
-      justify="center"
-      alignContent="center">
-      <Grid item>
-        <Grid container justify="center">
-          <FontAwesomeIcon size="5x" color="lightgreen" icon="check-circle" />
+    <CenteredContainer>
+      <Grid container direction="column" justify="center" alignItems="center">
+        <Grid item>
+          <IconWrapper variant={iconProps.variant} color={COLORS.green}>
+            <CheckCircleOutline fontSize="inherit" />
+          </IconWrapper>
         </Grid>
+        <Grid item>
+          <Typography variant={typographyProps.variant}>
+            Payment Successful!
+          </Typography>
+        </Grid>
+        <Button onClick={() => onBackClick?.()} disabled={disabled}>
+          Back
+        </Button>
       </Grid>
-      <Typography variant={variant}>Payment Successful!</Typography>
-      <Button onClick={() => onBackClick?.()} disabled={disabled}>
-        Back
-      </Button>
-    </Grid>
+    </CenteredContainer>
   );
 };

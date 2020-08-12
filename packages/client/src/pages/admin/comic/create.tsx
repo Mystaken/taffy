@@ -9,6 +9,7 @@ import {
 
 import { Page } from '../../../components/layouts/page';
 import { CreateComicForm } from '../../../containers/admin/create-comic';
+import { withAuth } from '../../../containers/common/with-auth';
 
 const useStyles = makeStyles(_ => ({
   container: {
@@ -34,4 +35,4 @@ const CreateComicPage: FunctionComponent = () => {
   );
 };
 
-export default CreateComicPage;
+export default withAuth(CreateComicPage);

@@ -17,8 +17,8 @@ import { signup, SignupDetails } from '../../../services/auth/signup';
 
 export interface LoginDialogProps
   extends Pick<DialogProps, 'open' | 'onBackdropClick'> {
-  onLogin?: (user: User) => void;
-  onSignup?: (user: User) => void;
+  onLogin?: (user: SessionUser) => void;
+  onSignup?: (user: SessionUser) => void;
   onClose?: () => void;
   tab?: 'login' | 'signup';
 }

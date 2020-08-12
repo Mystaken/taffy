@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import { Typography, TextField, Button, IconButton } from '@material-ui/core';
 import { useFieldArray } from 'react-hook-form';
-import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import { HighlightOff } from '@material-ui/icons';
 
 import { FieldAdderProps } from './types';
 
@@ -34,7 +34,7 @@ export const FieldAdder: FunctionComponent<FieldAdderProps> = ({
             disabled={disabled}
           />
           <IconButton color="primary" onClick={() => fieldArray.remove(index)}>
-            <HighlightOffIcon />
+            <HighlightOff />
           </IconButton>
         </span>
       ))}

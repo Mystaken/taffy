@@ -6,7 +6,7 @@ export interface LoginDetails {
   password: string;
 }
 
-export const login = async (details: LoginDetails): Promise<User> => {
+export const login = async (details: LoginDetails): Promise<SessionUser> => {
   const { response } = await comicAPI
     .post('auth/login', { json: details })
     .json<ComicAPISuccessResponse<SessionUser>>();

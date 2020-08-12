@@ -14,7 +14,8 @@ import {
   ListItemIcon
 } from '@material-ui/core';
 import { DrawerProps } from '@material-ui/core/Drawer';
-import StarIcon from '@material-ui/icons/Star';
+import { Star } from '@material-ui/icons';
+import { IconWrapper } from '../../icons/icon-wrapper';
 
 const useStyles = makeStyles(theme => ({
   content: {
@@ -95,7 +96,9 @@ export const MainDrawer: FunctionComponent<MainDrawerProps> = ({
         <List>
           <ListItem button onClick={onVIPPurchaseClicked}>
             <ListItemIcon>
-              <StarIcon color={user?.isVip ? 'secondary' : undefined} />
+              <IconWrapper>
+                <Star color={user?.isVip ? 'secondary' : undefined} />
+              </IconWrapper>
             </ListItemIcon>
             <ListItemText primary="VIP Membership" />
           </ListItem>

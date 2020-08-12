@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 
 import { Page } from '../../../components/layouts/page';
 import { EditComicForm } from '../../../containers/admin/edit-comic';
+import { withAuth } from '../../../containers/common/with-auth';
 
 const AdminComicPage: FunctionComponent = () => {
   const router = useRouter();
@@ -23,4 +24,4 @@ const AdminComicPage: FunctionComponent = () => {
   );
 };
 
-export default AdminComicPage;
+export default withAuth(AdminComicPage);

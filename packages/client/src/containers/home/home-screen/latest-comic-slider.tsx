@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Grid, makeStyles } from '@material-ui/core';
+import { ArrowForwardIos, ArrowBackIos } from '@material-ui/icons';
 
 import {
   SwipeHandlerProps,
@@ -9,6 +9,7 @@ import {
 import { VirtualizedSlideRendererParams } from 'react-swipeable-views-utils';
 import { ComicCard } from '../../../components/comic/comic-card';
 import { CarouselPanel } from '../../../components/panels/carousel-panel';
+import { IconWrapper } from '../../../components/icons/icon-wrapper';
 
 const DEFAULT_IMG = 'static/comic/200x300.png';
 
@@ -49,7 +50,9 @@ const swipeRight: FunctionComponent<SwipeHandlerProps> = ({ onClick }) => {
       alignItems="flex-end"
       className={classes.rightSwipe}
       onClick={onClick}>
-      <FontAwesomeIcon color="white" icon="angle-right" size="2x" />
+      <IconWrapper>
+        <ArrowForwardIos />
+      </IconWrapper>
     </Grid>
   );
 };
@@ -63,7 +66,9 @@ const swipeLeft: FunctionComponent<SwipeHandlerProps> = ({ onClick }) => {
       justify="center"
       className={classes.leftSwipe}
       onClick={onClick}>
-      <FontAwesomeIcon color="white" icon="angle-left" size="2x" />
+      <IconWrapper>
+        <ArrowBackIos />
+      </IconWrapper>
     </Grid>
   );
 };
