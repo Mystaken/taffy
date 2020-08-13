@@ -32,7 +32,9 @@ export const TitleCard: FunctionComponent<TitleCardProps> = ({
       position: 'fixed',
       display: 'block',
       objectFit: 'contain',
-      backgroundImage: `url('https://wallpapercave.com/wp/wp2342121.jpg')`,
+      backgroundImage: `url('${
+        comic.desktopCoverImage ?? 'https://via.placeholder.com/1980x1080'
+      }')`,
       backgroundSize: 'cover',
       backgroundPosition: 'center center',
       width: '100vw',

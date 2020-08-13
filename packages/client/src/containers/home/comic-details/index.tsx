@@ -5,18 +5,23 @@ import { getComicById } from '../../../services/comics/get-comic-by-id';
 import { TitleCard } from '../../../components/comic/title-card';
 import { IssueSelector } from '../../../components/comic/issue-selector';
 import { addComicRating } from '../../../services/comics/ratings/add-comic-rating';
+import MobileTitleCard from '../../../components/comic/mobile-title-card';
 
 export interface ComicDetailsProps {
   comicId: string;
+  isDesktop?: boolean;
 }
 
 export const ComicDetails: FunctionComponent<ComicDetailsProps> = ({
-  comicId
+  comicId,
+  isDesktop = true
 }) => {
   const { value: comic, setValue: setComic } = useAsync(
     () => getComicById(comicId),
     [comicId]
   );
+
+  const ComicTitleCard = isDesktop ? TitleCard : MobileTitleCard;
 
   if (!comic) {
     return null;
@@ -28,8 +33,8 @@ export const ComicDetails: FunctionComponent<ComicDetailsProps> = ({
   };
 
   return (
-    <TitleCard comic={comic} onAddRating={handleOnAddRating}>
+    <ComicTitleCard comic={comic} onAddRating={handleOnAddRating}>
       <IssueSelector issues={comic.issues} />
-    </TitleCard>
+    </ComicTitleCard>
   );
 };
