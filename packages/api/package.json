@@ -6,7 +6,7 @@
   "license": "ISC",
   "main": "index.ts",
   "scripts": {
-    "start": "ts-node --project tsconfig.json server.ts",
+    "start": "ts-node --project tsconfig.json server.ts | pino-pretty",
     "check-all": "yarn check-tsc && yarn test-cov",
     "check-tsc": "tsc --project tsconfig.prod.json",
     "test": "jest --watch",
