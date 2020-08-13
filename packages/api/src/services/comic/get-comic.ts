@@ -22,7 +22,14 @@ export const getComic = async ({
   }
 };
 
-export const getComicEntry = async (params: GetComicParams): Promise<Comic> => {
+export interface GetComicEntryOption {
+  userId?: string;
+}
+
+export const getComicEntry = async (
+  params: GetComicParams,
+  options?: GetComicEntryOption
+): Promise<Comic> => {
   const comic = await getComic(params);
-  return mapComic(comic);
+  return mapComic(comic, options);
 };

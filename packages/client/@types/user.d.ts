@@ -9,6 +9,7 @@ interface User {
   updatedAt: string;
   lastLogin: string;
   isVip: boolean;
+  isAdmin: boolean;
 }
 
 interface SessionUser extends User {

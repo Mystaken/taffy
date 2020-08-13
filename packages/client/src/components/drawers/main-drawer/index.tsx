@@ -16,6 +16,7 @@ import {
 import { DrawerProps } from '@material-ui/core/Drawer';
 import { Star } from '@material-ui/icons';
 import { IconWrapper } from '../../icons/icon-wrapper';
+import { COLORS } from '../../../themes/colors';
 
 const useStyles = makeStyles(theme => ({
   content: {
@@ -32,7 +33,7 @@ export interface MainDrawerProps extends Pick<DrawerProps, 'open' | 'onClose'> {
   onLogout?: () => void;
   onSignin?: () => void;
   onSignup?: () => void;
-  onVIPPurchaseClicked?: () => void;
+  onVipPurchaseClicked?: () => void;
 }
 
 export const MainDrawer: FunctionComponent<MainDrawerProps> = ({
@@ -40,7 +41,7 @@ export const MainDrawer: FunctionComponent<MainDrawerProps> = ({
   onLogout,
   onSignin,
   onSignup,
-  onVIPPurchaseClicked,
+  onVipPurchaseClicked,
   onClose,
   ...drawerProps
 }) => {
@@ -94,10 +95,13 @@ export const MainDrawer: FunctionComponent<MainDrawerProps> = ({
         <Divider />
 
         <List>
-          <ListItem button onClick={onVIPPurchaseClicked}>
+          <ListItem button onClick={onVipPurchaseClicked}>
             <ListItemIcon>
-              <IconWrapper>
-                <Star color={user?.isVip ? 'secondary' : undefined} />
+              <IconWrapper
+                color={
+                  user?.isVip ? COLORS['bright-yellow'] : COLORS['light-grey']
+                }>
+                <Star />
               </IconWrapper>
             </ListItemIcon>
             <ListItemText primary="VIP Membership" />

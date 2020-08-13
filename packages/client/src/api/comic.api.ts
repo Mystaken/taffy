@@ -1,6 +1,6 @@
 import ky from 'ky-universal';
 import { config } from '../../config';
-import { authHeader } from '../services/auth';
+import { getCurrentUser } from '../services/auth/user-cookie';
 
 export interface ComicAPIResponse {
   version: string;
@@ -16,5 +16,14 @@ export interface ComicAPIErrorResponse extends ComicAPIResponse {
 }
 export const comicAPI = ky.extend({
   prefixUrl: `${config.API_DOMAIN}${config.API_BASE_URL}`,
-  headers: authHeader()
+  hooks: {
+    beforeRequest: [
+      request => {
+        const user = getCurrentUser();
+        if (user) {
+          request.headers.set('Authorization', `Bearer ${user.jwt}`);
+        }
+      }
+    ]
+  }
 });

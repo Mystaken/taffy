@@ -44,7 +44,9 @@ router.post('/', uploadMiddleware, async ctx => {
   const awsId = comicData.title;
   const awsFileUrls = await uploadToAWS(awsId, files);
   const comicDataWithImages: UpdateComic = { ...comicData, ...awsFileUrls };
-  const comic = await updateComic(comicId, comicDataWithImages);
+  const comic = await updateComic(comicId, comicDataWithImages, {
+    userId: user.id
+  });
 
   ctx.body = comic;
 });

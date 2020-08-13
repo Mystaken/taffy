@@ -9,3 +9,8 @@ export const authHeader = () => {
     Authorization: `Bearer ${user.jwt}`
   };
 };
+
+export const getJwtToken = () => {
+  const user = getCurrentUser();
+  return user?.jwt;
+};

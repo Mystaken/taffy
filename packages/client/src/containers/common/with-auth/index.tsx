@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useState } from 'react';
 import { getCurrentUser } from '../../../services/auth/user-cookie';
 import { LoginDialog } from '../../home/login-drawer/login-dialog';
+import { ErrorPage } from '../../../components/pages/error-page';
 
 export interface WithAuthProps {
   user?: User;
@@ -13,10 +14,16 @@ export interface WithAuthOptions {
 export const withAuth: <T extends WithAuthProps>(
   Component: React.ComponentType<T>,
   opt?: WithAuthOptions
-) => FunctionComponent<T> = (Component: React.ComponentType<any>) => props => {
+) => FunctionComponent<T> = (
+  Component: React.ComponentType<any>,
+  { isAdmin = false }: WithAuthOptions = {}
+) => props => {
   const [currUser, setCurrUser] = useState(getCurrentUser());
+  if (currUser && !currUser.isAdmin && isAdmin) {
+    return <ErrorPage message="Unauthorized" />;
+  }
   if (currUser) {
-    return <Component {...props} />;
+    return <Component {...props} user={currUser} />;
   }
   return (
     <LoginDialog

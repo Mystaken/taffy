@@ -14,7 +14,7 @@ import { RatingSelectDialog } from '../../dialogs/rating-selection-dialog';
 
 export interface TitleCardProps {
   comic: Comic;
-  onAddRate?: (rating: number) => void;
+  onAddRating?: (rating: number) => void;
 }
 
 const ComicRating = withStyles(_ => ({
@@ -24,7 +24,7 @@ const ComicRating = withStyles(_ => ({
 export const TitleCard: FunctionComponent<TitleCardProps> = ({
   comic,
   children,
-  onAddRate
+  onAddRating
 }) => {
   const classes = makeStyles(_ => ({
     backgroundImage: {
@@ -73,8 +73,8 @@ export const TitleCard: FunctionComponent<TitleCardProps> = ({
   const handleRatingDialogClose = () => {
     setRatingDialogOpen(false);
   };
-  const handleAddRate = (rating: number) => {
-    onAddRate?.(rating);
+  const handleAddRating = (rating: number) => {
+    onAddRating?.(rating);
     handleRatingDialogClose();
   };
 
@@ -138,9 +138,10 @@ export const TitleCard: FunctionComponent<TitleCardProps> = ({
       </div>
 
       <RatingSelectDialog
+        defaultRating={comic.userRating ? comic.userRating : comic.rating}
         open={ratingDialogOpen}
         onClose={handleRatingDialogClose}
-        onSubmitRate={handleAddRate}></RatingSelectDialog>
+        onSubmitRate={handleAddRating}></RatingSelectDialog>
     </div>
   );
 };

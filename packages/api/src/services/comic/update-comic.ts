@@ -14,8 +14,15 @@ export interface UpdateComic {
   desktopCoverImage?: FileEntry;
   comicBannerImage?: FileEntry;
 }
+export interface UpdateComicOptions {
+  userId?: string;
+}
 
-export const updateComic = async (id: string, newComic: UpdateComic) => {
+export const updateComic = async (
+  id: string,
+  newComic: UpdateComic,
+  options?: UpdateComicOptions
+) => {
   try {
     const document = await ComicModel.findByIdAndUpdate(id, newComic, {
       new: true
@@ -24,7 +31,7 @@ export const updateComic = async (id: string, newComic: UpdateComic) => {
       throw new NotFoundError('comic');
     }
     const comic: TComicModel = document.toJSON();
-    return mapComic(comic);
+    return mapComic(comic, options);
   } catch (e) {
     throw new NotFoundError('comic');
   }

@@ -14,8 +14,15 @@ export interface NewComic {
   comicBannerImage?: FileEntry;
 }
 
-export const createComic = async (comic: NewComic): Promise<Comic> => {
+export interface CreateComicOptions {
+  userId?: string;
+}
+
+export const createComic = async (
+  comic: NewComic,
+  options?: CreateComicOptions
+): Promise<Comic> => {
   const newComic = await new ComicModel(comic).save();
   const result: TComicModel = newComic.toJSON();
-  return mapComic(result);
+  return mapComic(result, options);
 };

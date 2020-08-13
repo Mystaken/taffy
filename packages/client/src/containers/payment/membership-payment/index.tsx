@@ -10,7 +10,7 @@ export interface MembershipPaymentProps {
 export const MembershipPayment: FunctionComponent<MembershipPaymentProps> = ({
   onSuccess
 }) => {
-  const [membership] = useAsync(() => getTaffyMembership(), []);
+  const { value: membership } = useAsync(() => getTaffyMembership(), []);
   if (!membership) {
     return null;
   }

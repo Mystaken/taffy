@@ -14,7 +14,7 @@ router.get('/', async ctx => {
     id: ctx.params.id
   });
 
-  const queriedComics = mapComic(comic);
+  const queriedComics = mapComic(comic, { userId: user?.id });
 
   const isVip = user && (await isVipUser(user));
 

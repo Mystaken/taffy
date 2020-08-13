@@ -14,7 +14,7 @@ export interface HomeScreenProps {
 export const HomeScreen: FunctionComponent<HomeScreenProps> = ({
   onComicSelect
 }) => {
-  const [comics] = useAsync(() => getAllComics(), []);
+  const { value: comics } = useAsync(() => getAllComics(), []);
 
   if (!comics) {
     return null;

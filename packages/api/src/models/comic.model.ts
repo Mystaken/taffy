@@ -27,7 +27,12 @@ const ComicSchema = new mongoose.Schema(
     mobileCoverImage: { type: FileSchema },
     desktopCoverImage: { type: FileSchema },
     comicBannerImage: { type: FileSchema },
-    ratings: { type: [ComicRatingSchema], required: true, default: [] },
+    ratings: {
+      type: Map,
+      of: Number,
+      required: true,
+      default: {}
+    },
     issues: { type: [ComicIssueSchema], required: true, default: [] },
     status: {
       type: String,
@@ -47,12 +52,6 @@ const ComicSchema = new mongoose.Schema(
     versionKey: false
   }
 );
-
-export interface ComicRating {
-  userId: string;
-  comicId: string;
-  rating: number;
-}
 
 export interface TComicIssueModel {
   title: string;
@@ -75,7 +74,7 @@ export interface TComicModel {
   mobileCoverImage?: FileEntry;
   desktopCoverImage?: FileEntry;
   comicBannerImage?: FileEntry;
-  ratings: ComicRating[];
+  ratings: Record<string, number>;
   issues: TComicIssueModel[];
   status: TModelStatus;
 }
@@ -90,6 +89,7 @@ export interface ComicIssue
   coverImage: string;
   membership: ComicMembership;
 }
+
 export interface Comic {
   id: string;
   title: string;
@@ -104,6 +104,7 @@ export interface Comic {
   status: TModelStatus;
   rating: number;
   issues: ComicIssue[];
+  userRating?: number;
 }
 
 export const ComicModel = mongoose.model('comic', ComicSchema);

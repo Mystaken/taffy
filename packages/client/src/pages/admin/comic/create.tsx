@@ -35,4 +35,4 @@ const CreateComicPage: FunctionComponent = () => {
   );
 };
 
-export default withAuth(CreateComicPage);
+export default withAuth(CreateComicPage, { isAdmin: true });

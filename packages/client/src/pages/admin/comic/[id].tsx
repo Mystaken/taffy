@@ -24,4 +24,4 @@ const AdminComicPage: FunctionComponent = () => {
   );
 };
 
-export default withAuth(AdminComicPage);
+export default withAuth(AdminComicPage, { isAdmin: true });

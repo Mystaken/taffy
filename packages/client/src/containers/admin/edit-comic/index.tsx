@@ -24,7 +24,7 @@ const useStyles = makeStyles(_ => ({
 export const EditComicForm: FunctionComponent<EditComicFormProps> = ({
   id
 }) => {
-  const [comic] = useAsync<Comic>(() => getComicById(id), [id]);
+  const { value: comic } = useAsync(() => getComicById(id), [id]);
   const classes = useStyles();
   if (!comic) {
     return null;

@@ -5,8 +5,13 @@ export interface QueryComicParams extends Partial<Pick<TComicModel, 'title'>> {
   id?: string;
 }
 
+export interface QueryComicOptions {
+  userId?: string;
+}
+
 export const queryComicEntry = async (
-  params: QueryComicParams
+  params: QueryComicParams,
+  options?: QueryComicOptions
 ): Promise<Comic[]> => {
   const documents = await ComicModel.find(params).exec();
 

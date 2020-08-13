@@ -5,7 +5,7 @@ import { comicIssuePostSchema, ComicIssuePostRequestBody } from './schema';
 import { BadRequestError } from '../../../../../errors/bad-request.error';
 import { getComic } from '../../../../../services/comic/get-comic';
 import { uploadIssueToAWS } from './utils';
-import { createComicIssue } from '../../../../../services/comic/issue/create-comic-issue';
+import { createComicIssue } from '../../../../../services/comic/issues/create-comic-issue';
 import { TComicIssueModel } from '../../../../../models/comic.model';
 import { User } from '../../../../../models/user.model';
 import { isAdminUser } from '../../../../../services/users/privileges';
@@ -57,7 +57,7 @@ router.post('/', uploadMiddleware, async ctx => {
     coverImage: uploadedIssue.coverImage,
     originalImage: uploadedIssue.original
   };
-  const newComic = await createComicIssue({ comicId: comic.id, issue });
+  const newComic = await createComicIssue(comic.id, issue, { userId: user.id });
 
   ctx.body = newComic;
 });

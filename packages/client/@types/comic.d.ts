@@ -12,7 +12,6 @@ interface Comic {
   id: string;
   rating: number;
   issues: ComicIssue[];
-  id: string;
   title: string;
   description: string;
   genres: string[];
@@ -25,4 +24,5 @@ interface Comic {
   desktopCoverImage?: string;
   comicBannerImage?: string;
   status: TModelStatus;
+  userRating?: number;
 }

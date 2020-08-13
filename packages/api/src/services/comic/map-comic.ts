@@ -1,17 +1,26 @@
 import { TComicModel, Comic } from '../../models/comic.model';
 import { ComicMembership } from '../../models/types';
 
-export const mapComic = ({
-  ratings,
-  coverImage,
-  desktopCoverImage,
-  mobileCoverImage,
-  comicBannerImage,
-  issues: comicIssues,
-  ...comic
-}: TComicModel): Comic => {
-  const numRatings = ratings.length > 0 ? ratings.length : 1;
-  const rating = ratings.reduce((a, b) => a + b.rating, 0) / numRatings;
+export interface MapComicOptions {
+  userId?: string;
+}
+
+export const mapComic = (
+  {
+    ratings,
+    coverImage,
+    desktopCoverImage,
+    mobileCoverImage,
+    comicBannerImage,
+    issues: comicIssues,
+    ...comic
+  }: TComicModel,
+  options: MapComicOptions = {}
+): Comic => {
+  const allRatings = Object.values(ratings);
+  const numRatings = allRatings.length > 0 ? allRatings.length : 1;
+  const rating = allRatings.reduce((a, b) => a + b, 0) / numRatings;
+
   const issues = comicIssues.map(
     ({ pages, coverImage, title, membership }) => ({
       pages: pages.map(p => p.url),
@@ -22,7 +31,7 @@ export const mapComic = ({
     })
   );
 
-  return {
+  const result: Comic = {
     ...comic,
     coverImage: coverImage?.url,
     desktopCoverImage: desktopCoverImage?.url,
@@ -31,4 +40,8 @@ export const mapComic = ({
     rating,
     issues
   };
+  if (options.userId) {
+    result.userRating = ratings[options.userId];
+  }
+  return result;
 };

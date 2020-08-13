@@ -8,7 +8,7 @@ import { logout } from '../../../services/auth/logout';
 import { getCurrentUser } from '../../../services/auth/user-cookie';
 
 export interface LoginDrawerProps
-  extends Pick<MainDrawerProps, 'open' | 'onClose' | 'onVIPPurchaseClicked'> {
+  extends Pick<MainDrawerProps, 'open' | 'onClose' | 'onVipPurchaseClicked'> {
   forceDialogOpen?: boolean;
   onLogin?: (user: User) => void;
 }

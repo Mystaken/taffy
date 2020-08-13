@@ -15,7 +15,7 @@ router.get('/', async ctx => {
     ctx.request.query,
     comicGetSchema
   );
-  const comics = await queryComicEntry(params);
+  const comics = await queryComicEntry(params, { userId: user?.id });
   const isVip = user && (await isVipUser(user));
 
   ctx.body = isVip ? comics : comics.map(stripVipIssues);

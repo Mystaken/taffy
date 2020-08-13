@@ -12,7 +12,7 @@ stories.add('Main Drawer', () => {
       open
       onSignin={() => console.log('Sign in clicked')}
       onSignup={() => console.log('Sign up clicked')}
-      onVIPPurchaseClicked={() => console.log('VIP clicked')}
+      onVipPurchaseClicked={() => console.log('VIP clicked')}
     />
   );
 });

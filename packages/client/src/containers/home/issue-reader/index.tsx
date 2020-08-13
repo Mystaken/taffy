@@ -16,7 +16,7 @@ export const IssueReader: FunctionComponent<IssueReaderProps> = ({
   comicId,
   issueNumber
 }) => {
-  const [comic] = useAsync<Comic>(() => getComicById(comicId), [comicId]);
+  const { value: comic } = useAsync(() => getComicById(comicId), [comicId]);
   const dimensions = useDimension();
 
   if (!comic) {

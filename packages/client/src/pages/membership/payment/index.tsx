@@ -10,6 +10,9 @@ import {
 import { MembershipPayment } from '../../../containers/payment/membership-payment';
 import { Page } from '../../../components/layouts/page';
 import { NavbarContent } from '../../../components/layouts/nav-content';
+import { withAuth, WithAuthProps } from '../../../containers/common/with-auth';
+import { redirect } from '../../../utils/redirect';
+import { pages } from '../../../routing';
 
 const useStyles = makeStyles(_ => ({
   container: {
@@ -17,8 +20,11 @@ const useStyles = makeStyles(_ => ({
   }
 }));
 
-const MembershipPaymentPage: FunctionComponent = () => {
+const MembershipPaymentPage: FunctionComponent<WithAuthProps> = ({ user }) => {
   const classes = useStyles();
+  if (user && user.isVip) {
+    redirect(pages.homepage);
+  }
   return (
     <Page>
       <AppBar position="static">
@@ -39,4 +45,4 @@ const MembershipPaymentPage: FunctionComponent = () => {
   );
 };
 
-export default MembershipPaymentPage;
+export default withAuth(MembershipPaymentPage);

@@ -9,11 +9,19 @@ import LoginDrawer from '../containers/home/login-drawer';
 import { FooterContainer } from '../components/layouts/footer/footer-container';
 import { redirect } from '../utils/redirect';
 import { pages } from '../routing';
+import { getCurrentUser } from '../services/auth/user-cookie';
 
 const HomeScreen: FunctionComponent = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const handleOnComicSelect = (comic: Comic) => {
     redirect(pages.comic.comicDetails(comic.id));
+  };
+
+  const handleOnVipClicked = () => {
+    const user = getCurrentUser();
+    if (!user?.isVip) {
+      redirect(pages.membership.payment);
+    }
   };
   return (
     <Page>
@@ -30,6 +38,7 @@ const HomeScreen: FunctionComponent = () => {
       <LoginDrawer
         open={drawerOpen}
         onClose={() => setDrawerOpen(_ => false)}
+        onVipPurchaseClicked={handleOnVipClicked}
       />
     </Page>
   );

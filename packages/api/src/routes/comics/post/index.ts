@@ -17,6 +17,7 @@ const uploadMiddleware = upload.any();
 
 router.post('/', uploadMiddleware, async ctx => {
   const user: User | undefined = ctx.state.user;
+  console.log(user);
   if (!user || !(await isAdminUser(user))) {
     throw new UnAuthorizedError();
   }
@@ -40,7 +41,7 @@ router.post('/', uploadMiddleware, async ctx => {
   const awsId = comicData.title;
   const awsFileUrls = await uploadToAWS(awsId, files);
   const comicDataWithImages: NewComic = { ...comicData, ...awsFileUrls };
-  const comic = await createComic(comicDataWithImages);
+  const comic = await createComic(comicDataWithImages, { userId: user.id });
   ctx.body = comic;
 });
 

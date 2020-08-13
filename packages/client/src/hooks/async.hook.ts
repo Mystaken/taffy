@@ -1,17 +1,17 @@
 import { useState, useEffect, DependencyList } from 'react';
 
-/**
- * Hook for getting the result of a promise.
- * @param promise
- * @param deps param that will be forwarded to useEffect.
- * @param defaultValue default value of the promise value (before it resolves)
- * @returns [result, loading, error] [the result of the promise when it resolves, true iff promise is not resolved, error if it exists]
- */
+export interface UseAsyncReturn<T, E = any> {
+  value: T | null;
+  isLoading: boolean;
+  isError: E | null;
+  setValue: (value: T) => void;
+}
+
 export const useAsync: <T, E = any>(
   promise: () => Promise<T>,
   dep?: DependencyList,
   defaultValue?: T | null
-) => [T | null, boolean, E | null] = <T, E>(
+) => UseAsyncReturn<T, E> = <T, E>(
   promise: () => Promise<T>,
   deps?: DependencyList,
   defaultValue?: T | null
@@ -36,5 +36,10 @@ export const useAsync: <T, E = any>(
       mounted = false;
     };
   }, deps);
-  return [result, loading, error];
+  return {
+    value: result,
+    isLoading: loading,
+    isError: error,
+    setValue: setResult
+  };
 };
