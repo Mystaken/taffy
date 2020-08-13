@@ -10,12 +10,6 @@ const ComicIssueSchema = new mongoose.Schema({
   membership: { type: String, required: true }
 });
 
-const ComicRatingSchema = new mongoose.Schema({
-  userId: { type: String, required: true },
-  comicId: { type: String, required: true },
-  rating: { type: Number, required: true }
-});
-
 const ComicSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },

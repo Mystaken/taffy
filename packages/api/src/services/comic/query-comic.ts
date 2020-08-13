@@ -15,6 +15,6 @@ export const queryComicEntry = async (
 ): Promise<Comic[]> => {
   const documents = await ComicModel.find(params).exec();
 
-  const comics = documents.map(d => mapComic(d.toJSON()));
+  const comics = documents.map(d => mapComic(d.toJSON(), options));
   return comics;
 };
