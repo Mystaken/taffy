@@ -2,7 +2,6 @@ import { FunctionComponent } from 'react';
 import { useRouter } from 'next/router';
 import { Page } from '../../../components/layouts/page';
 import { ComicDetails } from '../../../containers/home/comic-details';
-import { useIsDesktop } from '../../../hooks/media-query.hook';
 
 const ComicDetailsPage: FunctionComponent = () => {
   const router = useRouter();
