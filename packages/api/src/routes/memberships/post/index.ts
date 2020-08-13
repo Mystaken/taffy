@@ -8,6 +8,7 @@ import { taffyMonthlySubscription } from '../../../services/stripe/items.json';
 import { createSubscription } from '../../../services/subscriptions/create-subscription';
 import { setUserVIPStatus } from '../../../services/users/subscriptions';
 import { BadRequestError } from '../../../errors/bad-request.error';
+import { isVipUser } from '../../../services/users/privileges';
 
 const router = new Router();
 
@@ -15,6 +16,9 @@ router.post('/', async ctx => {
   const user: User | undefined = ctx.state.user;
   if (!user) {
     throw new UnAuthorizedError();
+  }
+  if (await isVipUser(user)) {
+    throw new BadRequestError('User already has membership');
   }
   const body = await validateRequestPayload<MembershipPostRequestBoy>(
     ctx.request.body,

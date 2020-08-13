@@ -57,6 +57,6 @@ export interface Subscription extends TSubscriptionModel {
 }
 
 export const SubscriptionModel = mongoose.model(
-  'subscription',
+  'subscriptions',
   SubscriptionSchema
 );

@@ -14,3 +14,20 @@ export const setUserVIPStatus = async (userId: string, isVip: boolean) => {
   }
   return user.toJSON() as User;
 };
+
+export const setCustomerVIPStatus = async (
+  customerId: string,
+  isVip: boolean
+) => {
+  const user = await UserModel.findOneAndUpdate(
+    { customerId },
+    {
+      isVip
+    },
+    { new: true }
+  ).exec();
+  if (!user) {
+    throw new NotFoundError('user');
+  }
+  return user.toJSON() as User;
+};

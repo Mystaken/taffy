@@ -20,6 +20,7 @@ export interface APIConfig {
   STRIPE: {
     PUBLIC: string;
     SECRET: string;
+    WEBHOOK_SECRET: string;
   };
 }
 
@@ -42,6 +43,7 @@ export const config: Readonly<APIConfig> = Object.freeze({
   },
   STRIPE: {
     PUBLIC: process.env.STRIPE_PUBLIC_KEY as string,
-    SECRET: process.env.STRIPE_SECRET_KEY as string
+    SECRET: process.env.STRIPE_SECRET_KEY as string,
+    WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET as string
   }
 });

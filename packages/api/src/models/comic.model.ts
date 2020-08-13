@@ -101,4 +101,4 @@ export interface Comic {
   userRating?: number;
 }
 
-export const ComicModel = mongoose.model('comic', ComicSchema);
+export const ComicModel = mongoose.model('comics', ComicSchema);
