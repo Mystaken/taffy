@@ -11,7 +11,7 @@ export const subscriptionsDeletedEvent = async (event: Stripe.Event) => {
     );
   }
   const eventObj: any = event.data.object;
-  console.log(event);
+
   const subscriptionId: string = eventObj.id;
   const customerId: string = eventObj.customer;
 

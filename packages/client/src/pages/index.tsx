@@ -14,7 +14,7 @@ import { getCurrentUser } from '../services/auth/user-cookie';
 const HomeScreen: FunctionComponent = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const handleOnComicSelect = async (comic: Comic) => {
-    await redirect(pages.comic.comicDetails(comic.id));
+    await redirect(pages.comics.comicDetails(comic.id));
   };
 
   const handleOnVipClicked = async () => {

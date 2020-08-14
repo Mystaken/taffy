@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import {
   AppBar,
   Toolbar,
@@ -10,6 +10,8 @@ import {
 import { Page } from '../../../components/layouts/page';
 import { CreateComicForm } from '../../../containers/admin/create-comic';
 import { withAuth } from '../../../containers/common/with-auth';
+import { redirect } from '../../../utils/redirect';
+import { pages } from '../../../routing';
 
 const useStyles = makeStyles(_ => ({
   container: {
@@ -19,6 +21,14 @@ const useStyles = makeStyles(_ => ({
 
 const CreateComicPage: FunctionComponent = () => {
   const classes = useStyles();
+  const [loading, setLoading] = useState(false);
+
+  const handleOnCreateComic = async (comic: Comic) => {
+    setLoading(true);
+    await redirect(pages.admin.comicViewer);
+    setLoading(false);
+  };
+
   return (
     <Page>
       <AppBar position="static">
@@ -29,7 +39,10 @@ const CreateComicPage: FunctionComponent = () => {
         </Toolbar>
       </AppBar>
       <Container className={classes.container}>
-        <CreateComicForm />
+        <CreateComicForm
+          onCreateComic={handleOnCreateComic}
+          disabled={loading}
+        />
       </Container>
     </Page>
   );
