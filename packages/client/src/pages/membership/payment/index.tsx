@@ -34,11 +34,15 @@ const MembershipPaymentPage: FunctionComponent<WithAuthProps> = ({ user }) => {
     setLoading(false);
   };
 
+  const handleHomeButtonClick = async () => {
+    redirect(pages.homepage);
+  };
+
   return (
     <Page>
       <AppBar position="static">
         <Toolbar>
-          <NavbarContent />
+          <NavbarContent homeButtonClick={handleHomeButtonClick} />
         </Toolbar>
       </AppBar>
       <Grid
