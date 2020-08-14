@@ -15,12 +15,12 @@ import { redirect } from '../../../utils/redirect';
 import { pages } from '../../../routing';
 
 const AdminComicPage: FunctionComponent = () => {
-  const handleCreateComicButtonClick = () => {
-    redirect(pages.admin.comicCreation);
+  const handleCreateComicButtonClick = async () => {
+    await redirect(pages.admin.comicCreation);
   };
 
-  const handleOnComicClick = (comic: Comic) => {
-    redirect(pages.admin.comicEdit(comic.id));
+  const handleOnComicClick = async (comic: Comic) => {
+    await redirect(pages.admin.comicEdit(comic.id));
   };
 
   return (

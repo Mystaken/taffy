@@ -37,7 +37,7 @@ export const PaymentSuccessPage: FunctionComponent<PaymentSuccessPageProps> = ({
             Payment Successful!
           </Typography>
         </Grid>
-        <Button onClick={() => onBackClick?.()} disabled={disabled}>
+        <Button onClick={onBackClick} disabled={disabled}>
           Back
         </Button>
       </Grid>

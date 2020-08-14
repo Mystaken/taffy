@@ -13,16 +13,17 @@ import { getCurrentUser } from '../services/auth/user-cookie';
 
 const HomeScreen: FunctionComponent = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const handleOnComicSelect = (comic: Comic) => {
-    redirect(pages.comic.comicDetails(comic.id));
+  const handleOnComicSelect = async (comic: Comic) => {
+    await redirect(pages.comic.comicDetails(comic.id));
   };
 
-  const handleOnVipClicked = () => {
+  const handleOnVipClicked = async () => {
     const user = getCurrentUser();
     if (!user?.isVip) {
-      redirect(pages.membership.payment);
+      await redirect(pages.membership.payment);
     }
   };
+
   return (
     <Page>
       <AppBar position="static">

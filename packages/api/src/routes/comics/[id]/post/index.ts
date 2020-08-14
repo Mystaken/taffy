@@ -1,5 +1,6 @@
 import Router from 'koa-router';
 import koaMulter from '@koa/multer';
+
 import { ComicIdPostRequestBody, comicIdPostSchema } from './schema';
 import { validateRequestPayload } from '../../../../utils/api/validate-request-payload';
 import {
@@ -7,9 +8,9 @@ import {
   updateComic
 } from '../../../../services/comic/update-comic';
 import { uploadToAWS } from '../../post/utils';
-import { User } from '../../../../models/user.model';
 import { isAdminUser } from '../../../../services/users/privileges';
 import { UnAuthorizedError } from '../../../../errors/unauthorized.error';
+import { getUserFromCtx } from '../../../../services/users/get-user';
 
 const router = new Router();
 
@@ -18,7 +19,7 @@ const upload = koaMulter();
 const uploadMiddleware = upload.any();
 
 router.post('/', uploadMiddleware, async ctx => {
-  const user: User | undefined = ctx.state.user;
+  const user = await getUserFromCtx(ctx);
   if (!user || !(await isAdminUser(user))) {
     throw new UnAuthorizedError();
   }

@@ -64,3 +64,16 @@ export const getFacebookUser = async ({
 
   return user.toJSON();
 };
+
+export const getUserFromCtx = async (ctx: any) => {
+  const user: User | undefined = ctx?.state?.user;
+  if (!user) {
+    return null;
+  }
+  const document = await UserModel.findById(user.id).exec();
+  if (!document) {
+    return null;
+  }
+  const result: User = document.toJSON();
+  return result;
+};

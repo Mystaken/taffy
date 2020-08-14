@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import {
   AppBar,
   Toolbar,
@@ -22,9 +22,18 @@ const useStyles = makeStyles(_ => ({
 
 const MembershipPaymentPage: FunctionComponent<WithAuthProps> = ({ user }) => {
   const classes = useStyles();
+  const [loading, setLoading] = useState(false);
   if (user && user.isVip) {
     redirect(pages.homepage);
+    return null;
   }
+
+  const handleOnSuccess = async () => {
+    setLoading(true);
+    await redirect(pages.membership.success);
+    setLoading(false);
+  };
+
   return (
     <Page>
       <AppBar position="static">
@@ -38,7 +47,7 @@ const MembershipPaymentPage: FunctionComponent<WithAuthProps> = ({ user }) => {
         justify="center"
         className={classes.container}>
         <Container maxWidth="sm">
-          <MembershipPayment />
+          <MembershipPayment onSuccess={handleOnSuccess} disabled={loading} />
         </Container>
       </Grid>
     </Page>

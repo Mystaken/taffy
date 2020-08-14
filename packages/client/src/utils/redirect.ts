@@ -11,15 +11,15 @@ import { UrlObject, Url } from 'url';
  * @param as query parameters
  * @param ctx Next Page Context
  */
-export function redirect(
+export const redirect = async (
   route: string,
   as?: string | UrlObject | Url,
   ctx?: NextPageContext
-) {
+) => {
   if (ctx && ctx.req && ctx.res) {
     ctx.res.writeHead(302, { Location: route });
     ctx.res.end();
   } else {
-    Router.push(route, as);
+    await Router.push(route, as);
   }
-}
+};

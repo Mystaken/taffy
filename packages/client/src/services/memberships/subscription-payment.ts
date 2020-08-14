@@ -1,4 +1,10 @@
 import { comicAPI, ComicAPISuccessResponse } from '../../api/comic.api';
+import { setUser } from '../auth/user-cookie';
+
+export interface SubscriptionPayment {
+  subscription: Subscription;
+  user: SessionUser;
+}
 
 export const subscriptionPayment = async (stripeToken: string) => {
   const { response } = await comicAPI
@@ -7,6 +13,7 @@ export const subscriptionPayment = async (stripeToken: string) => {
         stripeToken
       }
     })
-    .json<ComicAPISuccessResponse<Subscription>>();
+    .json<ComicAPISuccessResponse<SubscriptionPayment>>();
+  setUser(response.user);
   return response;
 };

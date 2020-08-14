@@ -11,6 +11,7 @@ export interface StripePaymentProps {
   interval?: 'day' | 'month' | 'week' | 'year';
   intervalCount?: number;
   onGetToken?: (token: string) => void;
+  disabled?: boolean;
 }
 
 export const StripePayment: FunctionComponent<StripePaymentProps> = props => {

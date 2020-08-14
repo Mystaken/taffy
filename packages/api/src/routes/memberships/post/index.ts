@@ -2,18 +2,18 @@ import Router from 'koa-router';
 
 import { validateRequestPayload } from '../../../utils/api/validate-request-payload';
 import { MembershipPostRequestBoy, membershipPostSchema } from './schema';
-import { User } from '../../../models/user.model';
 import { UnAuthorizedError } from '../../../errors/unauthorized.error';
 import { taffyMonthlySubscription } from '../../../services/stripe/items.json';
 import { createSubscription } from '../../../services/subscriptions/create-subscription';
 import { setUserVIPStatus } from '../../../services/users/subscriptions';
 import { BadRequestError } from '../../../errors/bad-request.error';
 import { isVipUser } from '../../../services/users/privileges';
+import { getUserFromCtx } from '../../../services/users/get-user';
 
 const router = new Router();
 
 router.post('/', async ctx => {
-  const user: User | undefined = ctx.state.user;
+  const user = await getUserFromCtx(ctx);
   if (!user) {
     throw new UnAuthorizedError();
   }
@@ -35,8 +35,8 @@ router.post('/', async ctx => {
       ]
     });
 
-    await setUserVIPStatus(user.id, true);
-    ctx.body = subscription;
+    const newUser = await setUserVIPStatus(user.id, true);
+    ctx.body = { subscription, user: newUser };
   } catch (e) {
     throw new BadRequestError('Payment failed');
   }

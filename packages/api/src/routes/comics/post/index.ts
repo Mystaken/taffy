@@ -5,9 +5,9 @@ import { validateRequestPayload } from '../../../utils/api/validate-request-payl
 import { ComicPostRequestBody, comicPostSchema } from './schema';
 import { createComic, NewComic } from '../../../services/comic/create-comic';
 import { uploadToAWS } from './utils';
-import { User } from '../../../models/user.model';
 import { UnAuthorizedError } from '../../../errors/unauthorized.error';
 import { isAdminUser } from '../../../services/users/privileges';
+import { getUserFromCtx } from '../../../services/users/get-user';
 
 const router = new Router();
 
@@ -16,7 +16,7 @@ const upload = koaMulter();
 const uploadMiddleware = upload.any();
 
 router.post('/', uploadMiddleware, async ctx => {
-  const user: User | undefined = ctx.state.user;
+  const user = await getUserFromCtx(ctx);
   console.log(user);
   if (!user || !(await isAdminUser(user))) {
     throw new UnAuthorizedError();

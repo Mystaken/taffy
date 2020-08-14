@@ -16,7 +16,11 @@ export const getCookie = (key: string, ctx?: NextPageContext) => {
 
 export const getCookieJSON = <T>(key: string, ctx?: NextPageContext) => {
   const strValue = getCookie(key, ctx);
-  return strValue ? (JSON.parse(strValue) as T) : null;
+  try {
+    return strValue ? (JSON.parse(strValue) as T) : null;
+  } catch (e) {
+    return null;
+  }
 };
 
 export const removeCookie = cookie.remove;

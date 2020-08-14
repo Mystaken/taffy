@@ -1,5 +1,6 @@
 import Router from 'koa-router';
 import koaMulter from '@koa/multer';
+
 import { validateRequestPayload } from '../../../../../utils/api/validate-request-payload';
 import { comicIssuePostSchema, ComicIssuePostRequestBody } from './schema';
 import { BadRequestError } from '../../../../../errors/bad-request.error';
@@ -7,9 +8,9 @@ import { getComic } from '../../../../../services/comic/get-comic';
 import { uploadIssueToAWS } from './utils';
 import { createComicIssue } from '../../../../../services/comic/issues/create-comic-issue';
 import { TComicIssueModel } from '../../../../../models/comic.model';
-import { User } from '../../../../../models/user.model';
 import { isAdminUser } from '../../../../../services/users/privileges';
 import { UnAuthorizedError } from '../../../../../errors/unauthorized.error';
+import { getUserFromCtx } from '../../../../../services/users/get-user';
 
 const router = new Router();
 
@@ -17,7 +18,7 @@ const upload = koaMulter();
 const uploadMiddleware = upload.any();
 
 router.post('/', uploadMiddleware, async ctx => {
-  const user: User | undefined = ctx.state.user;
+  const user = await getUserFromCtx(ctx);
   if (!user || !(await isAdminUser(user))) {
     throw new UnAuthorizedError();
   }

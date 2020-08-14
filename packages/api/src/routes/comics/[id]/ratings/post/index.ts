@@ -1,17 +1,17 @@
 import Router from 'koa-router';
 
 import { addUserRating } from '../../../../../services/comic/ratings/add-user-rating';
-import { User } from '../../../../../models/user.model';
 import { UnAuthorizedError } from '../../../../../errors/unauthorized.error';
 import { validateRequestPayload } from '../../../../../utils/api/validate-request-payload';
 import { comicsRatingsPostSchema, ComicRatingsPostRequestBody } from './schema';
 import { isVipUser } from '../../../../../services/users/privileges';
 import { stripVipIssues } from '../../../../../services/comic/strip-vip-issues';
+import { getUserFromCtx } from '../../../../../services/users/get-user';
 
 const router = new Router();
 
 router.post('/', async ctx => {
-  const user: User | undefined = ctx.state.user;
+  const user = await getUserFromCtx(ctx);
   if (!user) {
     throw new UnAuthorizedError();
   }

@@ -11,10 +11,11 @@ import { ColorTypography } from '../../primitives/typography/colored-typography'
 interface PaymentFormProps {
   amount: number;
   onGetToken?: (token: string) => void;
+  disabled?: boolean;
 }
 const PaymentFormView: FunctionComponent<
   ReactStripeElements.InjectedStripeProps & PaymentFormProps
-> = ({ stripe, onGetToken }) => {
+> = ({ disabled: disabledForm, stripe, onGetToken }) => {
   const [disabled, setDisabled] = useState(false);
   const [error, setError] = useState<string | undefined>();
   const handleSubmit = async (ev: React.FormEvent) => {
@@ -56,7 +57,7 @@ const PaymentFormView: FunctionComponent<
           onClick={handleSubmit}
           color="primary"
           variant="contained"
-          disabled={disabled}>
+          disabled={disabled || disabledForm}>
           Pay
         </Button>
       </Grid>
