@@ -16,6 +16,7 @@ export const setupDocs = async (app: Koa, _opt: {}) => {
       title: 'Taffy API Docs',
       routePrefix: false,
       swaggerOptions: {
+        supportedSubmitMethods: ['get', 'head'],
         spec
       }
     }) as any
