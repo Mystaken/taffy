@@ -23,7 +23,7 @@ const CreateComicPage: FunctionComponent = () => {
   const classes = useStyles();
   const [loading, setLoading] = useState(false);
 
-  const handleOnCreateComic = async (comic: Comic) => {
+  const handleOnCreateComic = async (_comic: Comic) => {
     setLoading(true);
     await redirect(pages.admin.comicViewer);
     setLoading(false);
