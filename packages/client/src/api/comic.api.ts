@@ -16,6 +16,7 @@ export interface ComicAPIErrorResponse extends ComicAPIResponse {
 }
 export const comicAPI = ky.extend({
   prefixUrl: `${config.API_DOMAIN}${config.API_BASE_URL}`,
+  timeout: false,
   hooks: {
     beforeRequest: [
       request => {

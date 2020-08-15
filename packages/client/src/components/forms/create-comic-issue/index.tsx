@@ -87,7 +87,7 @@ export const CreateComicIssueForm: FunctionComponent<CreateComicIssueFormProps> 
       />
       <Grid item>
         <Button color="primary" type="submit" disabled={disabled}>
-          Create Comic Comic
+          Create Comic Issue
         </Button>
       </Grid>
     </Grid>
