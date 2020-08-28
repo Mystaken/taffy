@@ -9,6 +9,7 @@ import {
 
 import { WithRipple } from '../../buttons/with-ripple';
 import { generateGradient } from '../../../libs/gradient';
+import { CSSProperties } from '@material-ui/core/styles/withStyles';
 
 const gradient = generateGradient(180, [0, 0, 0], 4, sec => sec ** 0.7);
 
@@ -39,7 +40,7 @@ export const ComicCard: FunctionComponent<ComicProps> = ({
 
   const classes = makeStyles(_ => ({
     card: {
-      width: width
+      width
     },
     media: {
       height: width / 0.75
