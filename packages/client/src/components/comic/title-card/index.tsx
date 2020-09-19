@@ -11,6 +11,7 @@ import { Rating } from '@material-ui/lab';
 import { ColorTypography } from '../../primitives/typography/colored-typography';
 import { Footer } from '../../layouts/footer';
 import { RatingSelectDialog } from '../../dialogs/rating-selection-dialog';
+import { CenteredBanner } from '../../banners/centered-banner';
 
 export interface TitleCardProps {
   comic: Comic;
@@ -23,51 +24,8 @@ const ComicRating = withStyles(_ => ({
 
 export const TitleCard: FunctionComponent<TitleCardProps> = ({
   comic,
-  children,
   onAddRating
 }) => {
-  const classes = makeStyles(_ => ({
-    backgroundImage: {
-      top: 0,
-      position: 'fixed',
-      display: 'block',
-      objectFit: 'contain',
-      backgroundImage: `url('${
-        comic.desktopCoverImage ?? 'https://via.placeholder.com/1980x1080'
-      }')`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center center',
-      width: '100vw',
-      minHeight: '100vh',
-      overflowX: 'hidden',
-      overflowY: 'hidden',
-      zIndex: -1
-    },
-    container: {
-      boxShadow: '1px 2px 3px rgba(0,0,0,.5)',
-      backdropFilter: 'blur(20px)',
-      marginTop: '65vh',
-      minHeight: '35vh',
-      backgroundColor: 'rgb(0,0,0, 0.4)'
-    },
-    title: {
-      fontWeight: 'bold'
-    },
-    description: {
-      minHeight: '150px',
-      maxHeight: '250px',
-      overflowY: 'scroll'
-    },
-    footer: {
-      backgroundColor: 'rgb(0,0,0, 0.3)',
-      backdropFilter: 'blur(20px)',
-      padding: 0,
-      margin: 0
-    },
-    children: {
-      marginTop: '24px'
-    }
-  }))();
   const [ratingDialogOpen, setRatingDialogOpen] = useState(false);
   const handleRatingDialogOpen = () => {
     setRatingDialogOpen(true);
@@ -81,69 +39,81 @@ export const TitleCard: FunctionComponent<TitleCardProps> = ({
   };
 
   return (
-    <div>
-      <div className={classes.backgroundImage}></div>
-      <div className={classes.container}>
-        <Container maxWidth="md">
-          <Typography color="secondary" variant="h5">
-            {comic.genres.join(', ')}
-          </Typography>
-          {/* Title */}
-          <ColorTypography color="white" variant="h2" className={classes.title}>
-            Lone Ranger
-          </ColorTypography>
-
-          <Typography color="textSecondary" variant="h5">
-            {comic.authors.join(', ')}
-          </Typography>
-
-          <Grid item>
-            <Grid container alignItems="center" spacing={1}>
-              <Grid item>
-                <ComicRating
-                  readOnly
-                  name="half-rating"
-                  size="small"
-                  value={comic.rating}
-                  color="secondary"
-                  precision={0.5}
-                />
+    <>
+      <CenteredBanner
+        height={300}
+        foregroundImg={comic.desktopForegroundImage}
+        backgroundImg={comic.desktopBackgroundImage}
+        containerWidth={1200}>
+        <div
+          style={{
+            width: 600,
+            display: 'flex',
+            height: '100%'
+          }}>
+          <Grid
+            container
+            direction="column"
+            justify="space-between"
+            style={{
+              paddingTop: 24,
+              paddingLeft: 36,
+              paddingBottom: 24
+            }}>
+            <Grid item>
+              <Typography color="secondary" variant="h6">
+                {comic.genres.join(', ')}
+              </Typography>
+              <ColorTypography color="white" variant="h4" style={{}}>
+                Lone Ranger
+              </ColorTypography>
+              <ColorTypography color="textSecondary" variant="body1">
+                {comic.authors.join(', ')}
+              </ColorTypography>
+              <Grid container alignItems="center" spacing={1}>
+                <Grid item>
+                  <ComicRating
+                    readOnly
+                    name="half-rating"
+                    size="small"
+                    value={comic.rating}
+                    color="secondary"
+                    precision={0.5}
+                  />
+                </Grid>
               </Grid>
-              <Grid item>
-                <Typography variant="h5" color="secondary">
-                  ({comic.rating} / 5)
-                </Typography>
+              <div
+                style={{
+                  minHeight: '80px',
+                  maxHeight: '120px',
+                  overflowY: 'auto'
+                }}>
+                <ColorTypography variant="body2" color="lightgrey">
+                  {comic.description}
+                </ColorTypography>
+              </div>
+            </Grid>
+            <Grid item>
+              {/** Rating */}
+              <Grid container>
+                <Grid item>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={handleRatingDialogOpen}>
+                    Rate
+                  </Button>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
-          <div className={classes.description}>
-            <ColorTypography variant="h6" color="lightgrey">
-              {comic.description}
-            </ColorTypography>
-          </div>
-          {/** Rating */}
-          <div>
-            <Grid container>
-              <Grid item>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  onClick={handleRatingDialogOpen}>
-                  Rate
-                </Button>
-              </Grid>
-            </Grid>
-          </div>
-          <div className={classes.children}>{children}</div>
-        </Container>
-        <Footer transparent />
-      </div>
-
+        </div>
+      </CenteredBanner>
       <RatingSelectDialog
         defaultRating={comic.userRating ? comic.userRating : comic.rating}
         open={ratingDialogOpen}
         onClose={handleRatingDialogClose}
         onSubmitRate={handleAddRating}></RatingSelectDialog>
-    </div>
+    </>
   );
 };

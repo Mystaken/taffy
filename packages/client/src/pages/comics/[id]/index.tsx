@@ -4,9 +4,13 @@ import { Page } from '../../../components/layouts/page';
 import { ComicDetails } from '../../../containers/home/comic-details';
 import { pages } from '../../../routing';
 import { redirect } from '../../../utils/redirect';
+import { useIsDesktop } from '../../../hooks/media-query.hook';
+import { Footer } from '../../../components/layouts/footer';
+import { FooterContainer } from '../../../components/layouts/footer/footer-container';
 
 const ComicDetailsPage: FunctionComponent = () => {
   const router = useRouter();
+  const isDesktop = useIsDesktop();
   const comicId = router.query.id as string;
   if (!comicId) {
     return null;
@@ -26,11 +30,15 @@ const ComicDetailsPage: FunctionComponent = () => {
 
   return (
     <Page>
-      <ComicDetails
-        comicId={comicId}
-        onGetVIP={handleOnGetVIP}
-        onIssueSelect={handleOnIssueSelect}
-      />
+      <FooterContainer>
+        <ComicDetails
+          comicId={comicId}
+          onGetVIP={handleOnGetVIP}
+          onIssueSelect={handleOnIssueSelect}
+          isDesktop={isDesktop}
+        />
+        <Footer />
+      </FooterContainer>
     </Page>
   );
 };

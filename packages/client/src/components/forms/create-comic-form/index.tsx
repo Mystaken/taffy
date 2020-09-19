@@ -19,10 +19,11 @@ export const CreateComicForm: FunctionComponent<CreateComicFormProps> = ({
     genres?: FormArrayValue[];
     categories?: FormArrayValue[];
     authors?: FormArrayValue[];
-    coverImage: FileList;
-    desktopCoverImage: FileList;
+    cardImage: FileList;
     mobileCoverImage: FileList;
-    comicBannerImage: FileList;
+    desktopBackgroundImage: FileList;
+    desktopForegroundImage: FileList;
+    bannerImage: FileList;
   }) => {
     const submitValues: CreateComicFormSubmission = {
       title: data.title,
@@ -30,10 +31,11 @@ export const CreateComicForm: FunctionComponent<CreateComicFormProps> = ({
       genres: (data.genres ?? []).map(g => g.value),
       categories: (data.categories ?? []).map(c => c.value),
       authors: (data.authors ?? []).map(a => a.value),
-      coverImage: data.coverImage[0],
-      desktopCoverImage: data.desktopCoverImage[0],
+      cardImage: data.cardImage[0],
       mobileCoverImage: data.mobileCoverImage[0],
-      comicBannerImage: data.comicBannerImage[0]
+      desktopBackgroundImage: data.desktopBackgroundImage[0],
+      desktopForegroundImage: data.desktopForegroundImage[0],
+      bannerImage: data.bannerImage[0]
     };
     onSubmit?.(submitValues);
   };
@@ -93,10 +95,10 @@ export const CreateComicForm: FunctionComponent<CreateComicFormProps> = ({
 
       {/** Comic Cover Image */}
       <div>
-        <Typography display="inline">Cover Image: </Typography>
+        <Typography display="inline">Card Image: </Typography>
         <Input
           type="file"
-          name="coverImage"
+          name="cardImage"
           inputRef={register}
           inputProps={{ multiple: false }}
         />
@@ -115,10 +117,21 @@ export const CreateComicForm: FunctionComponent<CreateComicFormProps> = ({
 
       {/** Comic Desktop Cover Image */}
       <div>
-        <Typography display="inline">Desktop Cover Image: </Typography>
+        <Typography display="inline">Desktop Background Image: </Typography>
         <Input
           type="file"
-          name="desktopCoverImage"
+          name="desktopBackgroundImage"
+          inputRef={register}
+          inputProps={{ multiple: false }}
+        />
+      </div>
+
+      {/** Comic Desktop Cover Image */}
+      <div>
+        <Typography display="inline">Desktop Foreground Image: </Typography>
+        <Input
+          type="file"
+          name="desktopForegroundImage"
           inputRef={register}
           inputProps={{ multiple: false }}
         />
@@ -129,11 +142,12 @@ export const CreateComicForm: FunctionComponent<CreateComicFormProps> = ({
         <Typography display="inline">Banner Image: </Typography>
         <Input
           type="file"
-          name="comicBannerImage"
+          name="bannerImage"
           inputRef={register}
           inputProps={{ multiple: false }}
         />
       </div>
+
       <Grid item>
         <Button color="primary" type="submit" disabled={disabled}>
           Create Comic

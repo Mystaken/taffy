@@ -25,12 +25,12 @@ export const LatestComicSlider: FunctionComponent<LatestComicSliderProps> = ({
   return (
     <Slider horizontal>
       {comics.map((comic, index) => (
-        <div className={classes.cardWrapper}>
+        <div key={`${comic.id}-wrapper`} className={classes.cardWrapper}>
           <ComicCard
             key={`${comic.id}-${index}`}
             width={200}
             title={comic.title}
-            image={comic.coverImage ?? DEFAULT_IMG}
+            image={comic.cardImage ?? DEFAULT_IMG}
             onClick={() => onPanelClick?.(comic, index)}
           />
         </div>

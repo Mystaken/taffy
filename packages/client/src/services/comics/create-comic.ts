@@ -6,10 +6,11 @@ export interface CreateComicFormSubmission {
   genres: string[];
   categories: string[];
   authors: string[];
-  coverImage?: File;
-  desktopCoverImage?: File;
+  cardImage?: File;
   mobileCoverImage?: File;
-  comicBannerImage?: File;
+  desktopBackgroundImage?: File;
+  desktopForegroundImage?: File;
+  bannerImage?: File;
 }
 
 export const createComic = async (data: CreateComicFormSubmission) => {

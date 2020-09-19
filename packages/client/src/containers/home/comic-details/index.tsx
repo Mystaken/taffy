@@ -1,4 +1,6 @@
 import React, { FunctionComponent } from 'react';
+import { pathOr } from 'ramda';
+import { Container, Grid } from '@material-ui/core';
 
 import { useAsync } from '../../../hooks/async.hook';
 import { getComicById } from '../../../services/comics/get-comic-by-id';
@@ -7,7 +9,6 @@ import { IssueSelector } from '../../../components/comic/issue-selector';
 import { addComicRating } from '../../../services/comics/ratings/add-comic-rating';
 import MobileTitleCard from '../../../components/comic/mobile-title-card';
 import { getCurrentUser } from '../../../services/auth/user-cookie';
-import { pathOr } from 'ramda';
 
 export interface ComicDetailsProps {
   comicId: string;
@@ -41,13 +42,25 @@ export const ComicDetails: FunctionComponent<ComicDetailsProps> = ({
   };
 
   return (
-    <ComicTitleCard comic={comic} onAddRating={handleOnAddRating}>
-      <IssueSelector
-        isVip={pathOr(false, ['isVip'], user)}
-        issues={comic.issues}
-        onGetVIP={onGetVIP}
-        onIssueSelect={(issue, index) => onIssueSelect?.(issue, index, comic)}
-      />
-    </ComicTitleCard>
+    <div>
+      <ComicTitleCard
+        comic={comic}
+        onAddRating={handleOnAddRating}></ComicTitleCard>
+      <Grid
+        container
+        justify="center"
+        style={{ width: '100%', minWidth: 1200 }}>
+        <div style={{ width: 1200 }}>
+          <IssueSelector
+            isVip={pathOr(false, ['isVip'], user)}
+            issues={comic.issues}
+            onGetVIP={onGetVIP}
+            onIssueSelect={(issue, index) =>
+              onIssueSelect?.(issue, index, comic)
+            }
+          />
+        </div>
+      </Grid>
+    </div>
   );
 };

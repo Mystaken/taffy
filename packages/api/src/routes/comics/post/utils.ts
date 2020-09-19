@@ -1,6 +1,6 @@
 import koaMulter from '@koa/multer';
 import { uploadFile } from '../../../services/s3/upload-file';
-import { toJPG } from '../../../utils/images/file-to-jpg';
+import { toJPG, toPNG } from '../../../utils/images/file-to-jpg';
 import { ServerError } from '../../../errors/server.error';
 
 export interface AWSFile {
@@ -11,10 +11,11 @@ export interface AWSFile {
 }
 
 export interface UploadToAWSResult {
-  coverImage?: AWSFile;
+  cardImage?: AWSFile;
   mobileCoverImage?: AWSFile;
-  desktopCoverImage?: AWSFile;
-  comicBannerImage?: AWSFile;
+  desktopBackgroundImage?: AWSFile;
+  desktopForegroundImage?: AWSFile;
+  bannerImage?: AWSFile;
 }
 
 export const uploadToAWS = async (
@@ -25,12 +26,12 @@ export const uploadToAWS = async (
     const result: UploadToAWSResult = {};
     const requests: Promise<any>[] = files.map(async f => {
       switch (f.fieldname) {
-        case 'coverImage':
+        case 'cardImage':
           return uploadFile({
-            fileName: `${id}-cover-image.jpg`,
+            fileName: `${id}-card-image.jpg`,
             file: await toJPG(f.buffer)
           }).then(image => {
-            result.coverImage = image;
+            result.cardImage = image;
           });
         case 'mobileCoverImage':
           return uploadFile({
@@ -40,20 +41,28 @@ export const uploadToAWS = async (
             result.mobileCoverImage = image;
           });
 
-        case 'desktopCoverImage':
+        case 'desktopBackgroundImage':
           return uploadFile({
-            fileName: `${id}-desktop-cover-image.jpg`,
+            fileName: `${id}-desktop-background-image.jpg`,
             file: await toJPG(f.buffer)
           }).then(image => {
-            result.desktopCoverImage = image;
+            result.desktopBackgroundImage = image;
           });
 
-        case 'comicBannerImage':
+        case 'desktopForegroundImage':
           return uploadFile({
-            fileName: `${id}-comic-banner-image.jpg`,
+            fileName: `${id}-desktop-foreground-image.png`,
+            file: await toPNG(f.buffer)
+          }).then(image => {
+            result.desktopForegroundImage = image;
+          });
+
+        case 'bannerImage':
+          return uploadFile({
+            fileName: `${id}-banner-image.jpg`,
             file: await toJPG(f.buffer)
           }).then(image => {
-            result.comicBannerImage = image;
+            result.bannerImage = image;
           });
       }
     });

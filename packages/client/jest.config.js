@@ -16,7 +16,6 @@ module.exports = {
     'src/components/**/*.{ts,tsx}',
     '!src/components/**/stories.{ts,tsx}',
     'src/utils/*.ts',
-    '!src/utils/redirect.ts',
-    'src/utils/setup.ts'
+    '!src/utils/redirect.ts'
   ]
 };

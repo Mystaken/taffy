@@ -20,13 +20,12 @@ export interface MobileTitleCardProps {
 
 const MobileTitleCard: FunctionComponent<MobileTitleCardProps> = ({
   comic,
-  onAddRating,
-  children
+  onAddRating
 }) => {
   const classes = makeStyles(_ => ({
     backgroundImage: {
       position: 'relative',
-      backgroundImage: `url(${comic.coverImage})`,
+      backgroundImage: `url(${comic.mobileCoverImage})`,
       backgroundSize: 'cover',
       width: '100%',
       paddingBottom: '75%',
@@ -142,7 +141,6 @@ const MobileTitleCard: FunctionComponent<MobileTitleCardProps> = ({
           onClose={handleRatingDialogClose}
           onSubmitRate={handleAddRating}></RatingSelectDialog>
       </div>
-      {children}
     </>
   );
 };

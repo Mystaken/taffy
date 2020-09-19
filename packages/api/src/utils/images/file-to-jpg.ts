@@ -8,3 +8,12 @@ export const toJPG = async (file: string | Buffer): Promise<Buffer> => {
     })
     .toBuffer();
 };
+
+export const toPNG = async (file: string | Buffer): Promise<Buffer> => {
+  return sharp(file)
+    .toFormat('png', {
+      quality: 100,
+      force: true
+    })
+    .toBuffer();
+};

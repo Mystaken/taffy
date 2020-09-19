@@ -17,10 +17,11 @@ const ComicSchema = new mongoose.Schema(
     genres: { type: [String], required: true },
     categories: { type: [String], required: true },
     authors: { type: [String], required: true },
-    coverImage: { type: FileSchema },
+    cardImage: { type: FileSchema },
     mobileCoverImage: { type: FileSchema },
-    desktopCoverImage: { type: FileSchema },
-    comicBannerImage: { type: FileSchema },
+    desktopBackgroundImage: { type: FileSchema },
+    desktopForegroundImage: { type: FileSchema },
+    bannerImage: { type: FileSchema },
     ratings: {
       type: Map,
       of: Number,
@@ -62,12 +63,11 @@ export interface TComicModel {
   genres: string[];
   categories: string[];
   authors: string[];
-  //800x600
-  coverImage?: FileEntry;
-  //1980x1080
+  cardImage?: FileEntry;
   mobileCoverImage?: FileEntry;
-  desktopCoverImage?: FileEntry;
-  comicBannerImage?: FileEntry;
+  desktopBackgroundImage?: FileEntry;
+  desktopForegroundImage?: FileEntry;
+  bannerImage?: FileEntry;
   ratings: Record<string, number>;
   issues: TComicIssueModel[];
   status: TModelStatus;
@@ -91,10 +91,11 @@ export interface Comic {
   genres: string[];
   categories: string[];
   authors: string[];
-  coverImage?: string;
+  cardImage?: string;
   mobileCoverImage?: string;
-  desktopCoverImage?: string;
-  comicBannerImage?: string;
+  desktopBackgroundImage?: string;
+  desktopForegroundImage?: string;
+  bannerImage?: string;
   status: TModelStatus;
   rating: number;
   issues: ComicIssue[];

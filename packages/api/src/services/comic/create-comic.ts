@@ -8,10 +8,11 @@ export interface NewComic {
   genres: string[];
   categories: string[];
   authors: string[];
-  coverImage?: FileEntry;
+  cardImage?: FileEntry;
   mobileCoverImage?: FileEntry;
-  desktopCoverImage?: FileEntry;
-  comicBannerImage?: FileEntry;
+  desktopBackgroundImage?: FileEntry;
+  desktopForegroundImage?: FileEntry;
+  bannerImage?: FileEntry;
 }
 
 export interface CreateComicOptions {

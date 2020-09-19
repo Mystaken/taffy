@@ -85,15 +85,14 @@ export const LatestComicSliderVirtualized: FunctionComponent<LatestComicSliderVi
     const panelSlice = comics.slice(start, start + skip);
     return (
       <CarouselPanel key={key}>
-        {panelSlice.map(({ coverImage, title, id }, index) => (
+        {panelSlice.map(({ cardImage, title, id }, index) => (
           <ComicCard
             key={id}
             width={200}
             title={title}
-            image={coverImage ?? DEFAULT_IMG}
-            onClick={() =>
-              onPanelClick?.(panelSlice[index], start + index)
-            }></ComicCard>
+            image={cardImage ?? DEFAULT_IMG}
+            onClick={() => onPanelClick?.(panelSlice[index], start + index)}
+          />
         ))}
       </CarouselPanel>
     );

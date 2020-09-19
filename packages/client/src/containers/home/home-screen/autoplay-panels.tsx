@@ -17,7 +17,7 @@ export const AutoplayPanel: FunctionComponent<AutoplayPanelProps> = ({
     comics.length > 0
       ? comics.map(comic => ({
           comicId: comic.id,
-          panelImage: comic.comicBannerImage ?? DEFAULT_IMG
+          panelImage: comic.bannerImage ?? DEFAULT_IMG
         }))
       : [{ panelImage: DEFAULT_IMG, comicId: '' }];
 

@@ -18,7 +18,7 @@ export const ComicViewer: FunctionComponent<ComicViewerProps> = ({
       {comics.map(c => (
         <ComicCard
           key={c.id}
-          image={c.coverImage}
+          image={c.cardImage}
           title={c.title}
           width={200}
           onClick={() => onClick?.(c)}

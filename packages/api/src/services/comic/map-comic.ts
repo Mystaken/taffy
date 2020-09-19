@@ -8,10 +8,11 @@ export interface MapComicOptions {
 export const mapComic = (
   {
     ratings,
-    coverImage,
-    desktopCoverImage,
+    cardImage,
     mobileCoverImage,
-    comicBannerImage,
+    desktopBackgroundImage,
+    desktopForegroundImage,
+    bannerImage,
     issues: comicIssues,
     ...comic
   }: TComicModel,
@@ -33,10 +34,11 @@ export const mapComic = (
 
   const result: Comic = {
     ...comic,
-    coverImage: coverImage?.url,
-    desktopCoverImage: desktopCoverImage?.url,
+    cardImage: cardImage?.url,
     mobileCoverImage: mobileCoverImage?.url,
-    comicBannerImage: comicBannerImage?.url,
+    desktopBackgroundImage: desktopBackgroundImage?.url,
+    desktopForegroundImage: desktopForegroundImage?.url,
+    bannerImage: bannerImage?.url,
     rating,
     issues
   };

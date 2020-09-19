@@ -17,12 +17,11 @@ interface Comic {
   genres: string[];
   categories: string[];
   authors: string[];
-  //800x600
-  coverImage?: string;
-  //1980x1080
+  cardImage?: string;
   mobileCoverImage?: string;
-  desktopCoverImage?: string;
-  comicBannerImage?: string;
+  desktopBackgroundImage?: string;
+  desktopForegroundImage?: string;
+  bannerImage?: string;
   status: TModelStatus;
   userRating?: number;
 }
