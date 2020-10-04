@@ -25,7 +25,7 @@ const MobileTitleCard: FunctionComponent<MobileTitleCardProps> = ({
   const classes = makeStyles(_ => ({
     backgroundImage: {
       position: 'relative',
-      backgroundImage: `url(${comic.mobileCoverImage})`,
+      backgroundImage: `url('${comic.mobileCoverImage}')`,
       backgroundSize: 'cover',
       width: '100%',
       paddingBottom: '75%',
@@ -36,7 +36,7 @@ const MobileTitleCard: FunctionComponent<MobileTitleCardProps> = ({
       position: 'absolute',
       width: '45%',
       height: '100%',
-      top: 10,
+      top: 0,
       margin: '40px 12px 0px 12px'
     },
     description: {

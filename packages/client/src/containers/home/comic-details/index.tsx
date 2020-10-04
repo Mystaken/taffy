@@ -17,6 +17,8 @@ export interface ComicDetailsProps {
   onIssueSelect?: (issue: ComicIssue, index: number, comic: Comic) => void;
 }
 
+const DESKTOP_WIDTH = 1200;
+
 export const ComicDetails: FunctionComponent<ComicDetailsProps> = ({
   comicId,
   onGetVIP,
@@ -43,14 +45,15 @@ export const ComicDetails: FunctionComponent<ComicDetailsProps> = ({
 
   return (
     <div>
-      <ComicTitleCard
-        comic={comic}
-        onAddRating={handleOnAddRating}></ComicTitleCard>
+      <ComicTitleCard comic={comic} onAddRating={handleOnAddRating} />
       <Grid
         container
         justify="center"
-        style={{ width: '100%', minWidth: 1200 }}>
-        <div style={{ width: 1200 }}>
+        style={{
+          width: '100%',
+          minWidth: isDesktop ? DESKTOP_WIDTH : undefined
+        }}>
+        <div style={{ width: isDesktop ? DESKTOP_WIDTH : '100%' }}>
           <IssueSelector
             isVip={pathOr(false, ['isVip'], user)}
             issues={comic.issues}

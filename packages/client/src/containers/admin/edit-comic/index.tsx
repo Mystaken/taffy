@@ -31,7 +31,7 @@ export const EditComicForm: FunctionComponent<EditComicFormProps> = ({
   id
 }) => {
   const { value: comic, setValue: setComic } = useAsync(
-    () => getComicById(id),
+    async () => getComicById(id),
     [id]
   );
   const [loading, setLoading] = useState(false);

@@ -11,7 +11,9 @@ export const ComicViewer: FunctionComponent<ComicViewerProps> = ({
   onClick
 }) => {
   const { value: comics } = useAsync(() => getAllComics(), []);
-  if (!comics) return null;
+  if (!comics) {
+    return null;
+  }
 
   return (
     <>

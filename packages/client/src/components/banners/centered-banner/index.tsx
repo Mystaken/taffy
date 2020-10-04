@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 
-export type CenteredBannerProps = {
+export interface CenteredBannerProps {
   height: number;
   containerWidth: number;
   foregroundImg?: string;
   backgroundImg?: string;
-};
+}
 
 const DEFAULT_BACKGROUND = 'static/comic/1800x300.png';
 const DEFAULT_FOREGROUND = 'static/comic/1000x300.png';

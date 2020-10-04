@@ -37,7 +37,7 @@ router.post('/', uploadMiddleware, async ctx => {
     authors: reqBody.genres ? reqBody.authors.split(',') : []
   };
 
-  let comicData = (await validateRequestPayload<ComicIdPostRequestBody>(
+  const comicData = (await validateRequestPayload<ComicIdPostRequestBody>(
     body,
     comicIdPostSchema
   )) as UpdateComic;

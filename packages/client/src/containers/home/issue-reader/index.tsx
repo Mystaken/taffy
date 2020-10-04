@@ -25,7 +25,7 @@ export const IssueReader: FunctionComponent<IssueReaderProps> = ({
   if (issueNumber > comic.issues.length) {
     return null;
   }
-  let width = dimensions.width;
+  const width = dimensions.width;
 
   const imgWidth =
     width < DEFAULT_DIMENSIONS.WIDTH ? width : DEFAULT_DIMENSIONS.WIDTH;
